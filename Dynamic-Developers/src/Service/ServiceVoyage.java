@@ -8,11 +8,14 @@ package Service;
 import Entity.voyage;
 import Util.MyDB;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +33,7 @@ public class ServiceVoyage implements IServise<voyage>{
     public void AjouterVoyage(voyage v) {
          try {
                 String req = "insert into voyage(id,clien_id,destination,nom_voyage,duree_voyage,date,valabilite,image,prix)"
-                        +"values("+v.getID()+","+null+",'"+v.getDestination()+"','"+v.getNom_voyage()+"','"+v.getDuree_voyage()+"',"+null+","
+                        +"values("+v.getID()+","+1+",'"+v.getDestination()+"','"+v.getNom_voyage()+"','"+v.getDuree_voyage()+"',"+null+","
                         +"'"+v.getValabilite()+"','"+v.getImage()+"',"+v.getPrix()+")";
                 Statement st = cnx.createStatement();
                 st.executeUpdate(req);
@@ -40,12 +43,40 @@ public class ServiceVoyage implements IServise<voyage>{
 
     @Override
     public void ModifierVoyage(voyage v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+
+//            String req ="UPDATE `voyage` SET `clien_id`='19',`destination`='ag',`nom_voyage`='18',`duree_voyage`='15',`date`='0000-00-00',`valabilite`='12',`image`='12',`prix`='12' WHERE id=33;";
+            
+            String req ="UPDATE voyage SET clien_id=19,destination=?,nom_voyage=?,duree_voyage=?,date=null,valabilite=?,image=?,prix=? WHERE id=?;";
+            PreparedStatement ps= cnx.prepareStatement(req);
+           
+            ps.setString(1,v.getDestination());
+            ps.setString(2,v.getNom_voyage());
+            ps.setString(3,v.getDuree_voyage());
+            ps.setString(4,v.getValabilite());
+            ps.setString(5,v.getImage());
+            ps.setInt(6,(int)v.getPrix());
+            ps.setInt(7,v.getID());
+
+           ps.executeUpdate();
+                        System.out.println("voyage Modifer avec succ");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceVoyage.class.getName()).log(Level.SEVERE, null, ex);
+        }   
     }
 
     @Override
     public void SupprimerVoyage(int ID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+			try
+    { 
+      Statement st = cnx.createStatement();
+      String req = "DELETE FROM voyage WHERE id = "+ID+"";
+                st.executeUpdate(req);      
+      System.out.println("L'Voyage avec l'id = "+ID+" a été supprimer avec succès...");
+    } catch (SQLException ex) {
+                System.out.println(ex.getMessage());        
+              }
     }
 
     @Override

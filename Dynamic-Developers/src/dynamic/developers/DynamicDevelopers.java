@@ -8,6 +8,8 @@ package dynamic.developers;
 import Entity.voyage;
 import Service.ServiceVoyage;
 import Util.MyDB;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,16 +21,24 @@ public class DynamicDevelopers {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      MyDB db = MyDB.getInsatnce();
+       // MyDB db = MyDB.getInsatnce();
       //Ajouter 
-      voyage v = new voyage("AG","Qsantina","15 Jour 16 nuit","Disponible","Algeria-image",15);
+      voyage v = new voyage("TN","Soussa","17 Jour 16 nuit","Disponible","Tunisia-Soussa-image",15);
         ServiceVoyage ps = new ServiceVoyage();
-        ps.AjouterVoyage(v);
-      
-      
+         //ps.AjouterVoyage(v);
+        
+        //ps.ModifierVoyage(v);
+    
+       // ps.SupprimerVoyage(34);
+
       //Affichage
             //  ServiceVoyage ps = new ServiceVoyage();
-        System.out.println(ps.RecupererVoyage());
+            
+           List<voyage> Listvoyage = new ArrayList<>();
+           
+  Listvoyage=ps.RecupererVoyage();
+        
+  System.out.println(Listvoyage);
     }
     
 }
