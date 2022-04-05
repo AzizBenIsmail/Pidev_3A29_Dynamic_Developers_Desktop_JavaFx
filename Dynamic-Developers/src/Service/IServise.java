@@ -16,4 +16,12 @@ public interface IServise<V> {
     public void ModifierVoyage(V v);
     public void SupprimerVoyage(int ID);
     public List<V>RecupererVoyage();
+    public List<V>RecupererVoyagetrieDestination();  //exemple trie 
+    public List<V>RechercheVoyage(String Dest);  
+    public List<V>RecupererVoyageDisponible();  
+    public List<V>RecupererVoyageNonDisponible();  
+    public List<V>RecupererVoyageBientotdisponible();  
+    
+
+
 }

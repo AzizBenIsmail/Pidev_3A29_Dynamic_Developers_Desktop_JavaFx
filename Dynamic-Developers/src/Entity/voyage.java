@@ -96,4 +96,11 @@ public class voyage {
     public void setPrix(float prix) {
         this.prix = prix;
     }
+    
+ public int compareTo(voyage v) {
+  //trions les employés selon leur age dans l'ordre croiddant
+  //retroune un entier négative, zéro ou positive si l'age 
+  //de cet employé est moins que, égale à ou supérieur à l'objet comparé avec
+        return (int) (this.getPrix() - v.getPrix());
+ }
 }

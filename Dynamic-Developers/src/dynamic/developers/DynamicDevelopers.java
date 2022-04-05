@@ -36,7 +36,17 @@ public class DynamicDevelopers {
             
            List<voyage> Listvoyage = new ArrayList<>();
            
-  Listvoyage=ps.RecupererVoyage();
+        //Listvoyage=ps.RecupererVoyagetrieDestination();
+        
+        //Listvoyage=ps.RechercheVoyage("CA");
+        
+       // Listvoyage=ps.RecupererVoyageDisponible();
+        
+       // Listvoyage=ps.RecupererVoyageBientotdisponible();
+
+       Listvoyage=ps.RecupererVoyageNonDisponible();
+
+
         
   System.out.println(Listvoyage);
     }

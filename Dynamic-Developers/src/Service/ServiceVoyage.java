@@ -103,4 +103,132 @@ public class ServiceVoyage implements IServise<voyage>{
             System.err.println(ex.getMessage());        }
             
 return voyage;    }
+
+
+@Override
+    public List<voyage> RecupererVoyagetrieDestination() {
+ List<voyage> voyage = new ArrayList<>();
+        try {
+            String req ="select * from voyage order by Destination";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next())
+            {
+               voyage v = new voyage();
+               v.setID(rs.getInt("id"));
+               v.setDestination(rs.getString("destination"));
+               v.setNom_voyage(rs.getString("nom_voyage"));
+               v.setDuree_voyage(rs.getString("duree_voyage"));
+               v.setValabilite(rs.getString("valabilite"));
+               v.setImage(rs.getString("image"));
+               v.setPrix(rs.getInt("prix"));
+               
+               voyage.add(v);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());        }
+            
+return voyage;    }
+    
+    @Override
+    public List<voyage> RechercheVoyage(String dest) {
+ List<voyage> voyage = new ArrayList<>();
+        try {
+            String req ="select * from voyage WHERE destination = '"+dest+"'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next())
+            {
+               voyage v = new voyage();
+               v.setID(rs.getInt("id"));
+               v.setDestination(rs.getString("destination"));
+               v.setNom_voyage(rs.getString("nom_voyage"));
+               v.setDuree_voyage(rs.getString("duree_voyage"));
+               v.setValabilite(rs.getString("valabilite"));
+               v.setImage(rs.getString("image"));
+               v.setPrix(rs.getInt("prix"));
+               
+               voyage.add(v);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());        }
+            
+return voyage;    }
+
+    @Override
+    public List<voyage> RecupererVoyageDisponible() {
+List<voyage> voyage = new ArrayList<>();
+        try {
+            String req ="select * from voyage WHERE valabilite = 'Disponible'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next())
+            {
+               voyage v = new voyage();
+               v.setID(rs.getInt("id"));
+               v.setDestination(rs.getString("destination"));
+               v.setNom_voyage(rs.getString("nom_voyage"));
+               v.setDuree_voyage(rs.getString("duree_voyage"));
+               v.setValabilite(rs.getString("valabilite"));
+               v.setImage(rs.getString("image"));
+               v.setPrix(rs.getInt("prix"));
+               
+               voyage.add(v);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());        }
+            
+return voyage;        }
+
+    @Override
+    public List<voyage> RecupererVoyageNonDisponible() {
+List<voyage> voyage = new ArrayList<>();
+        try {
+            String req ="select * from voyage WHERE valabilite = 'Non Disponible'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next())
+            {
+               voyage v = new voyage();
+               v.setID(rs.getInt("id"));
+               v.setDestination(rs.getString("destination"));
+               v.setNom_voyage(rs.getString("nom_voyage"));
+               v.setDuree_voyage(rs.getString("duree_voyage"));
+               v.setValabilite(rs.getString("valabilite"));
+               v.setImage(rs.getString("image"));
+               v.setPrix(rs.getInt("prix"));
+               
+               voyage.add(v);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());        }
+            
+return voyage;   
+    }
+
+    @Override
+    public List<voyage> RecupererVoyageBientotdisponible() {
+List<voyage> voyage = new ArrayList<>();
+        try {
+            String req ="select * from voyage WHERE valabilite = 'Bientot Disponible'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while(rs.next())
+            {
+               voyage v = new voyage();
+               v.setID(rs.getInt("id"));
+               v.setDestination(rs.getString("destination"));
+               v.setNom_voyage(rs.getString("nom_voyage"));
+               v.setDuree_voyage(rs.getString("duree_voyage"));
+               v.setValabilite(rs.getString("valabilite"));
+               v.setImage(rs.getString("image"));
+               v.setPrix(rs.getInt("prix"));
+               
+               voyage.add(v);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());        }
+            
+return voyage;   
+    }
 }
