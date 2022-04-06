@@ -12,7 +12,7 @@ import java.util.List;
  * @author ASUS
  */
 public interface IServise<V> {
-    public void AjouterVoyage(V v) ;
+    public void AjouterVoyage(V v);
     public void ModifierVoyage(V v);
     public void SupprimerVoyage(int ID);
     public List<V>RecupererVoyage();

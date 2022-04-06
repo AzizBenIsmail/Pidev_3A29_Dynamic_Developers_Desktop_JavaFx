@@ -33,7 +33,7 @@ public class ServiceVoyage implements IServise<voyage>{
     public void AjouterVoyage(voyage v) {
          try {
                 String req = "insert into voyage(id,clien_id,destination,nom_voyage,duree_voyage,date,valabilite,image,prix)"
-                        +"values("+v.getID()+","+1+",'"+v.getDestination()+"','"+v.getNom_voyage()+"','"+v.getDuree_voyage()+"',"+null+","
+                        +"values("+v.getID()+","+1+",'"+v.getDestination()+"','"+v.getNom_voyage()+"','"+v.getDuree_voyage()+"',"+v.getDatevoy()+","
                         +"'"+v.getValabilite()+"','"+v.getImage()+"',"+v.getPrix()+")";
                 Statement st = cnx.createStatement();
                 st.executeUpdate(req);
@@ -47,16 +47,17 @@ public class ServiceVoyage implements IServise<voyage>{
 
 //            String req ="UPDATE `voyage` SET `clien_id`='19',`destination`='ag',`nom_voyage`='18',`duree_voyage`='15',`date`='0000-00-00',`valabilite`='12',`image`='12',`prix`='12' WHERE id=33;";
             
-            String req ="UPDATE voyage SET clien_id=19,destination=?,nom_voyage=?,duree_voyage=?,date=null,valabilite=?,image=?,prix=? WHERE id=?;";
+            String req ="UPDATE voyage SET clien_id=19,destination=?,nom_voyage=?,duree_voyage=?,date=?,valabilite=?,image=?,prix=? WHERE id=?;";
             PreparedStatement ps= cnx.prepareStatement(req);
            
             ps.setString(1,v.getDestination());
             ps.setString(2,v.getNom_voyage());
             ps.setString(3,v.getDuree_voyage());
-            ps.setString(4,v.getValabilite());
-            ps.setString(5,v.getImage());
-            ps.setInt(6,(int)v.getPrix());
-            ps.setInt(7,v.getID());
+            ps.setDate(4,v.getDatevoy());
+            ps.setString(5,v.getValabilite());
+            ps.setString(6,v.getImage());
+            ps.setInt(7,(int)v.getPrix());
+            ps.setInt(8,v.getID());
 
            ps.executeUpdate();
                         System.out.println("voyage Modifer avec succ");

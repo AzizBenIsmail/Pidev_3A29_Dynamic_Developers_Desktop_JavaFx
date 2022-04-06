@@ -5,6 +5,9 @@
  */
 package Entity;
 
+import java.sql.Date;
+
+
 /**
  *
  * @author ASUS
@@ -12,22 +15,25 @@ package Entity;
 public class voyage {
     int ID;
     String destination,nom_voyage,duree_voyage,valabilite,image;
+    Date Datevoy;
     float prix;
 
-    public voyage(String destination, String nom_voyage, String duree_voyage, String valabilite, String image, float prix) {
+    public voyage(String destination, String nom_voyage, String duree_voyage,Date Datevoy, String valabilite, String image, float prix) {
         this.destination = destination;
         this.nom_voyage = nom_voyage;
         this.duree_voyage = duree_voyage;
+        this.Datevoy = Datevoy;
         this.valabilite = valabilite;
         this.image = image;
         this.prix = prix;
     }
 
-    public voyage(int ID, String destination, String nom_voyage, String duree_voyage, String valabilite, String image, float prix) {
+    public voyage(int ID, String destination, String nom_voyage, String duree_voyage,Date Datevoy, String valabilite, String image, float prix) {
         this.ID = ID;
         this.destination = destination;
         this.nom_voyage = nom_voyage;
         this.duree_voyage = duree_voyage;
+        this.Datevoy = Datevoy;        
         this.valabilite = valabilite;
         this.image = image;
         this.prix = prix;
@@ -35,10 +41,19 @@ public class voyage {
 
     public voyage() {
     }
-    
+
+
     @Override
     public String toString() {
         return "voyage{" + "ID=" + ID + ", destination=" + destination + ", nom_voyage=" + nom_voyage + ", duree_voyage=" + duree_voyage + ", valabilite=" + valabilite + ", image=" + image + ", prix=" + prix + '}';
+    }
+
+    public Date getDatevoy() {
+        return Datevoy;
+    }
+
+    public void setDatevoy(Date Datevoy) {
+        this.Datevoy = Datevoy;
     }
 
     public String getDestination() {
@@ -97,10 +112,5 @@ public class voyage {
         this.prix = prix;
     }
     
- public int compareTo(voyage v) {
-  //trions les employés selon leur age dans l'ordre croiddant
-  //retroune un entier négative, zéro ou positive si l'age 
-  //de cet employé est moins que, égale à ou supérieur à l'objet comparé avec
-        return (int) (this.getPrix() - v.getPrix());
- }
+
 }
