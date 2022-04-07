@@ -16,8 +16,10 @@ import java.util.List;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
+import java.util.stream.Collectors;
 /**
  *
  * @author ASUS
@@ -31,8 +33,8 @@ public class DynamicDevelopers {
        // MyDB db = MyDB.getInsatnce();
       //Ajouter 
 
-      voyage v = new voyage("AF","FGHANESTEN","25 Jour 24 nuit",null,"Non Disponible","Image",15);
-      ReserverVoyage r = new ReserverVoyage(1,5,"Travel_Class",null,15);
+      voyage v = new voyage(4,"AF","FGHANESTEN","25 Jour 24 nuit",null,"Non Disponible","Image",15);
+      ReserverVoyage r = new ReserverVoyage(2,1,v,"economic Class",null,15);
         ServiceVoyage ps = new ServiceVoyage();
        //  ps.AjouterVoyage(v);
         
@@ -41,11 +43,28 @@ public class DynamicDevelopers {
         //ps.SupprimerVoyage(35);
 
       //Affichage            
-           List<voyage> Listvoyage = new ArrayList<>();
-           List<ReserverVoyage> Listreservationvoyage = new ArrayList<>();
+         List<voyage> Listvoyage = new ArrayList<>();
+           
+         List<ReserverVoyage> Listreservationvoyage = new ArrayList<>();
            
         Listvoyage=ps.RecupererVoyage();
 
+       /* Listvoyage.sort(new Comparator<voyage>() {
+          @Override
+          public int compare(voyage o1, voyage o2) {
+              return o2.getNom_voyage().compareTo(o1.getNom_voyage());
+          }
+      }); */
+                 List<voyage> Listtrievoyage = new ArrayList<>();
+
+       Listtrievoyage = Listvoyage.stream().sorted(new Comparator<voyage>() {
+          @Override
+          public int compare(voyage o1, voyage o2) {
+              return o2.getNom_voyage().compareTo(o1.getNom_voyage());
+          }
+      }).collect(Collectors.toList());
+        
+        
         //Listvoyage=ps.RecupererVoyagetrieDestination();
         
        // Listvoyage=ps.RechercheVoyage("CA");
@@ -58,14 +77,17 @@ public class DynamicDevelopers {
       
         ServiseReserVoy pss = new ServiseReserVoy();
         
-        //pss.SupprimerReserverVoyage(1);
+        pss.SupprimerReserverVoyage(1);
         
-        pss.AjouterReserverVoyage(r);
+        //pss.AjouterReserverVoyage(r);
 
+        //pss.ModifierReserverVoyage(r);
+
+        
         Listreservationvoyage=pss.RecupererReserverVoyage();
         
         
-    System.out.println(Listvoyage);
+   // System.out.println(Listtrievoyage);
     System.out.println(Listreservationvoyage);
 
     }

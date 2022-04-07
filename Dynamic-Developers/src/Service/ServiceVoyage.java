@@ -45,10 +45,10 @@ public class ServiceVoyage implements IServise<voyage>{
     public void ModifierVoyage(voyage v) {
         try {
 
-//            String req ="UPDATE `voyage` SET `clien_id`='19',`destination`='ag',`nom_voyage`='18',`duree_voyage`='15',`date`='0000-00-00',`valabilite`='12',`image`='12',`prix`='12' WHERE id=33;";
+// String req ="UPDATE `voyage` SET `clien_id`='19',`destination`='ag',`nom_voyage`='18',`duree_voyage`='15',`date`='0000-00-00',`valabilite`='12',`image`='12',`prix`='12' WHERE id=33;";
             
             String req ="UPDATE voyage SET clien_id=19,destination=?,nom_voyage=?,duree_voyage=?,date=?,valabilite=?,image=?,prix=? WHERE id=?;";
-            PreparedStatement ps= cnx.prepareStatement(req);
+            PreparedStatement ps= cnx.prepareStatement(req); //req dynamic plus securiser
            
             ps.setString(1,v.getDestination());
             ps.setString(2,v.getNom_voyage());
@@ -111,7 +111,7 @@ return voyage;    }
  List<voyage> voyage = new ArrayList<>();
         try {
             String req ="select * from voyage order by Destination";
-            Statement st = cnx.createStatement();
+            Statement st = cnx.createStatement();   //req statique 
             ResultSet rs = st.executeQuery(req);
             while(rs.next())
             {

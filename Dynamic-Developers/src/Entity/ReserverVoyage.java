@@ -12,12 +12,13 @@ import java.sql.Date;
  * @author ASUS
  */
 public class ReserverVoyage {
-        int Client,id,voyage;
+        int Client,id;
+        voyage voyage;
     Date date_reservation;
     String Travel_Class;
     int Age;
 
-    public ReserverVoyage(int Client, int voyage, String Travel_Class,Date date_reservation, int Age) {
+    public ReserverVoyage(int Client, voyage voyage, String Travel_Class,Date date_reservation, int Age) {
         this.Client = Client;
         this.voyage = voyage;
         this.Travel_Class = Travel_Class;
@@ -25,7 +26,7 @@ public class ReserverVoyage {
         this.Age = Age;
     }
 
-    public ReserverVoyage(int Client, int id, int voyage, String Travel_Class,Date date_reservation, int Age) {
+    public ReserverVoyage(int id, int Client, voyage voyage, String Travel_Class,Date date_reservation, int Age) {
         this.Client = Client;
         this.id = id;
         this.voyage = voyage;
@@ -39,7 +40,7 @@ public class ReserverVoyage {
 
     @Override
     public String toString() {
-        return "ReserverVoyage{" + "Client=" + Client + ", id=" + id + ", voyage=" + voyage + ", date_reservation=" + date_reservation + ", Travel_Class=" + Travel_Class + ", Age=" + Age + '}';
+        return "ReserverVoyage{" + "id=" + id + ", Client=" + Client + ", voyage=" + voyage.getNom_voyage() + ", date_reservation=" + date_reservation + ", Travel_Class=" + Travel_Class + ", Age=" + Age + '}';
     }
 
     public Date getDate_reservation() {
@@ -66,11 +67,11 @@ public class ReserverVoyage {
         this.id = id;
     }
 
-    public int getVoyage() {
+    public voyage getVoyage() {
         return voyage;
     }
 
-    public void setVoyage(int voyage) {
+    public void setVoyage(voyage voyage) {
         this.voyage = voyage;
     }
 

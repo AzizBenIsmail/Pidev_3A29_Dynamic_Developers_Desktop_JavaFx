@@ -9,11 +9,14 @@ import Entity.ReserverVoyage;
 import Entity.voyage;
 import Util.MyDB;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,7 +36,7 @@ public class ServiseReserVoy implements IServiseReserVoy<ReserverVoyage> {
     public void AjouterReserverVoyage(ReserverVoyage r) {
       try {
                 String req = "insert into reservation_voyage(id,client_id,voyage_id,date_reservation,travel_class, age)"
-                        +"values("+r.getId()+","+1+","+r.getVoyage()+","+r.getDate_reservation()+",'"+r.getTravel_Class()+"',"+r.getAge()+")";
+                        +"values("+r.getId()+","+1+","+r.getVoyage().getID()+","+r.getDate_reservation()+",'"+r.getTravel_Class()+"',"+r.getAge()+")";
                 Statement st = cnx.createStatement();
                 st.executeUpdate(req);
                 System.out.println("Voyage ajouter avec succ");
@@ -41,10 +44,27 @@ public class ServiseReserVoy implements IServiseReserVoy<ReserverVoyage> {
                 System.out.println(ex.getMessage());        }    }
 
 
-    @Override
+@Override
     public void ModifierReserverVoyage(ReserverVoyage r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+try {
+
+// String req ="UPDATE `voyage` SET `clien_id`='19',`destination`='ag',`nom_voyage`='18',`duree_voyage`='15',`date`='0000-00-00',`valabilite`='12',`image`='12',`prix`='12' WHERE id=33;";
+            
+            String req ="UPDATE reservation_voyage SET client_id=1,voyage_id=?,date_reservation=?,travel_class=?,age=? WHERE id=?";
+            PreparedStatement ps= cnx.prepareStatement(req); //req dynamic plus securiser
+           
+            ps.setInt(1,r.getVoyage().getID());
+           // ps.setString(1,);
+            ps.setDate(2,r.getDate_reservation());
+            ps.setString(3,r.getTravel_Class());
+            ps.setInt(4,(int)r.getAge());
+            ps.setInt(5,r.getId());
+           ps.executeUpdate();
+                        System.out.println("reservation_voyage Modifer avec succ");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceVoyage.class.getName()).log(Level.SEVERE, null, ex);
+        }       }
 
     @Override
     public void SupprimerReserverVoyage(int ID) {
@@ -70,11 +90,28 @@ public class ServiseReserVoy implements IServiseReserVoy<ReserverVoyage> {
                ReserverVoyage r = new ReserverVoyage();
                r.setId(rs.getInt("id"));
                r.setClient(rs.getInt("client_id"));
-               r.setVoyage(rs.getInt("voyage_id"));
+              // r.setVoyage(rs.getInt("voyage_id"));
               // r.setDate_reservation(rs.getString("date_reservation"));
                r.setTravel_Class(rs.getString("travel_class"));
                r.setAge(rs.getInt("age"));
                
+                String req1 ="select * from voyage where id= "+rs.getInt("voyage_id")+"";
+                 Statement st1 = cnx.createStatement();
+                 ResultSet rs1 = st1.executeQuery(req1);
+                 while(rs1.next()) 
+                 {
+                voyage v = new voyage();
+               v.setID(rs1.getInt("id"));
+               v.setDestination(rs1.getString("destination"));
+               v.setNom_voyage(rs1.getString("nom_voyage"));
+               v.setDuree_voyage(rs1.getString("duree_voyage"));
+               v.setValabilite(rs1.getString("valabilite"));
+               v.setImage(rs1.getString("image"));
+               v.setPrix(rs1.getInt("prix"));
+                            r.setVoyage(v);
+
+                 }
+
                ReserverVoy.add(r);
             }
         } catch (SQLException ex) {
