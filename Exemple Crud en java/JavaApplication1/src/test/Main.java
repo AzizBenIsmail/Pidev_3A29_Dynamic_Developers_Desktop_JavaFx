@@ -20,9 +20,9 @@ public class Main {
        
 //Ajouter un Personne
        
-       /*Personne p = new Personne(22,"mohamed","aziz");
+       Personne p = new Personne(22,"Ben Isamil","Mohamed");
         PersonneServise ps = new PersonneServise();
-        ps.Ajouter(p);*/
+       // ps.Ajouter(p);
        
 //Modifier un Personne       
        
@@ -31,7 +31,7 @@ public class Main {
         ps.Modifier(p);*/
       
 //Afficher 
-        PersonneServise ps = new PersonneServise();
+      //  PersonneServise ps = new PersonneServise();
         System.out.println(ps.Recuperer());
     }
 }

@@ -34,7 +34,7 @@ public class PersonneServise implements IService<Personne>{
         try {
             String req = "insert into Personne(nom,Prenom,age)"
                     +"values('"+p.getNom()+"','"+p.getPrenom()+"',"
-                    +""+p.getAge()+")";
+                    +""+null+")";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Personne ajouter avec succ");
