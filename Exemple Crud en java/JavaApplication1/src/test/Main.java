@@ -22,7 +22,7 @@ public class Main {
        
        Personne p = new Personne(22,"Ben Isamil","Mohamed");
         PersonneServise ps = new PersonneServise();
-       // ps.Ajouter(p);
+        ps.Ajouter(p);
        
 //Modifier un Personne       
        

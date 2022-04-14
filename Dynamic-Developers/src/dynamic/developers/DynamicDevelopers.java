@@ -77,7 +77,7 @@ public class DynamicDevelopers {
       
         ServiseReserVoy pss = new ServiseReserVoy();
         
-        pss.SupprimerReserverVoyage(1);
+        //pss.SupprimerReserverVoyage(1);
         
         //pss.AjouterReserverVoyage(r);
 

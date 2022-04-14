@@ -32,9 +32,9 @@ public class PersonneServise implements IService<Personne>{
     @Override
     public void Ajouter(Personne p) {
         try {
-            String req = "insert into Personne(nom,Prenom,age)"
-                    +"values('"+p.getNom()+"','"+p.getPrenom()+"',"
-                    +""+null+")";
+            String req = "insert into Personne(id,nom,Prenom,age)"
+                    +"values("+p.getId()+",'"+p.getNom()+"','"+p.getPrenom()+"',"
+                    +""+p.getAge()+")";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Personne ajouter avec succ");
