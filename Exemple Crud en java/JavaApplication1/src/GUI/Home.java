@@ -29,7 +29,7 @@ public class Home extends Application {
        
         try {
             Parent root =FXMLLoader.load(getClass().getResource("InscriptionForm.fxml"));
-            Scene scene = new Scene(root, 300, 250);
+            Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");
             primaryStage.setScene(scene);

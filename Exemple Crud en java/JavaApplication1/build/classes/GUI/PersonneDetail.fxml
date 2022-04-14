@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PersonneDetailController">
+   <children>
+      <Label layoutX="78.0" layoutY="56.0" text="ID" />
+      <Label layoutX="78.0" layoutY="122.0" text="Nom" />
+      <Label layoutX="78.0" layoutY="208.0" text="Prenom" />
+      <Label layoutX="78.0" layoutY="288.0" text="Age" />
+      <TextField fx:id="resid" editable="false" layoutX="158.0" layoutY="52.0" />
+      <TextField fx:id="resnom" editable="false" layoutX="158.0" layoutY="118.0" />
+      <TextField fx:id="resprenom" editable="false" layoutX="158.0" layoutY="204.0" />
+      <TextField fx:id="resage" editable="false" layoutX="158.0" layoutY="284.0" />
+      <DatePicker fx:id="picker" layoutX="354.0" layoutY="139.0" />
+      <ImageView fx:id="ImageP" fitHeight="150.0" fitWidth="200.0" layoutX="341.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
