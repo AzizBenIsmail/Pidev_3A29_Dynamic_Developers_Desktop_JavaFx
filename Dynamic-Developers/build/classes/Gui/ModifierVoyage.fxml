@@ -61,5 +61,6 @@
       <ImageView fx:id="Image" fitHeight="89.0" fitWidth="260.0" layoutX="290.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="AddImage" layoutX="563.0" layoutY="455.0" mnemonicParsing="false" onAction="#AddImage" prefHeight="25.0" prefWidth="96.0" text="Image" />
       <TextField fx:id="ID" editable="false" layoutX="832.0" layoutY="60.0" prefHeight="0.0" prefWidth="37.0" />
+      <Button fx:id="Retour" layoutX="69.0" layoutY="764.0" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="176.0" text="Retour" />
    </children>
 </AnchorPane>

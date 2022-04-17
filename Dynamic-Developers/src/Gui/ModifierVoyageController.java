@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -63,6 +64,8 @@ public class ModifierVoyageController implements Initializable {
     private Button Modifier;
     @FXML
     private TextField ID;
+    @FXML
+    private Button Retour;
 
     /**
      * Initializes the controller class.
@@ -128,12 +131,12 @@ public class ModifierVoyageController implements Initializable {
         String Destinationv = Destination.getText();
         String Nom_Voyagev = Nom_Voyage.getText();
         String Duree_Voyagev = Duree_Voyage.getText();
-        LocalDate date = LocalDate.now();    
+        Date Datevoy= Date.valueOf(Datev.getValue());
         String Valabilitev = Valabilite.getText();
         String Prixv=Prix.getText();
         String IDv = ID.getText();
 
-        voyage v = new voyage(Integer.parseInt(IDv),Destinationv,Nom_Voyagev,Duree_Voyagev,null,Valabilitev,voyage.filename,Float.parseFloat(Prixv));
+        voyage v = new voyage(Integer.parseInt(IDv),Destinationv,Nom_Voyagev,Duree_Voyagev,Datevoy,Valabilitev,voyage.filename,Float.parseFloat(Prixv));
             
         ServiceVoyage ps = new ServiceVoyage();
             
@@ -184,6 +187,15 @@ System.out.println(e.getMessage());
 
     public void setPrix(String valeur) {
         this.Prix.setText(valeur);
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+                 Parent root = FXMLLoader.load(getClass().getResource("Voyage.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
 
 

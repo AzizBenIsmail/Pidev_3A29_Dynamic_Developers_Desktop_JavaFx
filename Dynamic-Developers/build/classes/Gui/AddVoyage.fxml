@@ -59,6 +59,8 @@
       <TextField fx:id="Prix" layoutX="281.0" layoutY="504.0" prefHeight="29.0" prefWidth="260.0" />
       <DatePicker fx:id="Datev" layoutX="280.0" layoutY="279.0" prefHeight="29.0" prefWidth="260.0" />
       <ImageView fx:id="Image" fitHeight="89.0" fitWidth="260.0" layoutX="280.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="AddImage" layoutX="553.0" layoutY="445.0" mnemonicParsing="false" onAction="#AddImage" prefHeight="25.0" prefWidth="96.0" text="Image" />
+      <Button fx:id="AddImage" layoutX="553.0" layoutY="415.0" mnemonicParsing="false" onAction="#AddImage" prefHeight="25.0" prefWidth="125.0" text="Image" />
+      <Button fx:id="Retour" layoutX="48.0" layoutY="754.0" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="176.0" text="Retour" />
+      <TextField fx:id="URLImage" layoutX="548.0" layoutY="457.0" prefHeight="29.0" prefWidth="133.0" />
    </children>
 </AnchorPane>

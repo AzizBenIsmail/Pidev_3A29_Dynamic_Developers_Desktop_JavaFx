@@ -8,7 +8,13 @@ package Gui;
 import Entity.voyage;
 import static Entity.voyage.filename;
 import Service.ServiceVoyage;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -24,11 +30,15 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import java.time.LocalDate;    
+import java.util.Random;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -59,6 +69,10 @@ public class AddVoyageController implements Initializable {
     public String imagecomp;
     @FXML
     private DatePicker Datev;
+    @FXML
+    private Button Retour;
+    @FXML
+    private TextField URLImage;
 
     /**
      * Initializes the controller class.
@@ -70,16 +84,16 @@ public class AddVoyageController implements Initializable {
 
     @FXML
     private void Ajouter(ActionEvent event) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        Date myDate = Date.valueOf(Datev.getValue().toString());
+  
         String Destinationv = Destination.getText();
         String Nom_Voyagev = Nom_Voyage.getText();
         String Duree_Voyagev = Duree_Voyage.getText();
-        LocalDate date = LocalDate.now();    
+        Date Datevoy= Date.valueOf(Datev.getValue());
         String Valabilitev = Valabilite.getText();
         String Prixv=Prix.getText();
-        
-        voyage v = new voyage(Destinationv,Nom_Voyagev,Duree_Voyagev,myDate,Valabilitev,voyage.filename,Float.parseFloat(Prixv));
+        System.out.println(Datevoy);
+
+        voyage v = new voyage(Destinationv,Nom_Voyagev,Duree_Voyagev,Datevoy,Valabilitev,voyage.filename,Float.parseFloat(Prixv));
             
         ServiceVoyage ps = new ServiceVoyage();
             
@@ -107,32 +121,49 @@ System.out.println(e.getMessage());
            
     }
     @FXML
-    private void AddImage(ActionEvent event) {
-        FileChooser f = new FileChooser();
-        String img;
-
-        File fc = f.showOpenDialog(null);
-        if (f != null) {
-            //System.out.println(fc.getName());
-            img = fc.getAbsoluteFile().toURI().toString();
-            Image i = new Image(img);
-            Image.setImage(i);
-            imagecomp = fc.toString();
-            System.out.println(imagecomp);
-            int index = imagecomp.lastIndexOf('\\');
-            if (index > 0) {
-                filename = imagecomp.substring(index + 1);
+    private void AddImage(ActionEvent event) throws FileNotFoundException, IOException {
+    Random rand = new Random();
+        int x = rand.nextInt(1000);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload File Path");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", ".png", ".jpg", "*.gif"));
+        File file = fileChooser.showOpenDialog(null);
+        String DBPath = "C:\\\\xampp\\\\htdocs\\\\Image-Java"  + x + ".jpg";
+        if (file != null) {
+            FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
+            FileOutputStream Fdestination = new FileOutputStream(DBPath);
+            BufferedInputStream bin = new BufferedInputStream(Fsource);
+            BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
+            System.out.println(file.getAbsoluteFile());
+            String path=file.getAbsolutePath();
+            Image img = new Image(file.toURI().toString());
+            Image.setImage(img);
+           /* File File1 = new File(DBPath);
+            Image img = new Image(File1.getAbsolutePath());
+            image_event.setImage(img);*/
+            URLImage.setText(DBPath);
+            int b = 0;
+            while (b != -1) {
+                b = bin.read();
+                bou.write(b);
             }
+            bin.close();
+            bou.close();
+            
+        } else {
+            System.out.println("error");
 
-           voyage.filename = "C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Dynamic-Developers\\src\\Img" + filename;
-            //se.sendphp(fc.getAbsolutePath());
         }
-        Image.setFitHeight(65);
-        Image.setFitWidth(95);
-        //..\img\google.png
+    }
 
-        //C:\Users\splin\Documents\NetBeansProjects\FanArt\\com\esprit\img
-        voyage.pathfile = fc.getAbsolutePath();
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+                         Parent root = FXMLLoader.load(getClass().getResource("Voyage.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
     
 }

@@ -431,4 +431,40 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
         }   
 
     }
+     /*
+     public ObservableList<voyage> chercherTitreplat(String chaine){
+          String sql="SELECT * FROM platt WHERE (Descplat LIKE ? or Nomplat LIKE ?  )";
+            
+             Connection cnx= MyDB.getInsatnce().getConnection();
+            String ch="%"+chaine+"%";
+            ObservableList<voyage> myList= FXCollections.observableArrayList();
+        try {
+           
+            Statement ste= cnx.createStatement();
+           // PreparedStatement pst = myCNX.getCnx().prepareStatement(requete6);
+            PreparedStatement stee =cnx.prepareStatement(sql);  
+            stee.setString(1, ch);
+            stee.setString(2, ch);
+            
+            
+            ResultSet rs = stee.executeQuery();
+            while (rs.next()){
+                voyage p = new voyage ();
+                p.setIdplat(rs.getInt(1));
+                p.setDescplat(rs.getString(2));
+                p.setNomplat(rs.getString(3));
+                p.setImage(rs.getString(4));
+             
+                p.setPrix_plat(rs.getInt(6));
+                p.setQ_plat(rs.getInt(7));
+                p.setStock(rs.getInt(8));
+                
+                myList.add(p);
+                System.out.println("titre trouvé! ");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return myList;
+      }*/
 }
