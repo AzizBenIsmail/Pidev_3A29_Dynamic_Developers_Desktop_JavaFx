@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -16,9 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
- *
+ *  
  * @author ASUS
  */
 public class ServiceVoyage implements IServise<voyage>{
@@ -231,5 +233,202 @@ List<voyage> voyage = new ArrayList<>();
             System.err.println(ex.getMessage());        }
             
 return voyage;   
+    }
+     public List <voyage> listeVoyage()
+    {
+        String sql = "select id,destination, nom_voyage, duree_voyage,date,valabilite,image,prix from voyage";
+        
+       List <voyage> list = new ArrayList<>(); 
+       try {
+       PreparedStatement ps=cnx.prepareStatement(sql);
+         ResultSet rs=ps.executeQuery();
+       
+       while (rs.next())
+       {
+           list.add(new voyage(rs.getInt("id"),rs.getString("destination"),rs.getString("nom_voyage"),rs.getString("duree_voyage"),rs.getDate("date"),rs.getString("valabilite"),rs.getString("image"),rs.getFloat("prix")));
+       }
+       
+       }
+       catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }   
+    return list; 
+    }
+    
+    //--------------------------------- getvoyageList() ------------------------------------------------------//
+    public ObservableList<voyage> getvoyageList() throws SQLException
+    {
+        ObservableList<voyage> voyagelist = FXCollections.observableArrayList();
+        
+       Statement ps=cnx.createStatement();
+        String sql = "select id,destination, nom_voyage, duree_voyage,date,valabilite,image,prix from voyage";
+        ResultSet rs;
+        rs = ps.executeQuery(sql);
+        voyage voyage;
+        while (rs.next()) {
+           voyage= new voyage(rs.getInt("id"),rs.getString("destination"),rs.getString("nom_voyage"),rs.getString("duree_voyage"),rs.getDate("date"),rs.getString("valabilite"),rs.getString("image"),rs.getFloat("prix"));  
+            //System.out.println(events);
+            voyagelist.add(voyage);
+
+        }
+         return voyagelist;    
+    }
+    public ObservableList<voyage> getvoyageNon_Disponible() throws SQLException
+    {
+        ObservableList<voyage> voyagelist = FXCollections.observableArrayList();
+        
+       Statement ps=cnx.createStatement();
+        String sql = "select id,destination, nom_voyage, duree_voyage,date,valabilite,image,prix from voyage WHERE valabilite = 'Non Disponible'";
+        ResultSet rs;
+        rs = ps.executeQuery(sql);
+        voyage voyage;
+        while (rs.next()) {
+           voyage= new voyage(rs.getInt("id"),rs.getString("destination"),rs.getString("nom_voyage"),rs.getString("duree_voyage"),rs.getDate("date"),rs.getString("valabilite"),rs.getString("image"),rs.getFloat("prix"));  
+            //System.out.println(events);
+            voyagelist.add(voyage);
+
+        }
+         return voyagelist;    
+    }
+        public ObservableList<voyage> getvoyageDisponible() throws SQLException
+    {
+        ObservableList<voyage> voyagelist = FXCollections.observableArrayList();
+        
+       Statement ps=cnx.createStatement();
+        String sql = "select id,destination, nom_voyage, duree_voyage,date,valabilite,image,prix from voyage WHERE valabilite = 'Disponible'";
+        ResultSet rs;
+        rs = ps.executeQuery(sql);
+        voyage voyage;
+        while (rs.next()) {
+           voyage= new voyage(rs.getInt("id"),rs.getString("destination"),rs.getString("nom_voyage"),rs.getString("duree_voyage"),rs.getDate("date"),rs.getString("valabilite"),rs.getString("image"),rs.getFloat("prix"));  
+            //System.out.println(events);
+            voyagelist.add(voyage);
+
+        }
+         return voyagelist;    
+    }  public ObservableList<voyage> getvoyageBientot_Disponible() throws SQLException
+    {
+        ObservableList<voyage> voyagelist = FXCollections.observableArrayList();
+        
+       Statement ps=cnx.createStatement();
+        String sql = "select id,destination, nom_voyage, duree_voyage,date,valabilite,image,prix from voyage WHERE valabilite = 'Bientot Disponible'";
+        ResultSet rs;
+        rs = ps.executeQuery(sql);
+        voyage voyage;
+        while (rs.next()) {
+           voyage= new voyage(rs.getInt("id"),rs.getString("destination"),rs.getString("nom_voyage"),rs.getString("duree_voyage"),rs.getDate("date"),rs.getString("valabilite"),rs.getString("image"),rs.getFloat("prix"));  
+            //System.out.println(events);
+            voyagelist.add(voyage);
+
+        }
+         return voyagelist;    
+    }
+     //----------------------------------------  Display Destination by ID --------------------------------------------------------------//
+     public String getDestinationID(int idxx)
+    {
+        try{
+            PreparedStatement ps= cnx.prepareStatement("select * from voyage where id=?");
+            ps.setInt(1, idxx);
+            ResultSet rs = ps.executeQuery();
+            rs.beforeFirst();
+            
+            if (rs.next()) {
+                return rs.getString("Destination");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(voyage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+     public String getnomID(int idxx)
+    {
+        try{
+            PreparedStatement ps= cnx.prepareStatement("select * from voyage where id=?");
+            ps.setInt(1, idxx);
+            ResultSet rs = ps.executeQuery();
+            rs.beforeFirst();
+            
+            if (rs.next()) {
+                return rs.getString("nom_voyage");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(voyage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+     public String getduree_voyageID(int idxx)
+    {
+        try{
+            PreparedStatement ps= cnx.prepareStatement("select * from voyage where id=?");
+            ps.setInt(1, idxx);
+            ResultSet rs = ps.executeQuery();
+            rs.beforeFirst();
+            
+            if (rs.next()) {
+                return rs.getString("duree_voyage");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(voyage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+     public String getvalabiliteID(int idxx)
+    {
+        try{
+            PreparedStatement ps= cnx.prepareStatement("select * from voyage where id=?");
+            ps.setInt(1, idxx);
+            ResultSet rs = ps.executeQuery();
+            rs.beforeFirst();
+            
+            if (rs.next()) {
+                return rs.getString("valabilite");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(voyage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+     
+     public float getprixID(int idxx)
+    {
+        try{
+            PreparedStatement ps= cnx.prepareStatement("select * from voyage where id=?");
+            ps.setInt(1, idxx);
+            ResultSet rs = ps.executeQuery();
+            rs.beforeFirst();
+            
+            if (rs.next()) {
+                return rs.getFloat("prix");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(voyage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+     public void modifier(voyage v ,int id) {
+           try {
+             
+PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destination=?,nom_voyage=?,duree_voyage=?,date=?,valabilite=?,image=?,prix=? WHERE id=?");           
+            ps.setString(1,v.getDestination());
+            ps.setString(2,v.getNom_voyage());
+            ps.setString(3,v.getDuree_voyage());
+            ps.setDate(4,v.getDatevoy());
+            ps.setString(5,v.getValabilite());
+            ps.setString(6,v.getImage());
+            ps.setInt(7,(int)v.getPrix());
+            ps.setInt(8,id);
+
+           ps.executeUpdate();
+                        System.out.println("voyage Modifer avec succ");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceVoyage.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+
     }
 }

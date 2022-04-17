@@ -6,7 +6,9 @@
 package Entity;
 
 import java.sql.Date;
-
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+    
 
 /**
  *
@@ -17,12 +19,15 @@ public class voyage {
     String destination,nom_voyage,duree_voyage,valabilite,image;
     Date Datevoy;
     float prix;
-
+    SimpleDateFormat formater = null;
+    
+    LocalDate currentDate = LocalDate.now();  // 2
+    
     public voyage(String destination, String nom_voyage, String duree_voyage,Date Datevoy, String valabilite, String image, float prix) {
         this.destination = destination;
         this.nom_voyage = nom_voyage;
         this.duree_voyage = duree_voyage;
-        this.Datevoy = Datevoy;
+        this.Datevoy = null;
         this.valabilite = valabilite;
         this.image = image;
         this.prix = prix;
@@ -33,7 +38,7 @@ public class voyage {
         this.destination = destination;
         this.nom_voyage = nom_voyage;
         this.duree_voyage = duree_voyage;
-        this.Datevoy = Datevoy;        
+        this.Datevoy = null;        
         this.valabilite = valabilite;
         this.image = image;
         this.prix = prix;
@@ -42,7 +47,8 @@ public class voyage {
     public voyage() {
     }
 
-
+public static String pathfile; 
+    public static String filename="";
     @Override
     public String toString() {
         return "voyage{" + "ID=" + ID + ", destination=" + destination + ", nom_voyage=" + nom_voyage + ", duree_voyage=" + duree_voyage + ", valabilite=" + valabilite + ", image=" + image + ", prix=" + prix + '}';

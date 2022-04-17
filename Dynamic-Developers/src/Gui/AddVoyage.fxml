@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="825.0" prefWidth="1273.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.AddVoyageController">
+   <children>
+      <ImageView fx:id="ImageP" fitHeight="824.0" fitWidth="1339.0" layoutX="-37.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/bg.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="Ajouer" layoutX="1051.0" layoutY="766.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="25.0" prefWidth="176.0" text="Valider" />
+      <Label layoutX="66.0" layoutY="48.0" prefHeight="30.0" prefWidth="176.0" text="Destination :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="278.0" prefHeight="30.0" prefWidth="133.0" text="Date :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="201.0" prefHeight="30.0" prefWidth="211.0" text="Duree Voyage :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="121.0" prefHeight="30.0" prefWidth="188.0" text="Nom Voyage :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="69.0" layoutY="358.0" prefHeight="30.0" prefWidth="133.0" text="Valabilite :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="427.0" prefHeight="30.0" prefWidth="146.0" text="Image :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="80.0" layoutY="503.0" prefHeight="30.0" prefWidth="133.0" text="Prix :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Destination" layoutX="281.0" layoutY="48.0" prefHeight="29.0" prefWidth="260.0" />
+      <TextField fx:id="Duree_Voyage" layoutX="281.0" layoutY="202.0" prefHeight="29.0" prefWidth="260.0" />
+      <TextField fx:id="Nom_Voyage" layoutX="281.0" layoutY="122.0" prefHeight="29.0" prefWidth="260.0" />
+      <TextField fx:id="Valabilite" layoutX="281.0" layoutY="352.0" prefHeight="29.0" prefWidth="260.0" />
+      <TextField fx:id="Prix" layoutX="281.0" layoutY="504.0" prefHeight="29.0" prefWidth="260.0" />
+      <DatePicker fx:id="Datev" layoutX="280.0" layoutY="279.0" prefHeight="29.0" prefWidth="260.0" />
+      <ImageView fx:id="Image" fitHeight="89.0" fitWidth="260.0" layoutX="280.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="AddImage" layoutX="553.0" layoutY="445.0" mnemonicParsing="false" onAction="#AddImage" prefHeight="25.0" prefWidth="96.0" text="Image" />
+   </children>
+</AnchorPane>

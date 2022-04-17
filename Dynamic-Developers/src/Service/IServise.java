@@ -21,6 +21,8 @@ public interface IServise<V> {
     public List<V>RecupererVoyageDisponible();  
     public List<V>RecupererVoyageNonDisponible();  
     public List<V>RecupererVoyageBientotdisponible();  
+    public List<V>listeVoyage();  
+
     
 
 
