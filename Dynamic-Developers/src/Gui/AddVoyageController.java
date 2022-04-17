@@ -79,9 +79,9 @@ public class AddVoyageController implements Initializable {
         String Valabilitev = Valabilite.getText();
         String Prixv=Prix.getText();
         
-                   voyage v = new voyage(Destinationv,Nom_Voyagev,Duree_Voyagev,myDate,Valabilitev,voyage.filename,Float.parseFloat(Prixv));
+        voyage v = new voyage(Destinationv,Nom_Voyagev,Duree_Voyagev,myDate,Valabilitev,voyage.filename,Float.parseFloat(Prixv));
             
-            ServiceVoyage ps = new ServiceVoyage();
+        ServiceVoyage ps = new ServiceVoyage();
             
             ps.AjouterVoyage(v);
             

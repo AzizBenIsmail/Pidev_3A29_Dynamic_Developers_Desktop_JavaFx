@@ -11,6 +11,10 @@ import Service.ServiceVoyage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -56,6 +61,8 @@ public class ModifierVoyageController implements Initializable {
     private Button AddImage;
     @FXML
     private Button Modifier;
+    @FXML
+    private TextField ID;
 
     /**
      * Initializes the controller class.
@@ -63,7 +70,7 @@ public class ModifierVoyageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ServiceVoyage vs = new ServiceVoyage();
+      /*  ServiceVoyage vs = new ServiceVoyage();
         try {
             FXMLLoader loader = new FXMLLoader();
           loader.setLocation(getClass().getResource("Voyage.fxml"));
@@ -82,7 +89,7 @@ public class ModifierVoyageController implements Initializable {
 
         } catch (Exception e) {
                 
-        }
+        }*/
     }    
 
 
@@ -117,25 +124,41 @@ public class ModifierVoyageController implements Initializable {
 
     @FXML
     private void Modifier(ActionEvent event) throws IOException {
-FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("Voyage.fxml"));
-            Stage prStage = new Stage();
-            Parent root= loader.load();
-            Scene scene = new Scene(root);
-            prStage.setScene(scene);
-            ServiceVoyage sv = new ServiceVoyage();
-            voyage v = new voyage();
-          //  int id= Integer.parseInt(VoyageController.idxx);
-            //System.out.println(id);
-           // v.setID(id);
-            v.setDestination(Destination.getText());
-            v.setNom_voyage(Nom_Voyage.getText());
-            v.setDuree_voyage(Duree_Voyage.getText());
-            //v.setDatevoy(Datev.getText());
-            v.setImage(imagecomp);
-            System.out.println(imagecomp);
-            v.setPrix(Float.parseFloat(Prix.getText()));
-            sv.ModifierVoyage(v);
+
+        String Destinationv = Destination.getText();
+        String Nom_Voyagev = Nom_Voyage.getText();
+        String Duree_Voyagev = Duree_Voyage.getText();
+        LocalDate date = LocalDate.now();    
+        String Valabilitev = Valabilite.getText();
+        String Prixv=Prix.getText();
+        String IDv = ID.getText();
+
+        voyage v = new voyage(Integer.parseInt(IDv),Destinationv,Nom_Voyagev,Duree_Voyagev,null,Valabilitev,voyage.filename,Float.parseFloat(Prixv));
+            
+        ServiceVoyage ps = new ServiceVoyage();
+            
+            ps.ModifierVoyage(v);
+            
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("Voyage.fxml"));
+            try {
+                            Parent root = loader.load();
+           VoyageController ac = loader.getController();
+                Destination.getScene().setRoot(root);
+           Alert alert = new Alert (Alert.AlertType.INFORMATION);
+        alert.setTitle("succes");
+        alert.setHeaderText(null);
+        alert.setContentText("!!!succes !!!");
+        alert.showAndWait();
+
+        } catch (Exception e) {
+System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
+              Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error!");
+                alert.show();
+                System.err.println(e.getMessage());
+        }
+           
 
     }
 
@@ -155,7 +178,13 @@ FXMLLoader loader = new FXMLLoader();
         this.Valabilite.setText(valeur);
     }
 
+    public void setID(String valeur) {
+        this.ID.setText(valeur);
+    }
+
     public void setPrix(String valeur) {
         this.Prix.setText(valeur);
     }
+
+
 }
