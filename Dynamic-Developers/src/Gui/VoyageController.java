@@ -144,7 +144,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-                ObservableList<String> list = FXCollections.observableArrayList("Disponible","Non Disponible","Bientot Disponible");
+        ObservableList<String> list = FXCollections.observableArrayList("Disponible","Non Disponible","Bientot Disponible");
         combox.setItems(list);
         loadvoy();
         refresh();
@@ -159,7 +159,6 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
                Destination.setText(voy.getDestination());
                Nom_Voyage.setText(voy.getNom_voyage());
                Duree_Voyage.setText(voy.getDuree_voyage());
-              //Valabilite.setText(voy.getValabilite());
                String c =  voy.getValabilite();
                  combox.setValue(c);
                Prix.setText(String.valueOf(voy.getPrix()));               
@@ -167,7 +166,6 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
                File file=new File(path);
               Image img = new Image(file.toURI().toString());
                 Image.setImage(img);
-               //imagecat.setText(cat.getImage());
            } catch (Exception e) {
                System.out.println(e.getMessage());
                
@@ -186,115 +184,89 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         System.out.println(TableVoyage);
         TableVoyage.refresh();
     }
-
+    
     @FXML
     private void Actualiser(ActionEvent event) {
-        ObservableList<voyage> listV;
-        try {     
-                    ServiceVoyage SV= new ServiceVoyage();
-            listV=SV.getvoyageList();
-        VID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        VDest.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        VNom.setCellValueFactory(new PropertyValueFactory<>("nom_voyage"));
-        VDuree.setCellValueFactory(new PropertyValueFactory<>("duree_voyage"));
-        Vdate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        VValibilite.setCellValueFactory(new PropertyValueFactory<>("valabilite"));
-        Vimage.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<voyage, ImageView>, ObservableValue<ImageView>>() {
-                @Override
-                public ObservableValue<ImageView> call(TableColumn.CellDataFeatures<voyage, ImageView> param) {
-                return new ReadOnlyObjectWrapper(param.getValue().getImage());
-                }
-            }
-);
-        Vprix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        TableVoyage.setItems(listV);
-
-        } catch (Exception e) {
+        loadvoy();
+        refresh();
         }
-                TableVoyage.refresh();
-    }
 
     @FXML
     private void Bientot_disponible(ActionEvent event) {
-                ObservableList<voyage> listV;
-
-        try {
-                    ServiceVoyage SV= new ServiceVoyage();
-            listV=SV.getvoyageBientot_Disponible();
-        VID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        VDest.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        VNom.setCellValueFactory(new PropertyValueFactory<>("nom_voyage"));
-        VDuree.setCellValueFactory(new PropertyValueFactory<>("duree_voyage"));
-        Vdate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        VValibilite.setCellValueFactory(new PropertyValueFactory<>("valabilite"));
-        Vimage.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<voyage, ImageView>, ObservableValue<ImageView>>() {
-                @Override
-                public ObservableValue<ImageView> call(TableColumn.CellDataFeatures<voyage, ImageView> param) {
-                return new ReadOnlyObjectWrapper(param.getValue().getImage());
-                }
+ try {
+            List.clear();
+            
+            query = "select * from voyage WHERE valabilite = 'Bientot Disponible'";
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                List.add(new  voyage(
+                        resultSet.getInt("id"),
+                        resultSet.getString("destination"),
+                        resultSet.getString("nom_voyage"),
+                        resultSet.getString("duree_voyage"),
+                        resultSet.getDate("date"),
+                        resultSet.getString("valabilite"),
+                        resultSet.getString("image"),
+                        resultSet.getFloat("prix")
+                        )); 
+               TableVoyage.setItems(List);
             }
-);
-        Vprix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        TableVoyage.setItems(listV);
-
-        } catch (Exception e) {
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-                TableVoyage.refresh();
     }
 
     @FXML
     private void Disponible(ActionEvent event) {
-                ObservableList<voyage> listV;
-
-        try {
-                    ServiceVoyage SV= new ServiceVoyage();
-            listV=SV.getvoyageDisponible();
-        VID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        VDest.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        VNom.setCellValueFactory(new PropertyValueFactory<>("nom_voyage"));
-        VDuree.setCellValueFactory(new PropertyValueFactory<>("duree_voyage"));
-        Vdate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        VValibilite.setCellValueFactory(new PropertyValueFactory<>("valabilite"));
-        Vimage.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<voyage, ImageView>, ObservableValue<ImageView>>() {
-                @Override
-                public ObservableValue<ImageView> call(TableColumn.CellDataFeatures<voyage, ImageView> param) {
-                return new ReadOnlyObjectWrapper(param.getValue().getImage());
-                }
+                 try {
+            List.clear();
+            
+            query = "select * from voyage WHERE valabilite = 'Disponible'";
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                List.add(new  voyage(
+                        resultSet.getInt("id"),
+                        resultSet.getString("destination"),
+                        resultSet.getString("nom_voyage"),
+                        resultSet.getString("duree_voyage"),
+                        resultSet.getDate("date"),
+                        resultSet.getString("valabilite"),
+                        resultSet.getString("image"),
+                        resultSet.getFloat("prix")
+                        )); 
+               TableVoyage.setItems(List);
             }
-);
-        Vprix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        TableVoyage.setItems(listV);
-
-        } catch (Exception e) {
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-                TableVoyage.refresh();
     }
 
     @FXML
     private void Non_Disponible(ActionEvent event) {
-                ObservableList<voyage> listV;
-        try {
-                    ServiceVoyage SV= new ServiceVoyage();
-            listV=SV.getvoyageNon_Disponible();
-        VID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        VDest.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        VNom.setCellValueFactory(new PropertyValueFactory<>("nom_voyage"));
-        VDuree.setCellValueFactory(new PropertyValueFactory<>("duree_voyage"));
-        Vdate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        VValibilite.setCellValueFactory(new PropertyValueFactory<>("valabilite"));
-        Vimage.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<voyage, ImageView>, ObservableValue<ImageView>>() {
-                @Override
-                public ObservableValue<ImageView> call(TableColumn.CellDataFeatures<voyage, ImageView> param) {
-                return new ReadOnlyObjectWrapper(param.getValue().getImage());
-                }
+       try {
+            List.clear();
+            
+            query = "select * from voyage WHERE valabilite = 'Non Disponible'";
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                List.add(new  voyage(
+                        resultSet.getInt("id"),
+                        resultSet.getString("destination"),
+                        resultSet.getString("nom_voyage"),
+                        resultSet.getString("duree_voyage"),
+                        resultSet.getDate("date"),
+                        resultSet.getString("valabilite"),
+                        resultSet.getString("image"),
+                        resultSet.getFloat("prix")
+                        )); 
+               TableVoyage.setItems(List);
             }
-);
-        Vprix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        TableVoyage.setItems(listV);
-
-        } catch (Exception e) {
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-                TableVoyage.refresh();
     }
 
   
@@ -358,7 +330,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.jpeg"));
         File file = fileChooser.showOpenDialog(null);
-        String DBPath = "C:\\xampp\\htdocs\\Version-Integre\\public\\uploads"  + x + ".jpg";
+        String DBPath = "C:\\xampp\\htdocs\\Version-Integre\\public\\uploads\\"  + x + ".jpg";
         if (file != null) {
             FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
             FileOutputStream Fdestination = new FileOutputStream(DBPath);
@@ -368,9 +340,6 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
             String path=file.getAbsolutePath();
             Image img = new Image(file.toURI().toString());
             Image.setImage(img);
-           /* File File1 = new File(DBPath);
-            Image img = new Image(File1.getAbsolutePath());
-            image_event.setImage(img);*/
             URLImage.setText(DBPath);
             int b = 0;
             while (b != -1) {
@@ -393,8 +362,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         String Nom_Voyagev = Nom_Voyage.getText();
         String Duree_Voyagev = Duree_Voyage.getText();
         Date Datevoy= Date.valueOf(Datev.getValue());
-      //  String Valabilitev = Valabilite.getText();
-         String Valabilitev = (String)combox.getValue();
+        String Valabilitev = (String)combox.getValue();
          
         String Prixv=Prix.getText();
         System.out.println(Datevoy);
@@ -408,34 +376,19 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         if( Destinationv.isEmpty()){           
             Alert alert =new Alert(Alert.AlertType.CONFIRMATION);            
             alert.setContentText("champs vides");
+            alert.setTitle("Prolem");
+        alert.setHeaderText(null);
             alert.showAndWait(); 
         } 
         else {
             ps.AjouterVoyage(v);
              refresh();
-             Alert alert =new Alert(Alert.AlertType.CONFIRMATION);            
+             Alert alert =new Alert(Alert.AlertType.CONFIRMATION);   
+             alert.setTitle("succes");
+             alert.setHeaderText(null);
             alert.setContentText("Voyage ajouter");
             alert.showAndWait();
-        }}
-
-            
-            
-       /*     try {
-           Alert alert = new Alert (Alert.AlertType.INFORMATION);
-        alert.setTitle("succes");
-        alert.setHeaderText(null);
-        alert.setContentText("!!!succes !!!");
-        alert.showAndWait();
-
-        } catch (Exception e) {
-System.out.println(e.getMessage());
-            System.out.println(e.getMessage());
-              Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error!");
-                alert.show();
-                System.err.println(e.getMessage());
-        } */
-           
+        }}                 
 
     @FXML
     private void ModVoy(ActionEvent event) {
@@ -447,14 +400,11 @@ System.out.println(e.getMessage());
    voy.setNom_voyage(Nom_Voyage.getText());
    voy.setDuree_voyage(Duree_Voyage.getText());
    //voy.setDatevoy(Datev.getText());
-   //voy.setValabilite(Valabilite.getText());
    String Valabilite = (String)combox.getValue();
    voy.setValabilite(Valabilite);
    voy.setImage(URLImage.getText());
    voy.setPrix(Float.parseFloat(Prix.getText()));
- 
-    //int q_plat=Float.valueOf(quantiteee.getText());
-    //cat.setQ_plat(q_plat);  
+  
    sv.ModifierVoyage(voy);
    loadvoy(); 
    refresh();
