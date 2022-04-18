@@ -36,13 +36,13 @@ public class ServiseReserVoy implements IServiseReserVoy<ReserverVoyage> {
     public void AjouterReserverVoyage(ReserverVoyage r) {
       try {
                 String req = "insert into reservation_voyage(id,client_id,voyage_id,date_reservation,travel_class, age)"
-                        +"values("+r.getId()+","+1+","+r.getVoyage().getID()+","+r.getDate_reservation()+",'"+r.getTravel_Class()+"',"+r.getAge()+")";
+                        +"values("+r.getId()+","+1+","+r.getVoyage_id()+","+r.getDate_reservation()+",'"+r.getTravel_Class()+"',"+r.getAge()+")";
                 Statement st = cnx.createStatement();
                 st.executeUpdate(req);
                 System.out.println("Voyage ajouter avec succ");
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());        }    }
-
+    
 
 @Override
     public void ModifierReserverVoyage(ReserverVoyage r) {
@@ -50,15 +50,14 @@ try {
 
 // String req ="UPDATE `voyage` SET `clien_id`='19',`destination`='ag',`nom_voyage`='18',`duree_voyage`='15',`date`='0000-00-00',`valabilite`='12',`image`='12',`prix`='12' WHERE id=33;";
             
-            String req ="UPDATE reservation_voyage SET client_id=1,voyage_id=?,date_reservation=?,travel_class=?,age=? WHERE id=?";
+            String req ="UPDATE reservation_voyage SET date_reservation=?,travel_class=?,age=? WHERE id=?";
             PreparedStatement ps= cnx.prepareStatement(req); //req dynamic plus securiser
            
-            ps.setInt(1,r.getVoyage().getID());
            // ps.setString(1,);
-            ps.setDate(2,r.getDate_reservation());
-            ps.setString(3,r.getTravel_Class());
-            ps.setInt(4,(int)r.getAge());
-            ps.setInt(5,r.getId());
+            ps.setDate(1,r.getDate_reservation());
+            ps.setString(2,r.getTravel_Class());
+            ps.setInt(3,(int)r.getAge());
+            ps.setInt(4,r.getId());
            ps.executeUpdate();
                         System.out.println("reservation_voyage Modifer avec succ");
 
@@ -78,7 +77,7 @@ try {
                 System.out.println(ex.getMessage());        
               }    }
 
-    @Override
+   /* @Override
     public List<ReserverVoyage> RecupererReserverVoyage() {
  List<ReserverVoyage> ReserverVoy = new ArrayList<>();
         try {
@@ -118,5 +117,31 @@ try {
             System.err.println(ex.getMessage());        }
             
 return ReserverVoy;    }
-    
+    */
+@Override
+    public List<ReserverVoyage> RecupererReserverVoyage() {
+         List<ReserverVoyage> ReserverVoyage = new ArrayList<>();
+       // String sql ="select * from platt";
+        String sql ="select reservation_voyage.id,voyage.nom_voyage ,reservation_voyage.date_reservation, reservation_voyage.travel_class, reservation_voyage.age from reservation_voyage INNER JOIN voyage where reservation_voyage.id=voyage.id ";
+
+        try {
+            Statement ste= cnx.createStatement();
+            ResultSet rs =ste.executeQuery(sql);
+            while(rs.next()){
+                ReserverVoyage r = new ReserverVoyage();
+               r.setId(rs.getInt("id"));
+               //r.setClient(rs.getInt("client_id"));
+               r.setNom_voyage(rs.getString("nom_voyage"));
+              // r.setDate_reservation(rs.getString("date_reservation"));
+               r.setTravel_Class(rs.getString("travel_class"));
+               r.setAge(rs.getInt("age"));
+               
+                ReserverVoyage.add(r);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return ReserverVoyage;
+
+    }
 }

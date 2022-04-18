@@ -431,12 +431,12 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
         }   
 
     }
-     /*
      public ObservableList<voyage> chercherTitreplat(String chaine){
-          String sql="SELECT * FROM platt WHERE (Descplat LIKE ? or Nomplat LIKE ?  )";
+          String sql="SELECT * FROM voyage WHERE (nom_voyage LIKE ? or duree_voyage LIKE ? or valabilite LIKE ? )";
             
              Connection cnx= MyDB.getInsatnce().getConnection();
             String ch="%"+chaine+"%";
+
             ObservableList<voyage> myList= FXCollections.observableArrayList();
         try {
            
@@ -445,26 +445,25 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
             PreparedStatement stee =cnx.prepareStatement(sql);  
             stee.setString(1, ch);
             stee.setString(2, ch);
-            
-            
+            stee.setString(3, ch);
+
             ResultSet rs = stee.executeQuery();
             while (rs.next()){
-                voyage p = new voyage ();
-                p.setIdplat(rs.getInt(1));
-                p.setDescplat(rs.getString(2));
-                p.setNomplat(rs.getString(3));
-                p.setImage(rs.getString(4));
-             
-                p.setPrix_plat(rs.getInt(6));
-                p.setQ_plat(rs.getInt(7));
-                p.setStock(rs.getInt(8));
-                
-                myList.add(p);
+                voyage v = new voyage ();
+                v.setDestination(rs.getString(3));
+                v.setNom_voyage(rs.getString(4));
+                v.setDuree_voyage(rs.getString(5));
+                v.setDatevoy(rs.getDate(6));
+                v.setValabilite(rs.getString(7));
+                v.setImage(rs.getString(8));
+                v.setPrix(rs.getFloat(9));
+
+                myList.add(v);
                 System.out.println("titre trouvé! ");
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return myList;
-      }*/
+      }
 }

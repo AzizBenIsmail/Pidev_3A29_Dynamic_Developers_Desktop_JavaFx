@@ -33,11 +33,9 @@
       </TableView>
       <Button fx:id="SupprimerVoyage" layoutX="1085.0" layoutY="600.0" mnemonicParsing="false" onAction="#SupprimerVoyage" prefHeight="25.0" prefWidth="173.0" text="Supprimer" />
       <Button fx:id="Actualiser" layoutX="619.0" layoutY="600.0" mnemonicParsing="false" onAction="#Actualiser" prefHeight="25.0" prefWidth="122.0" text="Actualiser" />
-      <Button fx:id="Bientot_disponible" layoutX="1090.0" layoutY="82.0" mnemonicParsing="false" onAction="#Bientot_disponible" prefHeight="25.0" prefWidth="164.0" text="Bientot disponible" />
-      <Button fx:id="Disponible" layoutX="626.0" layoutY="82.0" mnemonicParsing="false" onAction="#Disponible" prefHeight="25.0" prefWidth="164.0" text="Disponible" />
-      <Button fx:id="Non_Disponible" layoutX="862.0" layoutY="82.0" mnemonicParsing="false" onAction="#Non_Disponible" prefHeight="25.0" prefWidth="180.0" text="Non Disponible" />
-      <Button fx:id="Modifier" layoutX="1006.0" layoutY="14.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="25.0" prefWidth="111.0" text="Modifier" />
-      <Button fx:id="Ajouter" layoutX="1132.0" layoutY="14.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="25.0" prefWidth="129.0" text="Ajouter" />
+      <Button fx:id="Bientot_disponible" layoutX="598.0" layoutY="90.0" mnemonicParsing="false" onAction="#Bientot_disponible" prefHeight="25.0" prefWidth="164.0" text="Bientot disponible" />
+      <Button fx:id="Disponible" layoutX="598.0" layoutY="14.0" mnemonicParsing="false" onAction="#Disponible" prefHeight="25.0" prefWidth="164.0" text="Disponible" />
+      <Button fx:id="Non_Disponible" layoutX="598.0" layoutY="49.0" mnemonicParsing="false" onAction="#Non_Disponible" prefHeight="25.0" prefWidth="164.0" text="Non Disponible" />
       <Button fx:id="Add" layoutX="283.0" layoutY="647.0" mnemonicParsing="false" onAction="#Add" prefHeight="25.0" prefWidth="98.0" text="Ajouter" />
       <Label layoutX="28.0" layoutY="115.0" prefHeight="30.0" prefWidth="176.0" text="Destination :">
          <font>
@@ -74,9 +72,9 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="Destination" layoutX="204.0" layoutY="116.0" prefHeight="29.0" prefWidth="146.0" />
-      <TextField fx:id="Duree_Voyage" layoutX="204.0" layoutY="269.0" prefHeight="29.0" prefWidth="140.0" />
-      <TextField fx:id="Nom_Voyage" layoutX="204.0" layoutY="189.0" prefHeight="29.0" prefWidth="140.0" />
+      <TextField fx:id="Destination" layoutX="204.0" layoutY="116.0" prefHeight="29.0" prefWidth="146.0" promptText="Destination " />
+      <TextField fx:id="Duree_Voyage" layoutX="204.0" layoutY="269.0" prefHeight="29.0" prefWidth="140.0" promptText="Duree Voyage :" />
+      <TextField fx:id="Nom_Voyage" layoutX="204.0" layoutY="189.0" prefHeight="29.0" prefWidth="140.0" promptText="Nom Voyage :" />
       <TextField fx:id="Prix" layoutX="186.0" layoutY="571.0" prefHeight="29.0" prefWidth="146.0" />
       <DatePicker fx:id="Datev" layoutX="199.0" layoutY="346.0" prefHeight="29.0" prefWidth="140.0" />
       <ImageView fx:id="Image" fitHeight="192.0" fitWidth="360.0" layoutX="772.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
@@ -84,5 +82,6 @@
       <TextField fx:id="URLImage" layoutX="193.0" layoutY="495.0" prefHeight="29.0" prefWidth="133.0" />
       <Button fx:id="ModVoy" layoutX="835.0" layoutY="600.0" mnemonicParsing="false" onAction="#ModVoy" prefHeight="25.0" prefWidth="173.0" text="Modifier" />
       <ComboBox fx:id="combox" layoutX="199.0" layoutY="428.0" prefWidth="150.0" />
+      <TextField fx:id="Recherche" layoutX="1023.0" layoutY="78.0" onKeyReleased="#Recherche" prefHeight="25.0" prefWidth="211.0" promptText="Recherche" />
    </children>
 </AnchorPane>

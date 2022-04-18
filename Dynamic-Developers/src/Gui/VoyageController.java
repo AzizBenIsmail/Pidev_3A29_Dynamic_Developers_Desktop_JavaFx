@@ -52,6 +52,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -122,8 +123,6 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     @FXML
     private TextField Nom_Voyage;
     @FXML
-    private TextField Valabilite;
-    @FXML
     private TextField Prix;
     @FXML
     private DatePicker Datev;
@@ -137,6 +136,8 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     private Button ModVoy;
     @FXML
     private ComboBox<String> combox;
+    @FXML
+    private TextField Recherche;
     /**
      * Initializes the controller class.
      */
@@ -152,41 +153,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
 
     @FXML
     private void Liste_Voyage(javafx.scene.input.MouseEvent event) {
-       /* ServiceVoyage SV= new ServiceVoyage();
-        TableVoyage.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-            VID.setText(String.valueOf(SV.listeVoyage().get(TableVoyage.getSelectionModel().getSelectedIndex()).getID()));
-            VDest.setText(String.valueOf(SV.listeVoyage().get(TableVoyage.getSelectionModel().getSelectedIndex()).getDestination()));
-            VNom.setText(String.valueOf(SV.listeVoyage().get(TableVoyage.getSelectionModel().getSelectedIndex()).getNom_voyage()));
-            VDuree.setText(String.valueOf(SV.listeVoyage().get(TableVoyage.getSelectionModel().getSelectedIndex()).getDuree_voyage()));
-            Vdate.setText(String.valueOf(SV.listeVoyage().get(TableVoyage.getSelectionModel().getSelectedIndex()).getDatevoy()));
-            VValibilite.setText(String.valueOf(SV.listeVoyage().get(TableVoyage.getSelectionModel().getSelectedIndex()).getValabilite()));
-            Vimage.setText(String.valueOf(SV.listeVoyage().get(TableVoyage.getSelectionModel().getSelectedIndex()).getImage()));
-            Vprix.setText(String.valueOf(SV.listeVoyage().get(TableVoyage.getSelectionModel().getSelectedIndex()).getPrix()));  
-        };
-        }); 
-ObservableList<voyage> listV;
-        try {
-            listV=SV.getvoyageList();
-        VID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        VDest.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        VNom.setCellValueFactory(new PropertyValueFactory<>("nom_voyage"));
-        VDuree.setCellValueFactory(new PropertyValueFactory<>("duree_voyage"));
-        Vdate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        VValibilite.setCellValueFactory(new PropertyValueFactory<>("valabilite"));
-        Vimage.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<voyage, ImageView>, ObservableValue<ImageView>>() {
-                @Override
-                public ObservableValue<ImageView> call(TableColumn.CellDataFeatures<voyage, ImageView> param) {
-                return new ReadOnlyObjectWrapper(param.getValue().getImage());
-                }
-            }
-);
-        Vprix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        TableVoyage.setItems(listV);
-
-        } catch (Exception e) {
-        } */
+      
           try {
                voyage voy = TableVoyage.getSelectionModel().getSelectedItem();
                Destination.setText(voy.getDestination());
@@ -330,34 +297,7 @@ ObservableList<voyage> listV;
                 TableVoyage.refresh();
     }
 
-    @FXML
-    private void Modifier(ActionEvent event)  throws IOException{
-
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierVoyage.fxml"));
-    Parent root = loader.load();
-    ModifierVoyageController vc = loader.getController();
-    int id =TableVoyage.getSelectionModel().getSelectedItem().getID();
-            vc.setID(Integer.toString(id));
-            vc.setDestination(TableVoyage.getSelectionModel().getSelectedItem().getDestination());
-            vc.setNom_Voyage(TableVoyage.getSelectionModel().getSelectedItem().getNom_voyage());
-            vc.setDuree_Voyage(TableVoyage.getSelectionModel().getSelectedItem().getDuree_voyage());
-            vc.setValabilite(TableVoyage.getSelectionModel().getSelectedItem().getValabilite());
-          //  vc.setPrix(TableVoyage.getSelectionModel().getSelectedItem().getPrix());
-                          Scene scene = new Scene(root);
-              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-              stage.setScene(scene);
-              stage.show();
-    }
-
-    @FXML
-    private void Ajouter(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("/Gui/AddVoyage.fxml"));
-              Scene scene = new Scene(root);
-              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-              stage.setScene(scene);
-              stage.show();
-    }
-    
+  
     private void refresh() {
         try {
             List.clear();
@@ -416,9 +356,9 @@ ObservableList<voyage> listV;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Upload File Path");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.jpeg"));
         File file = fileChooser.showOpenDialog(null);
-        String DBPath = "C:\\\\xampp\\\\htdocs\\\\Image-Java"  + x + ".jpg";
+        String DBPath = "C:\\xampp\\htdocs\\Version-Integre\\public\\uploads"  + x + ".jpg";
         if (file != null) {
             FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
             FileOutputStream Fdestination = new FileOutputStream(DBPath);
@@ -455,7 +395,7 @@ ObservableList<voyage> listV;
         Date Datevoy= Date.valueOf(Datev.getValue());
       //  String Valabilitev = Valabilite.getText();
          String Valabilitev = (String)combox.getValue();
-
+         
         String Prixv=Prix.getText();
         System.out.println(Datevoy);
         Scontrole_Voyage sc= new Scontrole_Voyage();   
@@ -468,11 +408,7 @@ ObservableList<voyage> listV;
         if( Destinationv.isEmpty()){           
             Alert alert =new Alert(Alert.AlertType.CONFIRMATION);            
             alert.setContentText("champs vides");
-            alert.showAndWait();
-        }else if (! sc.isNumeric(Prix.getText())){
-          Alert alert =new Alert(Alert.AlertType.CONFIRMATION);            
-            alert.setContentText("Prixv doit étre un nombre");
-            alert.showAndWait();   
+            alert.showAndWait(); 
         } 
         else {
             ps.AjouterVoyage(v);
@@ -511,8 +447,8 @@ System.out.println(e.getMessage());
    voy.setNom_voyage(Nom_Voyage.getText());
    voy.setDuree_voyage(Duree_Voyage.getText());
    //voy.setDatevoy(Datev.getText());
-  // voy.setValabilite(Valabilite.getText());
-  String Valabilite = (String)combox.getValue();
+   //voy.setValabilite(Valabilite.getText());
+   String Valabilite = (String)combox.getValue();
    voy.setValabilite(Valabilite);
    voy.setImage(URLImage.getText());
    voy.setPrix(Float.parseFloat(Prix.getText()));
@@ -523,4 +459,17 @@ System.out.println(e.getMessage());
    loadvoy(); 
    refresh();
     }
+ 
+    @FXML
+    private void Recherche(KeyEvent event) {
+        
+        ServiceVoyage bs=new ServiceVoyage(); 
+        voyage b= new voyage();
+        ObservableList<voyage>filter= bs.chercherTitreplat(Recherche.getText());
+        populateTable(filter);
+    }
+     private void populateTable(ObservableList<voyage> branlist){
+       TableVoyage.setItems(branlist);
+   
+       }
     }

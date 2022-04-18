@@ -45,7 +45,7 @@ public class DynamicDevelopers {
       //Affichage            
          List<voyage> Listvoyage = new ArrayList<>();
            
-       //  List<ReserverVoyage> Listreservationvoyage = new ArrayList<>();
+         List<ReserverVoyage> Listreservationvoyage = new ArrayList<>();
            
         Listvoyage=ps.RecupererVoyage();
 
@@ -75,7 +75,7 @@ public class DynamicDevelopers {
 
       // Listvoyage=ps.RecupererVoyageNonDisponible();
       
-      //  ServiseReserVoy pss = new ServiseReserVoy();
+        ServiseReserVoy pss = new ServiseReserVoy();
         
         //pss.SupprimerReserverVoyage(1);
         
@@ -84,11 +84,11 @@ public class DynamicDevelopers {
         //pss.ModifierReserverVoyage(r);
 
         
-       // Listreservationvoyage=pss.RecupererReserverVoyage();
+        Listreservationvoyage=pss.RecupererReserverVoyage();
         
         
-    System.out.println(Listvoyage);
-   // System.out.println(Listreservationvoyage);
+    //System.out.println(Listvoyage);
+    System.out.println(Listreservationvoyage);
 
     }
     

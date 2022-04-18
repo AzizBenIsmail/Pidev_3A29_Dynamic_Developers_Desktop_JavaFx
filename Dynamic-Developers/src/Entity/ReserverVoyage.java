@@ -13,23 +13,24 @@ import java.sql.Date;
  */
 public class ReserverVoyage {
         int Client,id;
-        voyage voyage;
+        int voyage_id ;
+        String Nom_voyage;
     Date date_reservation;
     String Travel_Class;
     int Age;
 
-    public ReserverVoyage(int Client, voyage voyage, String Travel_Class,Date date_reservation, int Age) {
+    public ReserverVoyage(int Client,int voyage_id, String Travel_Class,Date date_reservation, int Age) {
         this.Client = Client;
-        this.voyage = voyage;
+        this.voyage_id = voyage_id;
         this.Travel_Class = Travel_Class;
         this.date_reservation = date_reservation;
         this.Age = Age;
     }
 
-    public ReserverVoyage(int id, int Client, voyage voyage, String Travel_Class,Date date_reservation, int Age) {
+    public ReserverVoyage(int id, int Client, int voyage_id, String Travel_Class,Date date_reservation, int Age) {
         this.Client = Client;
         this.id = id;
-        this.voyage = voyage;
+        this.voyage_id = voyage_id;
         this.Travel_Class = Travel_Class;
         this.date_reservation = date_reservation;        
         this.Age = Age;
@@ -40,7 +41,15 @@ public class ReserverVoyage {
 
     @Override
     public String toString() {
-        return "ReserverVoyage{" + "id=" + id + ", Client=" + Client + ", voyage=" + voyage.getNom_voyage() + ", date_reservation=" + date_reservation + ", Travel_Class=" + Travel_Class + ", Age=" + Age + '}';
+        return "ReserverVoyage{" + "Client=" + Client + ", id=" + id + ", voyage_id=" + voyage_id + ", Nom_voyage=" + Nom_voyage + ", date_reservation=" + date_reservation + ", Travel_Class=" + Travel_Class + ", Age=" + Age + '}';
+    }
+
+    public int getVoyage_id() {
+        return voyage_id;
+    }
+
+    public void setVoyage_id(int voyage_id) {
+        this.voyage_id = voyage_id;
     }
 
     public Date getDate_reservation() {
@@ -67,12 +76,12 @@ public class ReserverVoyage {
         this.id = id;
     }
 
-    public voyage getVoyage() {
-        return voyage;
+    public String getNom_voyage() {
+        return Nom_voyage;
     }
 
-    public void setVoyage(voyage voyage) {
-        this.voyage = voyage;
+    public void setNom_voyage(String Nom_voyage) {
+        this.Nom_voyage = Nom_voyage;
     }
 
     public String getTravel_Class() {

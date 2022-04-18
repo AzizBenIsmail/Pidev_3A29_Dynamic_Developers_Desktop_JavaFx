@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Gui.ReservevoyageController">
+   <children>
+      <ImageView fx:id="ImageP" fitHeight="824.0" fitWidth="1339.0" layoutX="-23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/bg.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="TableVoyage" layoutX="582.0" layoutY="122.0" onMouseClicked="#Liste_Voyage" prefHeight="462.0" prefWidth="699.0">
+         <columns>
+            <TableColumn fx:id="VID" prefWidth="44.0" text="ID" visible="false" />
+            <TableColumn fx:id="VDest" prefWidth="202.0" text="Voyage" />
+            <TableColumn fx:id="Vdate" prefWidth="170.0" text="date" />
+            <TableColumn fx:id="VValibilite" prefWidth="229.0" text="Travel class" />
+            <TableColumn fx:id="Vimage" prefWidth="97.0" text="Age" />
+         </columns>
+      </TableView>
+      <Button fx:id="Supprimerreservation" layoutX="1095.0" layoutY="597.0" mnemonicParsing="false" onAction="#SupprimerVoyage" prefHeight="25.0" prefWidth="173.0" text="Supprimer" />
+      <Button fx:id="Actualiser" layoutX="629.0" layoutY="597.0" mnemonicParsing="false" onAction="#Actualiser" prefHeight="25.0" prefWidth="122.0" text="Actualiser" />
+      <Button fx:id="Add" layoutX="353.0" layoutY="517.0" mnemonicParsing="false" onAction="#Add" prefHeight="25.0" prefWidth="98.0" text="Ajouter" />
+      <Label layoutX="52.0" layoutY="165.0" prefHeight="30.0" prefWidth="176.0" text="Voyage :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="52.0" layoutY="246.0" prefHeight="30.0" prefWidth="133.0" text="Date :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="52.0" layoutY="326.0" prefHeight="30.0" prefWidth="133.0" text="Travel Class">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="52.0" layoutY="421.0" prefHeight="30.0" prefWidth="133.0" text="Age : ">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Age" layoutX="197.0" layoutY="422.0" prefHeight="29.0" prefWidth="189.0" promptText="Age" />
+      <DatePicker fx:id="Datev" layoutX="197.0" layoutY="246.0" prefHeight="29.0" prefWidth="189.0" />
+      <Button fx:id="Modreservation" layoutX="845.0" layoutY="597.0" mnemonicParsing="false" onAction="#ModVoy" prefHeight="25.0" prefWidth="173.0" text="Modifier" />
+      <ComboBox fx:id="Travel_Class" layoutX="203.0" layoutY="329.0" prefHeight="25.0" prefWidth="189.0" promptText="Class" />
+      <TextField fx:id="Recherche" layoutX="1033.0" layoutY="75.0" onKeyReleased="#Recherche" prefHeight="25.0" prefWidth="211.0" promptText="Recherche" />
+      <ComboBox fx:id="VoyageCombox" layoutX="197.0" layoutY="168.0" prefHeight="25.0" prefWidth="189.0" promptText="Voyage" />
+   </children>
+</AnchorPane>
