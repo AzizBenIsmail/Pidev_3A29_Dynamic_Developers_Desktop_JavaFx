@@ -83,5 +83,7 @@
       <Button fx:id="ModVoy" layoutX="835.0" layoutY="600.0" mnemonicParsing="false" onAction="#ModVoy" prefHeight="25.0" prefWidth="173.0" text="Modifier" />
       <ComboBox fx:id="combox" layoutX="199.0" layoutY="428.0" prefWidth="150.0" />
       <TextField fx:id="Recherche" layoutX="1023.0" layoutY="78.0" onKeyReleased="#Recherche" prefHeight="25.0" prefWidth="211.0" promptText="Recherche" />
+      <Button fx:id="PDF" layoutX="803.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#PDF" prefHeight="25.0" prefWidth="98.0" text="PDF" />
+      <Button fx:id="stat" layoutX="901.0" layoutY="660.0" mnemonicParsing="false" onAction="#OnStatClicked" text="Stat" />
    </children>
 </AnchorPane>

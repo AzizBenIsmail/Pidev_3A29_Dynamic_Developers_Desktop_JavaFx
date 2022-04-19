@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="674.0" prefWidth="981.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Gui.VoyageStatController">
+   <children>
+      <PieChart fx:id="voy_stat" layoutX="61.0" layoutY="71.0" prefHeight="556.0" prefWidth="871.0" />
+   </children>
+</AnchorPane>

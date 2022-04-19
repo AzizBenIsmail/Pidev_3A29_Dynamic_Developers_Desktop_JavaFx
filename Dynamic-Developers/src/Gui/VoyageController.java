@@ -10,6 +10,13 @@ import static Entity.voyage.filename;
 import Service.Scontrole_Voyage;
 import Service.ServiceVoyage;
 import Util.MyDB;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -17,6 +24,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -54,7 +62,11 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -96,10 +108,6 @@ public class VoyageController implements Initializable {
     private Button Non_Disponible;
     
     public static String idxx;
-    @FXML
-    private Button Modifier;
-    @FXML
-    private Button Ajouter;
     
     voyage ss=new voyage();
     
@@ -137,6 +145,10 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     private ComboBox<String> combox;
     @FXML
     private TextField Recherche;
+    @FXML
+    private Button PDF;
+    @FXML
+    private Button stat;
     /**
      * Initializes the controller class.
      */
@@ -426,4 +438,68 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
        TableVoyage.setItems(branlist);
    
        }
+
+    @FXML
+    private void PDF(MouseEvent event) throws SQLException {
+        ServiceVoyage sv = new ServiceVoyage();
+        ObservableList<voyage> list = sv.getvoyageList();
+        try {
+            OutputStream file = new FileOutputStream(new File("‪C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Dynamic-Developers\\Voyage.pdf"));
+            Document document = new Document();
+            PdfWriter.getInstance(document, file);
+            document.open();
+            Font font = new Font(Font.FontFamily.HELVETICA, 24, Font.BOLD);
+            Paragraph pdfTitle = new Paragraph("Liste des Voyage", font);
+            pdfTitle.setAlignment(Element.ALIGN_CENTER);    
+            
+            document.add(pdfTitle);
+            document.add(new Chunk("\n"));
+            PdfPTable table = new PdfPTable(7);
+            table.setHeaderRows(1);
+            table.addCell("Destination");
+            table.addCell("Nom_Voyage");
+            table.addCell("Duree_Voyage");
+            table.addCell("date");
+            table.addCell("Valabilite");
+            table.addCell("Image");
+            table.addCell("Prix");
+            list.forEach((_item) -> {
+                table.addCell(_item.getDestination());
+            table.addCell(_item.getNom_voyage());
+            table.addCell(_item.getDuree_voyage());
+            table.addCell(String.valueOf(_item.getDate()));
+            table.addCell(_item.getValabilite());
+            table.addCell(_item.getImage());
+            table.addCell(String.valueOf(_item.getPrix()));
+            });
+            document.add(table);
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Success");
+            alert.setContentText("Success!");
+            document.close();
+            file.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Cannot export data!");
+            alert.show();        }
+    }
+
+    @FXML
+    private void OnStatClicked(ActionEvent event) {
+        try {
+                   
+            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStat.fxml"));
+            Scene scene = new Scene(parent);
+            
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("/images/logo.png"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     }
