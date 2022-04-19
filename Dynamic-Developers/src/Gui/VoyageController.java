@@ -24,7 +24,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -159,6 +158,8 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
                Destination.setText(voy.getDestination());
                Nom_Voyage.setText(voy.getNom_voyage());
                Duree_Voyage.setText(voy.getDuree_voyage());
+              // java.sql.Date date = java.sql.Date.valueOf(Datev.getValue());
+              // Datev.set(voy.getDate());
                String c =  voy.getValabilite();
                  combox.setValue(c);
                Prix.setText(String.valueOf(voy.getPrix()));               
@@ -288,7 +289,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
                         resultSet.getString("image"),
                         resultSet.getFloat("prix")
                         )); 
-               TableVoyage.setItems(List);
+                TableVoyage.setItems(List);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -303,10 +304,8 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         Vdate.setText(null);
         VValibilite.setText(null);
         Vimage.setText(null);
-        Vprix.setText(null);
-;
-        
-        
+        Vprix.setText(null);       
+  
     }
     private void loadvoy() {
     voyage v=new voyage();
@@ -361,15 +360,15 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         String Destinationv = Destination.getText();
         String Nom_Voyagev = Nom_Voyage.getText();
         String Duree_Voyagev = Duree_Voyage.getText();
-        Date Datevoy= Date.valueOf(Datev.getValue());
+        //Date Datevoy= Date.valueOf(Datev.getValue());
         String Valabilitev = (String)combox.getValue();
-         
+        java.sql.Date date = java.sql.Date.valueOf(Datev.getValue());
         String Prixv=Prix.getText();
-        System.out.println(Datevoy);
+        System.out.println(date);
         Scontrole_Voyage sc= new Scontrole_Voyage();   
         ServiceVoyage ps = new ServiceVoyage();
 
-        voyage v = new voyage(Destinationv,Nom_Voyagev,Duree_Voyagev,Datevoy,Valabilitev,URLImage.getText(),Float.parseFloat(Prixv));
+        voyage v = new voyage(Destinationv,Nom_Voyagev,Duree_Voyagev,date,Valabilitev,URLImage.getText(),Float.parseFloat(Prixv));
         
         System.out.println(sc.isNumeric(Prixv));
 
@@ -379,7 +378,11 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
             alert.setTitle("Prolem");
         alert.setHeaderText(null);
             alert.showAndWait(); 
-        } 
+       } else if (sc.isNumeric(Prix.getText())){
+          Alert alert =new Alert(Alert.AlertType.CONFIRMATION);            
+            alert.setContentText("Age doit étre un nombre");
+            alert.showAndWait();   
+        }
         else {
             ps.AjouterVoyage(v);
              refresh();
@@ -399,7 +402,8 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
    voy.setDestination(Destination.getText());
    voy.setNom_voyage(Nom_Voyage.getText());
    voy.setDuree_voyage(Duree_Voyage.getText());
-   //voy.setDatevoy(Datev.getText());
+           java.sql.Date date = java.sql.Date.valueOf(Datev.getValue());
+   voy.setDate(date);
    String Valabilite = (String)combox.getValue();
    voy.setValabilite(Valabilite);
    voy.setImage(URLImage.getText());

@@ -16,4 +16,5 @@ public interface IServiseReserVoy<R>  {
     public void ModifierReserverVoyage(R r);
     public void SupprimerReserverVoyage(int ID);
     public List<R>RecupererReserverVoyage();
+
 }

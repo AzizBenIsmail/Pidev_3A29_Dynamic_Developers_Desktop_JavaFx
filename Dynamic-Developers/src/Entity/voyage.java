@@ -15,25 +15,25 @@ import java.sql.Date;
 public class voyage {
     int ID;
     String destination,nom_voyage,duree_voyage,valabilite,image;
-    Date Datevoy;
+    Date date;
     float prix;
         
-    public voyage(String destination, String nom_voyage, String duree_voyage,Date Datevoy, String valabilite, String image, float prix) {
+    public voyage(String destination, String nom_voyage, String duree_voyage,Date date, String valabilite, String image, float prix) {
         this.destination = destination;
         this.nom_voyage = nom_voyage;
         this.duree_voyage = duree_voyage;
-        this.Datevoy = null;
+        this.date = date;
         this.valabilite = valabilite;
         this.image = image;
         this.prix = prix;
     }
 
-    public voyage(int ID, String destination, String nom_voyage, String duree_voyage,Date Datevoy, String valabilite, String image, float prix) {
+    public voyage(int ID, String destination, String nom_voyage, String duree_voyage,Date date, String valabilite, String image, float prix) {
         this.ID = ID;
         this.destination = destination;
         this.nom_voyage = nom_voyage;
         this.duree_voyage = duree_voyage;
-        this.Datevoy = null;        
+        this.date = date;        
         this.valabilite = valabilite;
         this.image = image;
         this.prix = prix;
@@ -44,18 +44,20 @@ public class voyage {
 
 public static String pathfile; 
     public static String filename="";
+
     @Override
     public String toString() {
-        return "voyage{" + "ID=" + ID + ", destination=" + destination + ", nom_voyage=" + nom_voyage + ", duree_voyage=" + duree_voyage + ", valabilite=" + valabilite + ", image=" + image + ", prix=" + prix + '}';
+        return "voyage{" + "ID=" + ID + ", destination=" + destination + ", nom_voyage=" + nom_voyage + ", duree_voyage=" + duree_voyage + ", valabilite=" + valabilite + ", image=" + image + ", date=" + date + ", prix=" + prix + '}';
     }
 
-    public Date getDatevoy() {
-        return Datevoy;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDatevoy(Date Datevoy) {
-        this.Datevoy = Datevoy;
+    public void setDate(Date date) {
+        this.date = date;
     }
+
 
     public String getDestination() {
         return destination;

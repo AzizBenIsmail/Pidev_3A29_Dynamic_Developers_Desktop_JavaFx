@@ -14,8 +14,8 @@ import Entity.voyage;
  */
 public class Scontrole_Voyage {
     
-      public static boolean ControleDest(voyage v) {
-		String str = (v.getDestination()).toLowerCase();
+      public static boolean Controlechar(String v) {
+		String str = (v).toLowerCase();
                 if (str.length() == 0)
                     return false;
 		char[] charArray = str.toCharArray();
@@ -28,20 +28,7 @@ public class Scontrole_Voyage {
 		}
 		return true;
 	}
-        public static boolean ControleNom(voyage v) {
-		String str = (v.getNom_voyage()).toLowerCase();
-                if (str.length() == 0)
-                    return false;
-		char[] charArray = str.toCharArray();
-                
-		for (int i = 0; i < charArray.length; i++) {
-			char ch = charArray[i];
-			if (!((ch >= 'a' && ch <= 'z') || (String.valueOf(ch)).equals(" "))) {
-				return false;
-			}
-		}
-		return true;
-	}
+
       public boolean isNumeric(String text) {
              if (text == null || text.trim().equals("")) {
                  return false;

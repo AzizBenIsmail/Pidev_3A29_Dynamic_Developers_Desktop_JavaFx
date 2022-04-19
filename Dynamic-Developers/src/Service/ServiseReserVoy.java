@@ -36,7 +36,7 @@ public class ServiseReserVoy implements IServiseReserVoy<ReserverVoyage> {
     public void AjouterReserverVoyage(ReserverVoyage r) {
       try {
                 String req = "insert into reservation_voyage(id,client_id,voyage_id,date_reservation,travel_class, age)"
-                        +"values("+r.getId()+","+1+","+r.getVoyage_id()+","+r.getDate_reservation()+",'"+r.getTravel_Class()+"',"+r.getAge()+")";
+                        +"values("+r.getId()+","+1+","+r.getVoyage_id()+","+null+",'"+r.getTravel_Class()+"',"+r.getAge()+")";
                 Statement st = cnx.createStatement();
                 st.executeUpdate(req);
                 System.out.println("Voyage ajouter avec succ");
@@ -75,7 +75,8 @@ try {
       System.out.println("La reservation_voyage avec l'id = "+ID+" a été supprimer avec succès...");
     } catch (SQLException ex) {
                 System.out.println(ex.getMessage());        
-              }    }
+              }
+    }
 
    /* @Override
     public List<ReserverVoyage> RecupererReserverVoyage() {
@@ -123,16 +124,14 @@ return ReserverVoy;    }
          List<ReserverVoyage> ReserverVoyage = new ArrayList<>();
        // String sql ="select * from platt";
         String sql ="select reservation_voyage.id,voyage.nom_voyage ,reservation_voyage.date_reservation, reservation_voyage.travel_class, reservation_voyage.age from reservation_voyage INNER JOIN voyage where reservation_voyage.id=voyage.id ";
-
         try {
             Statement ste= cnx.createStatement();
             ResultSet rs =ste.executeQuery(sql);
             while(rs.next()){
                 ReserverVoyage r = new ReserverVoyage();
                r.setId(rs.getInt("id"));
-               //r.setClient(rs.getInt("client_id"));
                r.setNom_voyage(rs.getString("nom_voyage"));
-              // r.setDate_reservation(rs.getString("date_reservation"));
+               //r.setDate_reservation(rs.getString("date_reservation"));
                r.setTravel_Class(rs.getString("travel_class"));
                r.setAge(rs.getInt("age"));
                
@@ -144,4 +143,30 @@ return ReserverVoy;    }
         return ReserverVoyage;
 
     }
+    public List<String> getAll() {
+        List<String> list = new ArrayList<String>();
+        try {
+            String requetee = "SELECT nom_voyage FROM voyage";
+            PreparedStatement pst = cnx.prepareStatement(requetee);
+            ResultSet rs = pst.executeQuery();
+            System.out.println(rs.toString());
+
+            while (rs.next()) {
+                list.add(rs.getString("nom_voyage"));
+            }
+
+            return list;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
+     public int chercherVoy(String Nom) throws SQLException{
+         int id=0;
+         String requetee = "SELECT id FROM voyage where nom_voyage='"+Nom+"';";
+            PreparedStatement pst = cnx.prepareStatement(requetee);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next())
+            {id= rs.getInt("id");
+            }return id;}
 }

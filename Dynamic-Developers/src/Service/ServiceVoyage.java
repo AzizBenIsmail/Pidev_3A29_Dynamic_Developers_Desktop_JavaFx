@@ -35,7 +35,7 @@ public class ServiceVoyage implements IServise<voyage>{
     public void AjouterVoyage(voyage v) {
          try {
                 String req = "insert into voyage(id,clien_id,destination,nom_voyage,duree_voyage,date,valabilite,image,prix)"
-                        +"values("+v.getID()+","+1+",'"+v.getDestination()+"','"+v.getNom_voyage()+"','"+v.getDuree_voyage()+"',"+v.getDatevoy()+","
+                        +"values("+v.getID()+","+1+",'"+v.getDestination()+"','"+v.getNom_voyage()+"','"+v.getDuree_voyage()+"','"+v.getDate()+"',"
                         +"'"+v.getValabilite()+"','"+v.getImage()+"',"+v.getPrix()+")";
                 Statement st = cnx.createStatement();
                 st.executeUpdate(req);
@@ -55,7 +55,7 @@ public class ServiceVoyage implements IServise<voyage>{
             ps.setString(1,v.getDestination());
             ps.setString(2,v.getNom_voyage());
             ps.setString(3,v.getDuree_voyage());
-            ps.setDate(4,null);
+            ps.setDate(4,v.getDate());
             ps.setString(5,v.getValabilite());
             ps.setString(6,v.getImage());
             ps.setInt(7,(int)v.getPrix());
@@ -96,6 +96,7 @@ public class ServiceVoyage implements IServise<voyage>{
                v.setDestination(rs.getString("destination"));
                v.setNom_voyage(rs.getString("nom_voyage"));
                v.setDuree_voyage(rs.getString("duree_voyage"));
+               v.setDate(rs.getDate("date"));
                v.setValabilite(rs.getString("valabilite"));
                v.setImage(rs.getString("image"));
                v.setPrix(rs.getInt("prix"));
@@ -417,7 +418,7 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
             ps.setString(1,v.getDestination());
             ps.setString(2,v.getNom_voyage());
             ps.setString(3,v.getDuree_voyage());
-            ps.setDate(4,v.getDatevoy());
+            ps.setDate(4,v.getDate());
             ps.setString(5,v.getValabilite());
             ps.setString(6,v.getImage());
             ps.setInt(7,(int)v.getPrix());
@@ -453,7 +454,7 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
                 v.setDestination(rs.getString(3));
                 v.setNom_voyage(rs.getString(4));
                 v.setDuree_voyage(rs.getString(5));
-                v.setDatevoy(rs.getDate(6));
+                v.setDate(rs.getDate(6));
                 v.setValabilite(rs.getString(7));
                 v.setImage(rs.getString(8));
                 v.setPrix(rs.getFloat(9));

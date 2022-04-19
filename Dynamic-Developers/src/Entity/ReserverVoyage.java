@@ -14,15 +14,31 @@ import java.sql.Date;
 public class ReserverVoyage {
         int Client,id;
         int voyage_id ;
-        String Nom_voyage;
-    Date date_reservation;
-    String Travel_Class;
-    int Age;
+        String Nom_voyage,travel_Class;
+        Date date_reservation;
+        int Age;
 
-    public ReserverVoyage(int Client,int voyage_id, String Travel_Class,Date date_reservation, int Age) {
-        this.Client = Client;
+    public ReserverVoyage(int id, String Nom_voyage, Date date_reservation, String travel_Class, int Age) {
+        this.id = id;
+        this.Nom_voyage = Nom_voyage;
+        this.date_reservation = date_reservation;
+        this.travel_Class = travel_Class;
+        this.Age = Age;
+    }
+
+    public ReserverVoyage(int voyage_id, String travel_Class, Date date_reservation, int Age) {
         this.voyage_id = voyage_id;
-        this.Travel_Class = Travel_Class;
+        this.travel_Class = travel_Class;
+        this.date_reservation = null;
+        this.Age = Age;
+    }
+
+
+    
+    public ReserverVoyage(String Nom_voyage, String Travel_Class,Date date_reservation, int Age) {
+     //   this.Client = Client;
+        this.Nom_voyage = Nom_voyage;
+        this.travel_Class = Travel_Class;
         this.date_reservation = date_reservation;
         this.Age = Age;
     }
@@ -31,7 +47,7 @@ public class ReserverVoyage {
         this.Client = Client;
         this.id = id;
         this.voyage_id = voyage_id;
-        this.Travel_Class = Travel_Class;
+        this.travel_Class = Travel_Class;
         this.date_reservation = date_reservation;        
         this.Age = Age;
     }
@@ -41,7 +57,7 @@ public class ReserverVoyage {
 
     @Override
     public String toString() {
-        return "ReserverVoyage{" + "Client=" + Client + ", id=" + id + ", voyage_id=" + voyage_id + ", Nom_voyage=" + Nom_voyage + ", date_reservation=" + date_reservation + ", Travel_Class=" + Travel_Class + ", Age=" + Age + '}';
+        return "ReserverVoyage{" + "Client=" + Client + ", id=" + id + ", Nom_voyage=" + Nom_voyage + ", date_reservation=" + date_reservation + ", Travel_Class=" + travel_Class + ", Age=" + Age + '}';
     }
 
     public int getVoyage_id() {
@@ -85,11 +101,11 @@ public class ReserverVoyage {
     }
 
     public String getTravel_Class() {
-        return Travel_Class;
+        return travel_Class;
     }
 
-    public void setTravel_Class(String Travel_Class) {
-        this.Travel_Class = Travel_Class;
+    public void setTravel_Class(String travel_Class) {
+        this.travel_Class = travel_Class;
     }
 
     public int getAge() {
