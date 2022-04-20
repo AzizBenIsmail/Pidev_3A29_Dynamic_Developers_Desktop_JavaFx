@@ -19,6 +19,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -66,8 +67,27 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.Writer;
+import static java.nio.file.Files.list;
+import static java.rmi.Naming.list;
+import static java.util.Collections.list;
 import javafx.stage.StageStyle;
-
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import java.util.List;
+import java.util.Optional;
+import javafx.scene.control.ButtonType;
+import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 /**
  * FXML Controller class
  *
@@ -149,6 +169,13 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     private Button PDF;
     @FXML
     private Button stat;
+    ObservableList<voyage> list;
+    @FXML
+    private Button Map;
+    @FXML
+    private Button Notif;
+    @FXML
+    private Button Media;
     /**
      * Initializes the controller class.
      */
@@ -502,4 +529,92 @@ Alert alert = new Alert(Alert.AlertType.ERROR);
             System.out.println(ex.getMessage());
         }
     }
+
+    @FXML
+    private void Excel(ActionEvent event) throws IOException {
+        Writer writer = null;
+        
+         try {
+            //badel path fichier excel
+            File file = new File("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Dynamic-Developers\\Voyage.csv");
+            writer = new BufferedWriter(new FileWriter(file));
+            for (voyage ev : list) {
+
+                String text = ev.getDestination()+"," +ev.getNom_voyage()+ "," + ev.getDuree_voyage()+ ","+ev.getDate()+","+ev.getValabilite()+","+ev.getImage()+","+ev.getPrix()+ "\n";
+                System.out.println(text);
+                writer.write(text);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        finally {
+
+            writer.flush();
+             writer.close();
+             Alert alert= new Alert(Alert.AlertType.INFORMATION);
+             alert.setTitle("excel");
+        alert.setHeaderText(null);
+        alert.setContentText("!!!excel exported!!!");
+        alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void Map(ActionEvent event) {
+        Stage stage = new Stage ();
+         
+        final WebView webView = new WebView();
+        final WebEngine webEngine = webView.getEngine();
+        webEngine.load(getClass().getResource("/Gui/googleMaps.html").toString());
+       
+        // create scene
+       // stage.getIcons().add(new Image("/Assets/logo.png"));
+        stage.setTitle("localisation");
+        Scene scene = new Scene(webView,1000,700, Color.web("#666970"));
+        stage.setScene(scene);
+        // show stage
+        stage.show();
+
+    }
+
+    private void notiff()
+    {
+        ServiceVoyage sv = new ServiceVoyage();
+        voyage v = new voyage();
+        int y=sv.calculnb((Destination.getText()));
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        tray.setAnimationType(type);
+        tray.setTitle("Programme Valides");
+        tray.setMessage("il existe "+y+ " plusieurs voyages");
+tray.setNotificationType(NotificationType.INFORMATION);
+tray.showAndDismiss(Duration.millis(2000));
+    }
+    @FXML
+    private void notif(MouseEvent event) {
+        notiff();
+    }
+
+    @FXML
+    private void Media_Video(ActionEvent event) {
+        if(TableVoyage.getSelectionModel().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+            alert.setTitle("Warnning");
+            alert.setHeaderText("SELECT YOUR Voyage");
+            Optional<ButtonType> result1 = alert.showAndWait();}
+       else{
+            try {
+                Parent root;
+
+                root = FXMLLoader.load(getClass().getResource("Media_Voyage.fxml"));
+
+                Media.getScene().setRoot(root);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        }
+    }
+    
     }

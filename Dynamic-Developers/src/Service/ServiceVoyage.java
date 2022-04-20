@@ -7,9 +7,12 @@ package Service;
 
 import Entity.voyage;
 import Util.MyDB;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -18,6 +21,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.ss.usermodel.Cell;
 
 /**
  *  
@@ -467,4 +476,68 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
         }
         return myList;
       }
+      //---------------------------------------- Excel -----------------------------------------------------------//
+     
+     public void getDefendants( String db) throws Exception  { 
+        
+        
+        @SuppressWarnings("unused")
+        Workbook rbook = WorkbookFactory.create(new FileInputStream("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Dynamic-Developers\\test2.xls") );
+        @SuppressWarnings("resource")
+        Workbook writeWorkbook = (Workbook) new HSSFWorkbook();
+        Sheet desSheet = writeWorkbook.createSheet("new sheet");
+
+        Statement stmt = null;
+        ResultSet rs = null;
+        try{
+            String query ="SELECT * FROM voyage"+db;
+
+            stmt = cnx.createStatement();
+            rs = stmt.executeQuery(query);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+
+            Row desRow1 = desSheet.createRow(0);
+            for(int col=0 ;col < columnsNumber;col++) {
+                Cell newpath = desRow1.createCell(col);
+                newpath.setCellValue(rsmd.getColumnLabel(col+1));
+            }
+            while(rs.next()) {
+                System.out.println("Row number" + rs.getRow() );
+                Row desRow = desSheet.createRow(rs.getRow());
+                for(int col=0 ;col < columnsNumber;col++) {
+                    Cell newpath = desRow.createCell(col);
+                    newpath.setCellValue(rs.getString(col+1));  
+                }
+                FileOutputStream fileOut = new FileOutputStream("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Dynamic-Developers\\test2.xls");
+                writeWorkbook.write(fileOut);
+                fileOut.close();
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("Failed to get data from database");
+        }
+    }
+     
+     //--------------------------- NB client ---------------------------------------------//
+     public int calculnb(String destination) {
+
+        PreparedStatement pre;
+        int count = 19;
+        try {
+            Statement stmt = cnx.createStatement();
+
+            String query = "SELECT COUNT(*) FROM voyage WHERE destination='"+destination+"'";
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            rs.next();
+            count = rs.getInt(1);
+            return count;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return 0;
+
+    }
 }

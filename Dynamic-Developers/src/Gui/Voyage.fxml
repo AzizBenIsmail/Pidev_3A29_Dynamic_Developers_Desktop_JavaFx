@@ -85,5 +85,9 @@
       <TextField fx:id="Recherche" layoutX="1023.0" layoutY="78.0" onKeyReleased="#Recherche" prefHeight="25.0" prefWidth="211.0" promptText="Recherche" />
       <Button fx:id="PDF" layoutX="803.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#PDF" prefHeight="25.0" prefWidth="98.0" text="PDF" />
       <Button fx:id="stat" layoutX="901.0" layoutY="660.0" mnemonicParsing="false" onAction="#OnStatClicked" text="Stat" />
+      <Button layoutX="777.0" layoutY="673.0" mnemonicParsing="false" onAction="#Excel" text="Excel" />
+      <Button fx:id="Map" layoutX="654.0" layoutY="673.0" mnemonicParsing="false" onAction="#Map" text="Map" />
+      <Button fx:id="Notif" layoutX="1085.0" layoutY="673.0" mnemonicParsing="false" onMouseClicked="#notif" text="Notif Nbr Destiantion" />
+      <Button fx:id="Media" layoutX="997.0" layoutY="729.0" mnemonicParsing="false" onAction="#Media_Video" text="Media" />
    </children>
 </AnchorPane>

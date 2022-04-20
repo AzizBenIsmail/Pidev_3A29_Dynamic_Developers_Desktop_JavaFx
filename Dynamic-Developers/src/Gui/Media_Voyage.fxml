@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+
+<AnchorPane id="AnchorPane" prefHeight="618.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Media_VoyageController">
+   <children>
+      <Slider fx:id="volume" layoutX="320.0" layoutY="571.0" onDragDetected="#click" />
+      <Button fx:id="play" layoutX="933.0" layoutY="131.0" mnemonicParsing="false" onAction="#play" text="Play" />
+      <Button fx:id="pause" layoutX="929.0" layoutY="215.0" mnemonicParsing="false" onAction="#pause" text="Pause" />
+      <Button fx:id="stop" layoutX="942.0" layoutY="309.0" mnemonicParsing="false" onAction="#stop" text="Stop" />
+      <MediaView fx:id="mediaview" fitHeight="500.0" fitWidth="800.0" layoutX="36.0" layoutY="48.0" />
+      <Button fx:id="Go_Back" layoutX="907.0" layoutY="63.0" mnemonicParsing="false" onAction="#Go_Back_Home" text="Go Back" />
+   </children>
+</AnchorPane>
