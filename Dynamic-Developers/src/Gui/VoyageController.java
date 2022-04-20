@@ -178,6 +178,10 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     private Button Media;
     @FXML
     private Button stat1;
+    @FXML
+    private Button stat2;
+    @FXML
+    private Button reset;
     /**
      * Initializes the controller class.
      */
@@ -200,13 +204,14 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
                Nom_Voyage.setText(voy.getNom_voyage());
                Duree_Voyage.setText(voy.getDuree_voyage());
               // java.sql.Date date = java.sql.Date.valueOf(Datev.getValue());
-              // Datev.set(voy.getDate());
+             //  Datev.set(voy.getDate());
                String c =  voy.getValabilite();
-                 combox.setValue(c);
+               combox.setValue(c);
                Prix.setText(String.valueOf(voy.getPrix()));               
                String path = voy.getImage();
                File file=new File(path);
-              Image img = new Image(file.toURI().toString());
+               URLImage.setText(path);
+               Image img = new Image(file.toURI().toString());
                 Image.setImage(img);
            } catch (Exception e) {
                System.out.println(e.getMessage());
@@ -339,13 +344,13 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     }
     private void clear() {
 
-        VDest.setText(null);
-        VNom.setText(null);
-        VDuree.setText(null);
-        Vdate.setText(null);
-        VValibilite.setText(null);
-        Vimage.setText(null);
-        Vprix.setText(null);       
+        Destination.setText(null);
+        Nom_Voyage.setText(null);
+        Duree_Voyage.setText(null);
+        Datev.setValue(null);
+        combox.setValue(null);
+        URLImage.setText(null);
+        Prix.setText(null);       
   
     }
     private void loadvoy() {
@@ -370,7 +375,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.jpeg"));
         File file = fileChooser.showOpenDialog(null);
-        String DBPath = "C:\\xampp\\htdocs\\Version-Integre\\public\\uploads\\"  + x + ".jpg";
+        String DBPath = "C:\\\\xampp\\\\htdocs\\\\Version-Integre\\\\public\\\\uploads\\\\"  + x + ".jpg";
         if (file != null) {
             FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
             FileOutputStream Fdestination = new FileOutputStream(DBPath);
@@ -409,9 +414,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         Scontrole_Voyage sc= new Scontrole_Voyage();   
         ServiceVoyage ps = new ServiceVoyage();
 
-        voyage v = new voyage(Destinationv,Nom_Voyagev,Duree_Voyagev,date,Valabilitev,URLImage.getText(),Float.parseFloat(Prixv));
         
-        System.out.println(sc.isNumeric(Prixv));
 
         if( Destinationv.isEmpty()){           
             Alert alert =new Alert(Alert.AlertType.CONFIRMATION);            
@@ -419,12 +422,13 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
             alert.setTitle("Prolem");
         alert.setHeaderText(null);
             alert.showAndWait(); 
-       } else if (sc.isNumeric(Prix.getText())){
+       } else if (! sc.isNumeric(Prixv)){
           Alert alert =new Alert(Alert.AlertType.CONFIRMATION);            
             alert.setContentText("Age doit étre un nombre");
             alert.showAndWait();   
         }
         else {
+                   voyage v = new voyage(Destinationv,Nom_Voyagev,Duree_Voyagev,date,Valabilitev,URLImage.getText(),Float.parseFloat(Prixv));
             ps.AjouterVoyage(v);
              refresh();
              Alert alert =new Alert(Alert.AlertType.CONFIRMATION);   
@@ -436,6 +440,8 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
 
     @FXML
     private void ModVoy(ActionEvent event) {
+                Scontrole_Voyage sc= new Scontrole_Voyage();   
+
         voyage voy=new voyage();
    ServiceVoyage sv = new ServiceVoyage();
    voy=TableVoyage.getSelectionModel().getSelectedItem();
@@ -448,12 +454,24 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
    String Valabilite = (String)combox.getValue();
    voy.setValabilite(Valabilite);
    voy.setImage(URLImage.getText());
-   voy.setPrix(Float.parseFloat(Prix.getText()));
-  
+if (! sc.isNumeric(Prix.getText())){
+          Alert alert =new Alert(Alert.AlertType.CONFIRMATION);            
+            alert.setContentText("Age doit étre un nombre");
+            alert.showAndWait();   
+        }
+        else {
+       voy.setPrix(Float.parseFloat(Prix.getText()));
    sv.ModifierVoyage(voy);
    loadvoy(); 
    refresh();
-    }
+             Alert alert =new Alert(Alert.AlertType.CONFIRMATION);   
+             alert.setTitle("succes");
+             alert.setHeaderText(null);
+            alert.setContentText("Voyage Modifier Avec succ");
+            alert.showAndWait();
+        }
+
+    }   
  
     @FXML
     private void Recherche(KeyEvent event) {
@@ -519,7 +537,7 @@ Alert alert = new Alert(Alert.AlertType.ERROR);
     private void OnStatClicked(ActionEvent event) {
         try {
                    
-            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStat.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStatValabilite.fxml"));
             Scene scene = new Scene(parent);
             
             Stage stage = new Stage();
@@ -622,6 +640,36 @@ tray.showAndDismiss(Duration.millis(2000));
 
     @FXML
     private void OnStat(ActionEvent event) {
+                try {                               
+            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStatPrix.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("/images/logo.png"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+
+    @FXML
+    private void OnStatClickedDestination(ActionEvent event) {
+            try {                               
+            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStat.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("/images/logo.png"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());}
     }
+
+    @FXML
+    private void reset(ActionEvent event) {
+                    clear();
+
+    }
+}

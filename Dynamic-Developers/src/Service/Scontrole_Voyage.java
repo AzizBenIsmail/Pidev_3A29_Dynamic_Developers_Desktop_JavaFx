@@ -29,7 +29,7 @@ public class Scontrole_Voyage {
 		return true;
 	}
 
-      public boolean isNumeric(String text) {
+public boolean isNumeric(String text) {
              if (text == null || text.trim().equals("")) {
                  return false;
              }

@@ -7,6 +7,7 @@ package dynamic.developers;
 
 import Entity.ReserverVoyage;
 import Entity.voyage;
+import Service.Scontrole_Voyage;
 import Service.ServiceVoyage;
 import Service.ServiseReserVoy;
 import Util.MyDB;
@@ -28,8 +29,8 @@ public class DynamicDevelopers {
     /**
      * @param args the command line arguments
      */
-   // public static void main(String[] args) {
-            public DynamicDevelopers() {
+    public static void main(String[] args) {
+           // public DynamicDevelopers() {
 
        // MyDB db = MyDB.getInsatnce();
       //Ajouter 
@@ -38,7 +39,7 @@ public class DynamicDevelopers {
       voyage v = new voyage("AF","FGHANESTEN","25 Jour 24 nuit",Datevoy,"Non Disponible","Image",15);
      // ReserverVoyage r = new ReserverVoyage(2,1,v,"economic Class",null,15);
         ServiceVoyage ps = new ServiceVoyage();
-         ps.AjouterVoyage(v);
+        // ps.AjouterVoyage(v);
         
         //ps.ModifierVoyage(v);
     
@@ -87,12 +88,12 @@ public class DynamicDevelopers {
 
         
         Listreservationvoyage=pss.RecupererReserverVoyage();
-        
+        Scontrole_Voyage sc= new Scontrole_Voyage();   
         
     //System.out.println(Listvoyage);
-    System.out.println(Listreservationvoyage);
+    System.out.println(sc.isNumeric("a"));
 
     }
-
-    }
+}
+    
     

@@ -442,11 +442,11 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
 
     }
      public ObservableList<voyage> chercherTitreplat(String chaine){
-          String sql="SELECT * FROM voyage WHERE (nom_voyage LIKE ? or duree_voyage LIKE ? or valabilite LIKE ? )";
+          String sql="SELECT * FROM voyage WHERE (destination LIKE ? or nom_voyage LIKE ? or duree_voyage LIKE ? or valabilite LIKE ? or prix = ? )";
             
              Connection cnx= MyDB.getInsatnce().getConnection();
-            String ch="%"+chaine+"%";
-
+            String ch=""+chaine+"%";
+         System.out.println(sql);
             ObservableList<voyage> myList= FXCollections.observableArrayList();
         try {
            
@@ -456,6 +456,9 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
             stee.setString(1, ch);
             stee.setString(2, ch);
             stee.setString(3, ch);
+            stee.setString(4, ch);
+            stee.setString(5, ch);
+         System.out.println(stee);
 
             ResultSet rs = stee.executeQuery();
             while (rs.next()){
