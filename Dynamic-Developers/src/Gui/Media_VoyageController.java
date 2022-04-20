@@ -64,7 +64,7 @@ public class Media_VoyageController implements Initializable {
            Media media = new Media(mediaFile.toURI().toURL().toString());
             mediaplayer = new MediaPlayer(media);
             mediaview.setMediaPlayer(mediaplayer);
-            volume.setValue(mediaplayer.getVolume() * 100);
+            volume.setValue(mediaplayer.getVolume() * 50);
             
              volume.valueProperty().addListener(new InvalidationListener() {
             

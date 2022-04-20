@@ -480,7 +480,6 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
      
      public void getDefendants( String db) throws Exception  { 
         
-        
         @SuppressWarnings("unused")
         Workbook rbook = WorkbookFactory.create(new FileInputStream("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Dynamic-Developers\\test2.xls") );
         @SuppressWarnings("resource")
@@ -519,7 +518,7 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
         }
     }
      
-     //--------------------------- NB client ---------------------------------------------//
+     //--------------------------- NB Voyage ---------------------------------------------//
      public int calculnb(String destination) {
 
         PreparedStatement pre;
@@ -540,4 +539,5 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
         return 0;
 
     }
+     
 }

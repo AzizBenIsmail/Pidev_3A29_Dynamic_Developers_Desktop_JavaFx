@@ -47,18 +47,21 @@ public class VoyageStatController implements Initializable {
 
     private void stat() {
           try{
-            String query ="select COUNT(*),reservation_voyage.travel_class from voyage INNER JOIN reservation_voyage on reservation_voyage.voyage_id =voyage.id GROUP BY travel_class;";
-            PreparedStatement PreparedStatement = cnx.prepareStatement(query);
+           // String query ="select COUNT(*),reservation_voyage.travel_class from voyage INNER JOIN reservation_voyage on reservation_voyage.voyage_id =voyage.id GROUP BY travel_class;";
+           //String query ="select COUNT(*),`prix`  from voyage GROUP BY `destination`;";
+           String query ="select COUNT(*),prix from voyage GROUP BY valabilite;";
+
+           PreparedStatement PreparedStatement = cnx.prepareStatement(query);
              rs = PreparedStatement.executeQuery();
              while (rs.next()){               
-               data.add(new PieChart.Data(rs.getString("travel_class"),rs.getInt("COUNT(*)")));
+               data.add(new PieChart.Data(rs.getString("prix"),rs.getInt("COUNT(*)")));
             }  
              
         } catch (SQLException ex) {
               System.out.println(ex.getMessage());
         }
         
-         voy_stat.setTitle("**Statistiques nombres des types de reservation du Voyage**");
+         voy_stat.setTitle("**Statistiques types de reservation des Voyage**");
         voy_stat.setLegendSide(Side.LEFT);
         voy_stat.setData(data);
     }

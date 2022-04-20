@@ -28,7 +28,9 @@ public class DynamicDevelopers {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+   // public static void main(String[] args) {
+            public DynamicDevelopers() {
+
        // MyDB db = MyDB.getInsatnce();
       //Ajouter 
       Date Datevoy=Date.valueOf("2022-10-10");
@@ -91,5 +93,6 @@ public class DynamicDevelopers {
     System.out.println(Listreservationvoyage);
 
     }
+
+    }
     
-}

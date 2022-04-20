@@ -176,6 +176,8 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     private Button Notif;
     @FXML
     private Button Media;
+    @FXML
+    private Button stat1;
     /**
      * Initializes the controller class.
      */
@@ -581,12 +583,13 @@ Alert alert = new Alert(Alert.AlertType.ERROR);
     {
         ServiceVoyage sv = new ServiceVoyage();
         voyage v = new voyage();
+                String Destinationv = Destination.getText();
         int y=sv.calculnb((Destination.getText()));
         TrayNotification tray = new TrayNotification();
         AnimationType type = AnimationType.POPUP;
         tray.setAnimationType(type);
-        tray.setTitle("Programme Valides");
-        tray.setMessage("il existe "+y+ " plusieurs voyages");
+        tray.setTitle("attention");
+        tray.setMessage("il existe "+y+ " voyages a "+Destinationv+"");
 tray.setNotificationType(NotificationType.INFORMATION);
 tray.showAndDismiss(Duration.millis(2000));
     }
@@ -615,6 +618,10 @@ tray.showAndDismiss(Duration.millis(2000));
             }
 
         }
+    }
+
+    @FXML
+    private void OnStat(ActionEvent event) {
     }
     
     }

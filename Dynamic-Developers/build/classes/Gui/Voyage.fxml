@@ -33,9 +33,9 @@
       </TableView>
       <Button fx:id="SupprimerVoyage" layoutX="1085.0" layoutY="600.0" mnemonicParsing="false" onAction="#SupprimerVoyage" prefHeight="25.0" prefWidth="173.0" text="Supprimer" />
       <Button fx:id="Actualiser" layoutX="619.0" layoutY="600.0" mnemonicParsing="false" onAction="#Actualiser" prefHeight="25.0" prefWidth="122.0" text="Actualiser" />
-      <Button fx:id="Bientot_disponible" layoutX="598.0" layoutY="90.0" mnemonicParsing="false" onAction="#Bientot_disponible" prefHeight="25.0" prefWidth="164.0" text="Bientot disponible" />
-      <Button fx:id="Disponible" layoutX="598.0" layoutY="14.0" mnemonicParsing="false" onAction="#Disponible" prefHeight="25.0" prefWidth="164.0" text="Disponible" />
-      <Button fx:id="Non_Disponible" layoutX="598.0" layoutY="49.0" mnemonicParsing="false" onAction="#Non_Disponible" prefHeight="25.0" prefWidth="164.0" text="Non Disponible" />
+      <Button fx:id="Bientot_disponible" layoutX="725.0" layoutY="90.0" mnemonicParsing="false" onAction="#Bientot_disponible" prefHeight="25.0" prefWidth="164.0" text="Bientot disponible" />
+      <Button fx:id="Disponible" layoutX="725.0" layoutY="14.0" mnemonicParsing="false" onAction="#Disponible" prefHeight="25.0" prefWidth="164.0" text="Disponible" />
+      <Button fx:id="Non_Disponible" layoutX="725.0" layoutY="49.0" mnemonicParsing="false" onAction="#Non_Disponible" prefHeight="25.0" prefWidth="164.0" text="Non Disponible" />
       <Button fx:id="Add" layoutX="283.0" layoutY="647.0" mnemonicParsing="false" onAction="#Add" prefHeight="25.0" prefWidth="98.0" text="Ajouter" />
       <Label layoutX="28.0" layoutY="115.0" prefHeight="30.0" prefWidth="176.0" text="Destination :">
          <font>
@@ -83,11 +83,12 @@
       <Button fx:id="ModVoy" layoutX="835.0" layoutY="600.0" mnemonicParsing="false" onAction="#ModVoy" prefHeight="25.0" prefWidth="173.0" text="Modifier" />
       <ComboBox fx:id="combox" layoutX="199.0" layoutY="428.0" prefWidth="150.0" />
       <TextField fx:id="Recherche" layoutX="1023.0" layoutY="78.0" onKeyReleased="#Recherche" prefHeight="25.0" prefWidth="211.0" promptText="Recherche" />
-      <Button fx:id="PDF" layoutX="803.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#PDF" prefHeight="25.0" prefWidth="98.0" text="PDF" />
-      <Button fx:id="stat" layoutX="901.0" layoutY="660.0" mnemonicParsing="false" onAction="#OnStatClicked" text="Stat" />
-      <Button layoutX="777.0" layoutY="673.0" mnemonicParsing="false" onAction="#Excel" text="Excel" />
-      <Button fx:id="Map" layoutX="654.0" layoutY="673.0" mnemonicParsing="false" onAction="#Map" text="Map" />
-      <Button fx:id="Notif" layoutX="1085.0" layoutY="673.0" mnemonicParsing="false" onMouseClicked="#notif" text="Notif Nbr Destiantion" />
-      <Button fx:id="Media" layoutX="997.0" layoutY="729.0" mnemonicParsing="false" onAction="#Media_Video" text="Media" />
+      <Button fx:id="PDF" layoutX="930.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#PDF" prefHeight="25.0" prefWidth="67.0" text="PDF" />
+      <Button fx:id="stat" layoutX="1132.0" layoutY="765.0" mnemonicParsing="false" onAction="#OnStatClicked" prefHeight="25.0" prefWidth="146.0" text="Stat" />
+      <Button layoutX="633.0" layoutY="49.0" mnemonicParsing="false" onAction="#Excel" prefHeight="25.0" prefWidth="67.0" text="Excel" />
+      <Button fx:id="Map" layoutX="619.0" layoutY="704.0" mnemonicParsing="false" onAction="#Map" prefHeight="25.0" prefWidth="150.0" text="Map" />
+      <Button fx:id="Notif" layoutX="1132.0" layoutY="704.0" mnemonicParsing="false" onMouseClicked="#notif" prefHeight="25.0" prefWidth="146.0" text="Notif Nbr Destiantion" />
+      <Button fx:id="Media" layoutX="619.0" layoutY="778.0" mnemonicParsing="false" onAction="#Media_Video" prefHeight="25.0" prefWidth="150.0" text="Media" />
+      <Button fx:id="stat1" layoutX="460.0" layoutY="740.0" mnemonicParsing="false" onAction="#OnStat" prefHeight="25.0" prefWidth="146.0" text="Stat" />
    </children>
 </AnchorPane>
