@@ -417,7 +417,7 @@ return voyage;
             
         } catch (SQLException ex) {
             Logger.getLogger(voyage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }       
         return 0;
     }
      public void modifier(voyage v ,int id) {

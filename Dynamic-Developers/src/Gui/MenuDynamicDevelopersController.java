@@ -62,7 +62,7 @@ public class MenuDynamicDevelopersController implements Initializable {
             System.err.println(ex.getMessage());
         }
     }
-
+    
     @FXML
     private void ReserverVoyage(ActionEvent event) {
         try {
@@ -87,6 +87,10 @@ public class MenuDynamicDevelopersController implements Initializable {
 
     @FXML
     private void ReserverExcursion(ActionEvent event) {
+    }
+
+    @FXML
+    private void Restaurant(ActionEvent event) {
     }
     }
     

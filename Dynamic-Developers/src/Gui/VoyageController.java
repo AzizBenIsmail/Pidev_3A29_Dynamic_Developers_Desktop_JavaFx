@@ -431,7 +431,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         }
         else {
                    voyage v = new voyage(Destinationv,Nom_Voyagev,Duree_Voyagev,date,Valabilitev,URLImage.getText(),Float.parseFloat(Prixv));
-            ps.AjouterVoyage(v);
+            ps.AjouterVoyage(v);    
              refresh();
              Alert alert =new Alert(Alert.AlertType.CONFIRMATION);   
              alert.setTitle("succes");
@@ -442,7 +442,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
 
     @FXML
     private void ModVoy(ActionEvent event) {
-                Scontrole_Voyage sc= new Scontrole_Voyage();   
+     Scontrole_Voyage sc= new Scontrole_Voyage();   
 
         voyage voy=new voyage();
    ServiceVoyage sv = new ServiceVoyage();
@@ -478,10 +478,6 @@ if (! sc.isNumeric(Prix.getText())){
     @FXML
     private void Recherche(KeyEvent event) {
         
-        ServiceVoyage bs=new ServiceVoyage(); 
-        voyage b= new voyage();
-        ObservableList<voyage>filter= bs.chercherTitreplat(Recherche.getText());
-        populateTable(filter);
     }
      private void populateTable(ObservableList<voyage> branlist){
        TableVoyage.setItems(branlist);

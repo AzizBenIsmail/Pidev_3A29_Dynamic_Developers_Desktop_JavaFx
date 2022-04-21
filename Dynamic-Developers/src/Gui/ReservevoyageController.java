@@ -226,12 +226,54 @@ else {
 }      
 
     @FXML
-    private void ModVoy(ActionEvent event) {
+    private void ModVoy(ActionEvent event) throws SQLException {
+    Scontrole_Voyage sc= new Scontrole_Voyage();   
 
-    }
+        ReserverVoyage voy=new ReserverVoyage();
+      ServiseReserVoy rec = new ServiseReserVoy();
+   voy=TableVoyage.getSelectionModel().getSelectedItem();
+   voy.setId(TableVoyage.getSelectionModel().getSelectedItem().getId()); 
+   String Dest = (String)VoyageCombox.getValue();
+   String Tra = (String)Travel_ComboBox.getValue();
+   voy.setNom_voyage(Dest);
+   voy.setTravel_Class(Tra);
+   java.sql.Date date = java.sql.Date.valueOf(Datev.getValue());
+   voy.setDate_reservation(date);
+   String Ag =Age.getText();
+   int A=Integer.parseInt(Ag);
+   int IdVoy=rec.chercherVoy(Dest);
+   voy.setAge(A);
+   
+if( Tra.isEmpty()){
+    Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setContentText("Travel class vides");   
+    alert.showAndWait();
+    
+}else
+    if( Dest.isEmpty()){
+    Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setContentText("Travel class vides");   
+    alert.showAndWait();  
+} else if (! sc.isNumeric(Age.getText())){
+    Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setContentText("Age doit étre un nombre");
+    alert.showAndWait();
+}
+else {
+    ReserverVoyage re = new ReserverVoyage(IdVoy,Tra,date,A);
+    System.out.println(re.toString());
+    rec.ModifierReserverVoyage(voy);
+    refresh();
+    Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setContentText("Reservation ajouter");
+    alert.showAndWait();
+}
+}
+
 
     @FXML
     private void Recherche(KeyEvent event) {
+
     }
 
     @FXML

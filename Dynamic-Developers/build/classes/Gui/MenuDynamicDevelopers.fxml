@@ -23,7 +23,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
-      <Button fx:id="Restaurant" layoutX="596.0" layoutY="319.0" mnemonicParsing="false" onAction="#Voyage" opacity="0.83" prefHeight="46.0" prefWidth="202.0" styleClass="Style.css" stylesheets="@Style.css" text="Restaurant">
+      <Button fx:id="Restaurant" layoutX="596.0" layoutY="319.0" mnemonicParsing="false" onAction="#Restaurant" opacity="0.83" prefHeight="46.0" prefWidth="202.0" styleClass="Style.css" stylesheets="@Style.css" text="Restaurant">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
