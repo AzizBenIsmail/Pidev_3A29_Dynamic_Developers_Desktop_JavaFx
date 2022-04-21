@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3a29.gui.RestaurantReservationController">
+   <children>
+      <Label layoutX="53.0" layoutY="46.0" prefHeight="42.0" prefWidth="426.0" text="Gestion des réservations :" textFill="#7ca4f5" underline="true">
+         <font>
+            <Font name="Bauhaus 93" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="316.0" text="Date de réservation :" textFill="#7ca4f5">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <Label layoutX="28.0" layoutY="263.0" text="Nombre du personne :" textFill="#7ca4f5">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <Label layoutX="28.0" layoutY="217.0" text="Nom du client :" textFill="#7ca4f5">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <Label layoutX="28.0" layoutY="160.0" text="Nom du restaurant :" textFill="#7ca4f5">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <TextField fx:id="nom_res1" layoutX="192.0" layoutY="157.0" />
+      <TextField fx:id="nom_c1" layoutX="186.0" layoutY="214.0" />
+      <TextField fx:id="nbr_pers1" layoutX="186.0" layoutY="263.0" />
+      <Button fx:id="btn_aj_reser" layoutX="26.0" layoutY="390.0" mnemonicParsing="false" onAction="#ajouter_reser" text="Ajouter" textFill="#7ca4f5" />
+      <Button fx:id="btn_supp_reser" layoutX="101.0" layoutY="390.0" mnemonicParsing="false" onAction="#supprimer_reser" text="Supprimer" textFill="#7ca4f5" />
+      <Button fx:id="btn_mod_reser" layoutX="192.0" layoutY="390.0" mnemonicParsing="false" onAction="#modifier_reser" text="modifier" textFill="#7ca4f5" />
+      <Button fx:id="btn_vider_reser" layoutX="280.0" layoutY="390.0" mnemonicParsing="false" onAction="#vider_reser" text="Vider" textFill="#7ca4f5" />
+      <TableView fx:id="table_reser" layoutX="380.0" layoutY="138.0" onMouseClicked="#getSelected" prefHeight="313.0" prefWidth="577.0">
+        <columns>
+          <TableColumn fx:id="nom_ress1" prefWidth="141.0" text="Nom du restaurant " />
+          <TableColumn fx:id="nom_cc1" prefWidth="145.0" text="Nom du client" />
+            <TableColumn fx:id="nbr_perss1" prefWidth="163.0" text="Nombre de personnes " />
+            <TableColumn fx:id="date_ress1" prefWidth="127.0" text="Date de réservation" />
+        </columns>
+      </TableView>
+      <DatePicker fx:id="date_res1" layoutX="186.0" layoutY="313.0" />
+      <Pane layoutX="783.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/272149638_1118373955679460_5291939741314529835_n.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
