@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="484.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3a29.gui.RestaurantController">
+   <children>
+      <Label layoutX="27.0" layoutY="153.0" prefHeight="17.0" prefWidth="139.0" text="Nom du restaurant :" textFill="#587bee">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="27.0" layoutY="198.0" text="Adresse du restaurant :" textFill="#587bee">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <Label layoutX="27.0" layoutY="240.0" text="Num_Téléphone :" textFill="#587bee">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <Label layoutX="27.0" layoutY="283.0" text="Description :" textFill="#587bee">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <TextField fx:id="nom_res" layoutX="192.0" layoutY="151.0" />
+      <TextField fx:id="adresse_res" layoutX="192.0" layoutY="195.0" />
+      <TextField fx:id="numt_res" layoutX="192.0" layoutY="238.0" />
+      <TextField fx:id="descp_res" layoutX="192.0" layoutY="281.0" />
+      <Button fx:id="btn_aj_res" layoutX="27.0" layoutY="361.0" mnemonicParsing="false" onAction="#ajouter_res" text="Ajouter" textFill="#587bee" />
+      <Button fx:id="btn_supp_res" layoutX="97.0" layoutY="361.0" mnemonicParsing="false" onAction="#supprimer_res" text="Supprimer" textFill="#587bee" />
+      <Button fx:id="btn_mod_res" layoutX="187.0" layoutY="361.0" mnemonicParsing="false" onAction="#modifier_res" text="Modifier" textFill="#587bee" />
+      <Button fx:id="btn_vi_res" layoutX="266.0" layoutY="361.0" mnemonicParsing="false" onAction="#vider_res" text="Vider" textFill="#587bee" />
+      <TableView fx:id="table_res" layoutX="368.0" layoutY="101.0" onMouseClicked="#getSelected" prefHeight="282.0" prefWidth="547.0">
+        <columns>
+          <TableColumn fx:id="nom_ress" prefWidth="146.0" text="Nom du restaurant" />
+          <TableColumn fx:id="adresse_ress" prefWidth="143.0" text="Adresse du restaurant" />
+            <TableColumn fx:id="numt_ress" prefWidth="131.0" text="Num_Téléphone" />
+            <TableColumn fx:id="descp_ress" prefWidth="126.0" text="Description" />
+        </columns>
+      </TableView>
+      <Label layoutX="35.0" layoutY="21.0" prefHeight="42.0" prefWidth="411.0" text="Gestion des restaurants :" textFill="#7ca4f5" underline="true">
+         <font>
+            <Font name="Bauhaus 93" size="36.0" />
+         </font>
+      </Label>
+      <Pane layoutX="743.0" layoutY="1.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="130.0" fitWidth="101.0" layoutX="63.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/272149638_1118373955679460_5291939741314529835_n.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
