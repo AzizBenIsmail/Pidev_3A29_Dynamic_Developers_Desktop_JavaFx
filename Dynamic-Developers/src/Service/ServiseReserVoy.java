@@ -36,7 +36,7 @@ public class ServiseReserVoy implements IServiseReserVoy<ReserverVoyage> {
     public void AjouterReserverVoyage(ReserverVoyage r) {
       try {
                 String req = "insert into reservation_voyage(id,client_id,voyage_id,date_reservation,travel_class, age)"
-                        +"values("+r.getId()+","+1+","+r.getVoyage_id()+","+null+",'"+r.getTravel_Class()+"',"+r.getAge()+")";
+                        +"values("+r.getId()+","+1+","+r.getVoyage_id()+",'"+r.getDate_reservation()+"','"+r.getTravel_Class()+"',"+r.getAge()+")";
                 Statement st = cnx.createStatement();
                 st.executeUpdate(req);
                 System.out.println("Voyage ajouter avec succ");
@@ -143,6 +143,7 @@ return ReserverVoy;    }
         return ReserverVoyage;
 
     }
+    
     public List<String> getAll() {
         List<String> list = new ArrayList<String>();
         try {
@@ -161,6 +162,7 @@ return ReserverVoy;    }
         }
         return list;
     }
+    
      public int chercherVoy(String Nom) throws SQLException{
          int id=0;
          String requetee = "SELECT id FROM voyage where nom_voyage='"+Nom+"';";

@@ -92,5 +92,6 @@
       <Button fx:id="stat1" layoutX="619.0" layoutY="729.0" mnemonicParsing="false" onAction="#OnStat" prefHeight="25.0" prefWidth="146.0" text="Stat Prix" />
       <Button fx:id="stat2" layoutX="1129.0" layoutY="729.0" mnemonicParsing="false" onAction="#OnStatClickedDestination" prefHeight="25.0" prefWidth="146.0" text="Stat Destination" />
       <Button fx:id="reset" layoutX="175.0" layoutY="692.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="157.0" text="clear" />
+      <Button fx:id="Menu" layoutX="64.0" layoutY="766.0" mnemonicParsing="false" onAction="#Menu" prefHeight="25.0" prefWidth="146.0" text="Retour Au Menu" />
    </children>
 </AnchorPane>

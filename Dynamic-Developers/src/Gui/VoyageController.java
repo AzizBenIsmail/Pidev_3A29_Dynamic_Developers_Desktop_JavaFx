@@ -182,6 +182,8 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     private Button stat2;
     @FXML
     private Button reset;
+    @FXML
+    private Button Menu;
     /**
      * Initializes the controller class.
      */
@@ -671,5 +673,14 @@ tray.showAndDismiss(Duration.millis(2000));
     private void reset(ActionEvent event) {
                     clear();
 
+    }
+
+    @FXML
+    private void Menu(ActionEvent event) throws IOException {
+                 Parent root = FXMLLoader.load(getClass().getResource("MenuDynamicDevelopers.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
 }

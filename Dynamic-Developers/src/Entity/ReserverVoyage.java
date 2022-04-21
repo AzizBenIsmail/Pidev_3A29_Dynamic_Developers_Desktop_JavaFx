@@ -29,7 +29,7 @@ public class ReserverVoyage {
     public ReserverVoyage(int voyage_id, String travel_Class, Date date_reservation, int Age) {
         this.voyage_id = voyage_id;
         this.travel_Class = travel_Class;
-        this.date_reservation = null;
+        this.date_reservation = date_reservation;
         this.Age = Age;
     }
 

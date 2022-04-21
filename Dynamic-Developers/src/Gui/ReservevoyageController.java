@@ -13,6 +13,8 @@ import java.lang.AutoCloseable;
 
 import Service.ServiseReserVoy;
 import Util.MyDB;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -27,8 +29,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -38,9 +44,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -90,6 +98,12 @@ public class ReservevoyageController implements Initializable {
     private TableColumn<ReserverVoyage, Integer> VID;
     @FXML
     private TableColumn<ReserverVoyage, String> Tra_class;
+    @FXML
+    private Button Menu;
+    @FXML
+    private Button Menu1;
+    @FXML
+    private Button Menu11;
     /**
      * Initializes the controller class.
      */
@@ -101,10 +115,7 @@ public class ReservevoyageController implements Initializable {
         loadvoy();
         refresh();
     }    
-
-    @FXML
-    private void Liste_Voyage(MouseEvent event) {
-    }
+    
  private void refresh() {
         try {
             List.clear();
@@ -129,18 +140,20 @@ public class ReservevoyageController implements Initializable {
         }      
     }
 
-    private void loadvoy() {
-        ServiseReserVoy v=new ServiseReserVoy();
-        connection= MyDB.getInsatnce().getConnection();
-        refresh();
-        VID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        Dest.setCellValueFactory(new PropertyValueFactory<>("nom_voyage"));
-        date.setCellValueFactory(new PropertyValueFactory<>("date_reservation"));
-        Tra_class.setCellValueFactory(new PropertyValueFactory<>("travel_Class"));
-        Rage.setCellValueFactory(new PropertyValueFactory<>("age"));
-        VoyageCombox.setItems(FXCollections.observableArrayList(v.getAll()));
-        System.out.println(Tra_class.getText());
-    }
+        private void loadvoy() {
+
+            ServiseReserVoy v=new ServiseReserVoy();
+            connection= MyDB.getInsatnce().getConnection();
+            refresh();
+            VID.setCellValueFactory(new PropertyValueFactory<>("id"));
+            Dest.setCellValueFactory(new PropertyValueFactory<>("nom_voyage"));
+            date.setCellValueFactory(new PropertyValueFactory<>("date_reservation"));
+            Tra_class.setCellValueFactory(new PropertyValueFactory<>("travel_Class"));
+            Rage.setCellValueFactory(new PropertyValueFactory<>("age"));
+            VoyageCombox.setItems(FXCollections.observableArrayList(v.getAll()));
+            System.out.println(Tra_class.getText());
+
+        }
     @FXML
     private void SupprimerVoyage(ActionEvent event) {
                  if (!TableVoyage.getSelectionModel().isEmpty()) {
@@ -149,11 +162,27 @@ alert.showAndWait();
 
 if (alert.getResult() == ButtonType.YES) {
     ServiseReserVoy r=new ServiseReserVoy();
-    r.SupprimerReserverVoyage(TableVoyage.getSelectionModel().getSelectedItem().getId());                                 
+    r.SupprimerReserverVoyage(TableVoyage.getSelectionModel().getSelectedItem().getId());
     };
     refresh();
-    }}
-                
+    }
+    }
+        
+    @FXML
+    private void Liste_Voyage(MouseEvent event) {
+         try {
+               ReserverVoyage Res = TableVoyage.getSelectionModel().getSelectedItem();
+               Dest.setText(Res.getNom_voyage());
+               Age.setText(String.valueOf(Res.getAge()));
+               String c =  Res.getNom_voyage();
+               VoyageCombox.setValue(c);
+               String B =  Res.getTravel_Class();
+               Travel_ComboBox.setValue(B);
+           } catch (Exception e) {
+               System.out.println(e.getMessage());
+               
+           }
+    }
     @FXML
     private void Add(ActionEvent event) {
         try {
@@ -161,34 +190,32 @@ if (alert.getResult() == ButtonType.YES) {
             String Dest = (String)VoyageCombox.getValue();
             String Tra = (String)Travel_ComboBox.getValue();
             java.sql.Date date = java.sql.Date.valueOf(Datev.getValue());
-            String Age =Rage.getText();
+            String Ag =Age.getText();
             ServiseReserVoy rec = new ServiseReserVoy();
             int IdVoy= rec.chercherVoy(Dest);
-            
+
             Scontrole_Voyage sc= new Scontrole_Voyage();
 //            int Age =Integer.valueOf(Rage.getText());
-
-
-            
-ReserverVoyage re = new ReserverVoyage(IdVoy,Tra,date,15);
-
 if( Tra.isEmpty()){
     Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
     alert.setContentText("Travel class vides");   
     alert.showAndWait();
     
-}else if (Dest.isEmpty()){
+}else
+    if( Dest.isEmpty()){
     Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
-    alert.setContentText("Voyage vides");
-    alert.showAndWait();
-    
-} else if (sc.isNumeric(Rage.getText())){
+    alert.setContentText("Travel class vides");   
+    alert.showAndWait();  
+} else if (! sc.isNumeric(Age.getText())){
     Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
     alert.setContentText("Age doit étre un nombre");
     alert.showAndWait();
 }
 else {
-    rec.AjouterReserverVoyage(new ReserverVoyage(6,"gg",date,15));
+    int A=Integer.parseInt(Ag);
+    ReserverVoyage re = new ReserverVoyage(IdVoy,Tra,date,A);
+    System.out.println(re.toString());
+    rec.AjouterReserverVoyage(re);
     refresh();
     Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
     alert.setContentText("Reservation ajouter");
@@ -214,5 +241,14 @@ else {
     private void Actualiser(ActionEvent event) {
         loadvoy();
         refresh();
+    }
+
+    @FXML
+    private void Menu(ActionEvent event) throws IOException {
+              Parent root = FXMLLoader.load(getClass().getResource("MenuDynamicDevelopers.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
 }
