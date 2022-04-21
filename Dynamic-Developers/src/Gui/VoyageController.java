@@ -120,12 +120,6 @@ public class VoyageController implements Initializable {
     private Button Actualiser;
     @FXML
     private TableColumn<voyage,Integer> VID;
-    @FXML
-    private Button Bientot_disponible;
-    @FXML
-    private Button Disponible;
-    @FXML
-    private Button Non_Disponible;
     
     public static String idxx;
     
@@ -167,8 +161,6 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     private TextField Recherche;
     @FXML
     private Button PDF;
-    @FXML
-    private Button stat;
     ObservableList<voyage> list;
     @FXML
     private Button Map;
@@ -177,13 +169,15 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     @FXML
     private Button Media;
     @FXML
-    private Button stat1;
-    @FXML
-    private Button stat2;
-    @FXML
     private Button reset;
     @FXML
     private Button Menu;
+    @FXML
+    private ComboBox<String> Trie;
+    @FXML
+    private ComboBox<String> StatV;
+    @FXML
+    private ComboBox<String> Metier;
     /**
      * Initializes the controller class.
      */
@@ -192,6 +186,12 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         // TODO
         ObservableList<String> list = FXCollections.observableArrayList("Disponible","Non Disponible","Bientot Disponible");
         combox.setItems(list);
+        ObservableList<String> list1 = FXCollections.observableArrayList("Bientot Disponible","Disponible","Non_Disponible");
+        Trie.setItems(list1);
+        ObservableList<String> list2 = FXCollections.observableArrayList("Stat Prix","Stat Destination","Stat Valabilite");
+        StatV.setItems(list2);
+        ObservableList<String> list3 = FXCollections.observableArrayList("Media","Map","Notification");
+       // StatV.setItems(list3);
         loadvoy();
         refresh();
 
@@ -240,83 +240,6 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         refresh();
         }
 
-    @FXML
-    private void Bientot_disponible(ActionEvent event) {
- try {
-            List.clear();
-            
-            query = "select * from voyage WHERE valabilite = 'Bientot Disponible'";
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
-                List.add(new  voyage(
-                        resultSet.getInt("id"),
-                        resultSet.getString("destination"),
-                        resultSet.getString("nom_voyage"),
-                        resultSet.getString("duree_voyage"),
-                        resultSet.getDate("date"),
-                        resultSet.getString("valabilite"),
-                        resultSet.getString("image"),
-                        resultSet.getFloat("prix")
-                        )); 
-               TableVoyage.setItems(List);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void Disponible(ActionEvent event) {
-                 try {
-            List.clear();
-            
-            query = "select * from voyage WHERE valabilite = 'Disponible'";
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
-                List.add(new  voyage(
-                        resultSet.getInt("id"),
-                        resultSet.getString("destination"),
-                        resultSet.getString("nom_voyage"),
-                        resultSet.getString("duree_voyage"),
-                        resultSet.getDate("date"),
-                        resultSet.getString("valabilite"),
-                        resultSet.getString("image"),
-                        resultSet.getFloat("prix")
-                        )); 
-               TableVoyage.setItems(List);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void Non_Disponible(ActionEvent event) {
-       try {
-            List.clear();
-            
-            query = "select * from voyage WHERE valabilite = 'Non Disponible'";
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
-                List.add(new  voyage(
-                        resultSet.getInt("id"),
-                        resultSet.getString("destination"),
-                        resultSet.getString("nom_voyage"),
-                        resultSet.getString("duree_voyage"),
-                        resultSet.getDate("date"),
-                        resultSet.getString("valabilite"),
-                        resultSet.getString("image"),
-                        resultSet.getFloat("prix")
-                        )); 
-               TableVoyage.setItems(List);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
 
   
     private void refresh() {
@@ -531,22 +454,6 @@ Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.show();        }
     }
 
-    @FXML
-    private void OnStatClicked(ActionEvent event) {
-        try {
-                   
-            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStatValabilite.fxml"));
-            Scene scene = new Scene(parent);
-            
-            Stage stage = new Stage();
-            //stage.getIcons().add(new Image("/images/logo.png"));
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
 
     @FXML
     private void Excel(ActionEvent event) throws IOException {
@@ -636,34 +543,6 @@ tray.showAndDismiss(Duration.millis(2000));
         }
     }
 
-    @FXML
-    private void OnStat(ActionEvent event) {
-                try {                               
-            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStatPrix.fxml"));
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            //stage.getIcons().add(new Image("/images/logo.png"));
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void OnStatClickedDestination(ActionEvent event) {
-            try {                               
-            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStat.fxml"));
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            //stage.getIcons().add(new Image("/images/logo.png"));
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());}
-    }
 
     @FXML
     private void reset(ActionEvent event) {
@@ -679,4 +558,135 @@ tray.showAndDismiss(Duration.millis(2000));
               stage.setScene(scene);
               stage.show();
     }
+
+    @FXML
+    private void Trie(ActionEvent event) {
+                String N = (String)Trie.getValue();
+
+    if(N=="Non_Disponible"){
+         try {
+            List.clear();
+            
+            query = "select * from voyage WHERE valabilite = 'Non Disponible'";
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                List.add(new  voyage(
+                        resultSet.getInt("id"),
+                        resultSet.getString("destination"),
+                        resultSet.getString("nom_voyage"),
+                        resultSet.getString("duree_voyage"),
+                        resultSet.getDate("date"),
+                        resultSet.getString("valabilite"),
+                        resultSet.getString("image"),
+                        resultSet.getFloat("prix")
+                        )); 
+               TableVoyage.setItems(List);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    
+    }
+   if(N=="Disponible"){
+          try {
+            List.clear();
+            
+            query = "select * from voyage WHERE valabilite = 'Disponible'";
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                List.add(new  voyage(
+                        resultSet.getInt("id"),
+                        resultSet.getString("destination"),
+                        resultSet.getString("nom_voyage"),
+                        resultSet.getString("duree_voyage"),
+                        resultSet.getDate("date"),
+                        resultSet.getString("valabilite"),
+                        resultSet.getString("image"),
+                        resultSet.getFloat("prix")
+                        )); 
+               TableVoyage.setItems(List);
+            }
+        } catch (SQLException ex1) {
+            System.out.println(ex1.getMessage());
+        }
+    }
+    if(N=="Bientot Disponible"){
+       try {
+            List.clear();
+            
+            query = "select * from voyage WHERE valabilite = 'Bientot Disponible'";
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                List.add(new  voyage(
+                        resultSet.getInt("id"),
+                        resultSet.getString("destination"),
+                        resultSet.getString("nom_voyage"),
+                        resultSet.getString("duree_voyage"),
+                        resultSet.getDate("date"),
+                        resultSet.getString("valabilite"),
+                        resultSet.getString("image"),
+                        resultSet.getFloat("prix")
+                        )); 
+               TableVoyage.setItems(List);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    }
+
+    @FXML
+    private void StatV(ActionEvent event) {
+    String S = (String)StatV.getValue();
+
+    if(S=="Stat Prix"){
+  try {                               
+            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStatPrix.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("/images/logo.png"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    
+    }
+   if(S=="Stat Destination"){
+      try {                               
+            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStat.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("/images/logo.png"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());}
+    }
+    if(S=="Stat Valabilite"){
+               try {
+                   
+            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/VoyageStatValabilite.fxml"));
+            Scene scene = new Scene(parent);
+            
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("/images/logo.png"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    }
+
+    @FXML
+    private void Metier(ActionEvent event) {
+    }
 }
+
