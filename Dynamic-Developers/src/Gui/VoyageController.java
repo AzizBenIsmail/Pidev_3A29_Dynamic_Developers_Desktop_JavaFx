@@ -191,7 +191,8 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         ObservableList<String> list2 = FXCollections.observableArrayList("Stat Prix","Stat Destination","Stat Valabilite");
         StatV.setItems(list2);
         ObservableList<String> list3 = FXCollections.observableArrayList("Media","Map","Notification");
-       // StatV.setItems(list3);
+        Metier.setItems(list3);
+       
         loadvoy();
         refresh();
 
@@ -264,8 +265,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
-        
+        }       
     }
     private void clear() {
 
@@ -278,6 +278,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         Prix.setText(null);       
   
     }
+    
     private void loadvoy() {
     voyage v=new voyage();
     connection= MyDB.getInsatnce().getConnection();
@@ -523,24 +524,7 @@ tray.showAndDismiss(Duration.millis(2000));
 
     @FXML
     private void Media_Video(ActionEvent event) {
-        if(TableVoyage.getSelectionModel().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-            alert.setTitle("Warnning");
-            alert.setHeaderText("SELECT YOUR Voyage");
-            Optional<ButtonType> result1 = alert.showAndWait();}
-       else{
-            try {
-                Parent root;
-
-                root = FXMLLoader.load(getClass().getResource("Media_Voyage.fxml"));
-
-                Media.getScene().setRoot(root);
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-
-        }
+       
     }
 
 
@@ -687,6 +671,56 @@ tray.showAndDismiss(Duration.millis(2000));
 
     @FXML
     private void Metier(ActionEvent event) {
+    String S = (String)Metier.getValue();
+
+    if(S=="Notification"){
+                  ServiceVoyage sv = new ServiceVoyage();
+        voyage v = new voyage();
+                String Destinationv = Destination.getText();
+        int y=sv.calculnb((Destination.getText()));
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        tray.setAnimationType(type);
+        tray.setTitle("attention");
+        tray.setMessage("il existe "+y+ " voyages a "+Destinationv+"");
+tray.setNotificationType(NotificationType.INFORMATION);
+tray.showAndDismiss(Duration.millis(2000));
+    }
+   if(S=="Media"){
+      if(TableVoyage.getSelectionModel().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+            alert.setTitle("Warnning");
+            alert.setHeaderText("SELECT YOUR Voyage");
+            Optional<ButtonType> result1 = alert.showAndWait();}
+       else{
+            try {
+                Parent root;
+
+                root = FXMLLoader.load(getClass().getResource("Media_Voyage.fxml"));
+
+                Media.getScene().setRoot(root);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        }
+    }
+    if(S=="Map"){
+    Stage stage = new Stage ();
+         
+        final WebView webView = new WebView();
+        final WebEngine webEngine = webView.getEngine();
+        webEngine.load(getClass().getResource("/Gui/googleMaps.html").toString());
+       
+        // create scene
+       // stage.getIcons().add(new Image("/Assets/logo.png"));
+        stage.setTitle("localisation");
+        Scene scene = new Scene(webView,1000,700, Color.web("#666970"));
+        stage.setScene(scene);
+        // show stage
+        stage.show();
+         }    
     }
 }
 

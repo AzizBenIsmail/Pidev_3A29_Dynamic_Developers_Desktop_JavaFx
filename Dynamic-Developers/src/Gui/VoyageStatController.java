@@ -65,7 +65,5 @@ int n;
         voy_stat.setLegendSide(Side.LEFT);
         voy_stat.setData(data);
     }
-        public void setResid(int n) {
-            this.n=n;
-    }
+
 }
