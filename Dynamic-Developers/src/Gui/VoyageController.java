@@ -190,9 +190,8 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
         Trie.setItems(list1);
         ObservableList<String> list2 = FXCollections.observableArrayList("Stat Prix","Stat Destination","Stat Valabilite");
         StatV.setItems(list2);
-        ObservableList<String> list3 = FXCollections.observableArrayList("Media","Map","Notification");
+        ObservableList<String> list3 = FXCollections.observableArrayList("Media","Map","Notification","");
         Metier.setItems(list3);
-       
         loadvoy();
         refresh();
 
@@ -401,7 +400,9 @@ if (! sc.isNumeric(Prix.getText())){
  
     @FXML
     private void Recherche(KeyEvent event) {
-        
+        ServiceVoyage se = new ServiceVoyage();
+        String chaine = Recherche.getText();
+        populateTable(se.chercherVoyage(chaine));
     }
      private void populateTable(ObservableList<voyage> branlist){
        TableVoyage.setItems(branlist);
@@ -722,5 +723,7 @@ tray.showAndDismiss(Duration.millis(2000));
         stage.show();
          }    
     }
+
+
 }
 

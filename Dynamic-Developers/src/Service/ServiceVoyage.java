@@ -441,7 +441,7 @@ PreparedStatement ps= cnx.prepareStatement("UPDATE voyage SET clien_id=19,destin
         }   
 
     }
-     public ObservableList<voyage> chercherTitreplat(String chaine){
+     public ObservableList<voyage> chercherVoyage(String chaine){
           String sql="SELECT * FROM voyage WHERE (destination LIKE ? or nom_voyage LIKE ? or duree_voyage LIKE ? or valabilite LIKE ? or prix = ? )";
             
              Connection cnx= MyDB.getInsatnce().getConnection();
