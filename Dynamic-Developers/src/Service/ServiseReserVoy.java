@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -123,7 +125,7 @@ return ReserverVoy;    }
     public List<ReserverVoyage> RecupererReserverVoyage() {
          List<ReserverVoyage> ReserverVoyage = new ArrayList<>();
        // String sql ="select * from platt";
-        String sql ="select reservation_voyage.id,voyage.nom_voyage ,reservation_voyage.date_reservation, reservation_voyage.travel_class, reservation_voyage.age from reservation_voyage INNER JOIN voyage where reservation_voyage.id=voyage.id ";
+        String sql ="select reservation_voyage.id,voyage.nom_voyage ,reservation_voyage.travel_class,reservation_voyage.date_reservation, reservation_voyage.age from reservation_voyage INNER JOIN voyage on reservation_voyage.voyage_id =voyage.id ";
         try {
             Statement ste= cnx.createStatement();
             ResultSet rs =ste.executeQuery(sql);
@@ -171,4 +173,39 @@ return ReserverVoy;    }
             while(rs.next())
             {id= rs.getInt("id");
             }return id;}
+     
+        public ObservableList<ReserverVoyage> chercherReservationVoyage(String chaine){
+        String sql ="select reservation_voyage.id,voyage.nom_voyage ,reservation_voyage.travel_class,reservation_voyage.date_reservation, reservation_voyage.age from reservation_voyage INNER JOIN voyage on reservation_voyage.voyage_id =voyage.id where (travel_class LIKE ? or age = ?)";
+            
+             Connection cnx= MyDB.getInsatnce().getConnection();
+            String ch=""+chaine+"%";
+         System.out.println(sql);
+            ObservableList<ReserverVoyage> myList= FXCollections.observableArrayList();
+        try {
+           
+            Statement ste= cnx.createStatement();
+           // PreparedStatement pst = myCNX.getCnx().prepareStatement(requete6);
+            PreparedStatement stee =cnx.prepareStatement(sql);  
+            stee.setString(1, ch);
+            stee.setString(2, ch);
+
+         System.out.println(stee);
+
+            ResultSet rs = stee.executeQuery();
+            while (rs.next()){
+                 ReserverVoyage r = new ReserverVoyage();
+               r.setId(rs.getInt("id"));
+               r.setNom_voyage(rs.getString("nom_voyage"));
+               r.setDate_reservation(rs.getDate("date_reservation"));
+               r.setTravel_Class(rs.getString("travel_class"));
+               r.setAge(rs.getInt("age"));
+               
+                myList.add(r);
+                System.out.println("titre trouvé! ");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return myList;
+      }
 }

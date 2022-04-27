@@ -99,10 +99,6 @@ public class ReservevoyageController implements Initializable {
     @FXML
     private TableColumn<ReserverVoyage, String> Tra_class;
     @FXML
-    private Button Menu;
-    @FXML
-    private Button Menu1;
-    @FXML
     private Button Menu11;
     /**
      * Initializes the controller class.
@@ -110,7 +106,7 @@ public class ReservevoyageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ObservableList<String> list = FXCollections.observableArrayList("first class","economic Class","business class");
+        ObservableList<String> list = FXCollections.observableArrayList("First class","Economic Class","Business class");
         Travel_ComboBox.setItems(list);
         loadvoy();
         refresh();
@@ -273,9 +269,15 @@ else {
 
     @FXML
     private void Recherche(KeyEvent event) {
-
+        ServiseReserVoy re = new ServiseReserVoy();
+        String chaine = Recherche.getText();
+        populateTable(re.chercherReservationVoyage(chaine));
     }
-
+    
+     private void populateTable(ObservableList<ReserverVoyage> branlist){
+       TableVoyage.setItems(branlist);
+   
+       }
     @FXML
     private void Clear(ActionEvent event) {
     }
@@ -293,4 +295,9 @@ else {
               stage.setScene(scene);
               stage.show();
     }
+
+    public void setVoyageCombox(String query ) {
+        this.VoyageCombox.setValue(query);
+    }
+    
 }

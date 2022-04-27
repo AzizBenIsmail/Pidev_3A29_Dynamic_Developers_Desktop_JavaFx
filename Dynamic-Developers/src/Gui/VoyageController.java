@@ -81,6 +81,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import java.util.List;
 import java.util.Optional;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -163,10 +164,6 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     private Button PDF;
     ObservableList<voyage> list;
     @FXML
-    private Button Map;
-    @FXML
-    private Button Notif;
-    @FXML
     private Button Media;
     @FXML
     private Button reset;
@@ -178,6 +175,27 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
     private ComboBox<String> StatV;
     @FXML
     private ComboBox<String> Metier;
+    @FXML
+    private Label DestinationText;
+    @FXML
+    private Label DateText;
+    @FXML
+    private Label DureeVoyagetext;
+    @FXML
+    private Label NomVoyagetext;
+    @FXML
+    private Label Valabilitetext;
+    @FXML
+    private Label Imagetext;
+    @FXML
+    private Label PrixText;
+    @FXML
+    private Button Reserver;
+    private Label DestinationText1;
+    @FXML
+    private TextField Nom_Voyage_Resrver;
+    @FXML
+    private Label Nom_Voyage_Resrver_text;
     /**
      * Initializes the controller class.
      */
@@ -204,6 +222,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
                voyage voy = TableVoyage.getSelectionModel().getSelectedItem();
                Destination.setText(voy.getDestination());
                Nom_Voyage.setText(voy.getNom_voyage());
+               Nom_Voyage_Resrver.setText(voy.getNom_voyage());
                Duree_Voyage.setText(voy.getDuree_voyage());
               // java.sql.Date date = java.sql.Date.valueOf(Datev.getValue());
              //  Datev.set(voy.getDate());
@@ -374,7 +393,7 @@ ObservableList<voyage>  List = FXCollections.observableArrayList();
    voy.setDestination(Destination.getText());
    voy.setNom_voyage(Nom_Voyage.getText());
    voy.setDuree_voyage(Duree_Voyage.getText());
-           java.sql.Date date = java.sql.Date.valueOf(Datev.getValue());
+   java.sql.Date date = java.sql.Date.valueOf(Datev.getValue());
    voy.setDate(date);
    String Valabilite = (String)combox.getValue();
    voy.setValabilite(Valabilite);
@@ -486,7 +505,6 @@ Alert alert = new Alert(Alert.AlertType.ERROR);
         }
     }
 
-    @FXML
     private void Map(ActionEvent event) {
         Stage stage = new Stage ();
          
@@ -518,7 +536,6 @@ Alert alert = new Alert(Alert.AlertType.ERROR);
 tray.setNotificationType(NotificationType.INFORMATION);
 tray.showAndDismiss(Duration.millis(2000));
     }
-    @FXML
     private void notif(MouseEvent event) {
         notiff();
     }
@@ -671,7 +688,7 @@ tray.showAndDismiss(Duration.millis(2000));
     }
 
     @FXML
-    private void Metier(ActionEvent event) {
+    private void Metier(ActionEvent event) throws IOException {
     String S = (String)Metier.getValue();
 
     if(S=="Notification"){
@@ -682,7 +699,7 @@ tray.showAndDismiss(Duration.millis(2000));
         TrayNotification tray = new TrayNotification();
         AnimationType type = AnimationType.POPUP;
         tray.setAnimationType(type);
-        tray.setTitle("attention");
+        tray.setTitle("Bienvenu A Travel Me");
         tray.setMessage("il existe "+y+ " voyages a "+Destinationv+"");
 tray.setNotificationType(NotificationType.INFORMATION);
 tray.showAndDismiss(Duration.millis(2000));
@@ -708,8 +725,8 @@ tray.showAndDismiss(Duration.millis(2000));
         }
     }
     if(S=="Map"){
-    Stage stage = new Stage ();
-         
+    //Stage stage = new Stage ();
+         /*
         final WebView webView = new WebView();
         final WebEngine webEngine = webView.getEngine();
         webEngine.load(getClass().getResource("/Gui/googleMaps.html").toString());
@@ -720,9 +737,144 @@ tray.showAndDismiss(Duration.millis(2000));
         Scene scene = new Scene(webView,1000,700, Color.web("#666970"));
         stage.setScene(scene);
         // show stage
-        stage.show();
+        stage.show();*/
+ try {
+
+         Parent root = FXMLLoader.load(getClass().getResource("/Gui/testMap.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
          }    
     }
+
+    public void setVoyage() {
+        this.Voyage.setVisible(false);
+    }
+    public void setSupprimerVoyage() {
+                this.SupprimerVoyage.setVisible(false);
+    }
+
+    public void setV(voyage v) {
+        this.v = v;
+    }
+
+    public void setDestination() {
+        this.Destination.setVisible(false);
+    }
+
+    public void setDuree_Voyage() {
+        this.Duree_Voyage.setVisible(false);
+    
+    }
+    public void Nom_Voyage_Resrver(boolean T) {
+        this.Nom_Voyage_Resrver.setVisible(T);
+         this.Nom_Voyage_Resrver.setDisable(true);
+         this.Nom_Voyage_Resrver.setOpacity(100);
+    }
+        public void setNom_Voyage() {
+        this.Nom_Voyage.setVisible(false);
+    }
+
+    public void setNomVoyagetext( ) {
+        this.NomVoyagetext.setVisible(false);
+    }
+
+    public void Nom_Voyage_Resrver_text(boolean T) {
+                this.Nom_Voyage_Resrver_text.setVisible(T);
+
+    }
+
+    public void setPrix() {
+        this.Prix.setVisible(false);
+    }
+
+    public void setDatev() {
+        this.Datev.setVisible(false);
+        
+    }
+
+    public void setAddImage() {
+        this.AddImage.setVisible(false);
+    
+    }
+
+    public void setURLImage() {
+        this.URLImage.setVisible(false);
+        
+    }
+
+    public void setAdd() {
+        this.Add.setVisible(false);
+        
+    }
+
+    public void setModVoy() {
+        this.ModVoy.setVisible(false);
+        
+    }
+
+    public void setCombox() {
+        this.combox.setVisible(false);
+    }
+
+    public void setReset() {
+        this.reset.setVisible(false);
+        
+    }
+
+    public void setDestinationText() {
+     this.DestinationText.setVisible(false);
+
+    }
+
+    public void setDateText( ) {
+        this.DateText.setVisible(false);
+    }
+
+    public void setDureeVoyagetext( ) {
+        this.DureeVoyagetext.setVisible(false);
+    }
+
+    public void setValabilitetext( ) {
+        this.Valabilitetext.setVisible(false);
+    }
+
+    public void setImagetext( ) {
+        this.Imagetext.setVisible(false);
+    }
+
+    public void setPrixText( ) {
+        this.PrixText.setVisible(false);
+    }
+
+    public void setReserver(boolean T) {
+        this.Reserver.setVisible(T);
+    }
+
+    @FXML
+    private void Reserver(ActionEvent event) {
+                try {
+/*
+         Parent root = FXMLLoader.load(getClass().getResource("/Gui/Reservevoyage.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();*/
+              FXMLLoader loader = new FXMLLoader(getClass().getResource("Reservevoyage.fxml"));
+            Parent root = loader.load();
+            ReservevoyageController RV = loader.getController();
+           RV.setVoyageCombox(Nom_Voyage_Resrver.getText());
+           
+            Reserver.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
 
 
 }

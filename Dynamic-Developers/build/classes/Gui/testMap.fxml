@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1236.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TestMapController">
+   <children>
+      <WebView fx:id="webview" prefHeight="750.0" prefWidth="1148.0" />
+      <Button layoutX="1163.0" layoutY="32.0" mnemonicParsing="false" onAction="#tt" text="Button" />
+   </children>
+</AnchorPane>

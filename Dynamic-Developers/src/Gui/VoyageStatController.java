@@ -59,8 +59,7 @@ int n;
              
         } catch (SQLException ex) {
               System.out.println(ex.getMessage());
-        }
-        
+        }        
          voy_stat.setTitle("**Statistiques Des destination courant **");
         voy_stat.setLegendSide(Side.LEFT);
         voy_stat.setData(data);
