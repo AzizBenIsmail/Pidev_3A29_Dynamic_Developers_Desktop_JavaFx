@@ -73,7 +73,7 @@ public class MenuDynamicDevelopersController implements Initializable {
             pc.setNomVoyagetext();
             pc.setModVoy();
             pc.setPrix();
-           // pc.Nom_Voyage_Resrver_text(false);
+            pc.StatV();
             pc.Nom_Voyage_Resrver(true);  
             pc.setSupprimerVoyage();
             pc.setURLImage();

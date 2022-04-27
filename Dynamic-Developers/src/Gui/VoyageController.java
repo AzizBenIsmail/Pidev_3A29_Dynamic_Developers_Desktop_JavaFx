@@ -692,6 +692,7 @@ tray.showAndDismiss(Duration.millis(2000));
     String S = (String)Metier.getValue();
 
     if(S=="Notification"){
+        Metier.setValue("Metier");
                   ServiceVoyage sv = new ServiceVoyage();
         voyage v = new voyage();
                 String Destinationv = Destination.getText();
@@ -705,6 +706,7 @@ tray.setNotificationType(NotificationType.INFORMATION);
 tray.showAndDismiss(Duration.millis(2000));
     }
    if(S=="Media"){
+               Metier.setValue("Metier");
       if(TableVoyage.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
@@ -713,18 +715,25 @@ tray.showAndDismiss(Duration.millis(2000));
             Optional<ButtonType> result1 = alert.showAndWait();}
        else{
             try {
-                Parent root;
 
-                root = FXMLLoader.load(getClass().getResource("Media_Voyage.fxml"));
-
-                Media.getScene().setRoot(root);
+               // Media.getScene().setRoot(root);
+                Parent parent = FXMLLoader.load(getClass().getResource("/Gui/Media_Voyage.fxml"));
+            Scene scene = new Scene(parent);
+            
+            Stage stage = new Stage();
+            //stage.getIcons().add(new Image("/images/logo.png"));
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
 
         }
     }
-    if(S=="Map"){
+    if(S=="Map"){        Metier.setValue("Metier");
+
+        
     //Stage stage = new Stage ();
          /*
         final WebView webView = new WebView();
@@ -853,6 +862,9 @@ tray.showAndDismiss(Duration.millis(2000));
 
     public void setReserver(boolean T) {
         this.Reserver.setVisible(T);
+    }
+    public void StatV() {
+        this.StatV.setVisible(false);
     }
 
     @FXML

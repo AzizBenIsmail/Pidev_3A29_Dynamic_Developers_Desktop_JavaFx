@@ -103,11 +103,33 @@ public class Media_VoyageController implements Initializable {
 
     @FXML
     private void Go_Back_Home(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("Voyage.fxml"));
-              Scene scene = new Scene(root);
-              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-              stage.setScene(scene);
-              stage.show();
+        
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("Voyage.fxml"));
+            Parent root = loader.load();
+            VoyageController pc = loader.getController();
+            pc.setAdd();
+            pc.setAddImage();
+            pc.setCombox();
+            pc.setDatev();
+            pc.setDestination();
+            pc.setDuree_Voyage();
+            pc.setNom_Voyage();
+            pc.setNomVoyagetext();
+            pc.setModVoy();
+            pc.setPrix();
+            pc.StatV();
+            pc.Nom_Voyage_Resrver(true);  
+            pc.setSupprimerVoyage();
+            pc.setURLImage();
+            pc.setDestinationText();
+            pc.setDureeVoyagetext();
+            pc.setValabilitetext();
+            pc.setPrixText();
+            pc.setReserver(true);
+            pc.setDateText();
+            pc.setImagetext();
+            pc.setReset();
+            Go_Back.getScene().setRoot(root);
     }
     
 }
