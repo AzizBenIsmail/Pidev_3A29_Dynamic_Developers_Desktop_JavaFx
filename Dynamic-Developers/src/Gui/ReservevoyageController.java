@@ -49,6 +49,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -212,15 +216,33 @@ else {
     ReserverVoyage re = new ReserverVoyage(IdVoy,Tra,date,A);
     System.out.println(re.toString());
     rec.AjouterReserverVoyage(re);
+    notiff();
     refresh();
     Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
     alert.setContentText("Reservation ajouter");
     alert.showAndWait();
 }
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage());        }
+            System.err.println(ex.getMessage());        
+        }
 }      
 
+        private void notiff()
+    {
+        ServiceVoyage sv = new ServiceVoyage();
+        ReserverVoyage RV = new ReserverVoyage();
+         String Destinationv = Dest.getText();
+        //int y=sv.calculnb((Destination.getText()));
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        tray.setAnimationType(type);
+        tray.setTitle("Bienvenu A Travel Me");
+        tray.setMessage("La Reservation Du Voyage"+ Destinationv+ " a ete effectuer avec Success");
+        tray.setNotificationType(NotificationType.INFORMATION);
+        tray.showAndDismiss(Duration.millis(2000));
+    }
+    
+    
     @FXML
     private void ModVoy(ActionEvent event) throws SQLException {
     Scontrole_Voyage sc= new Scontrole_Voyage();   

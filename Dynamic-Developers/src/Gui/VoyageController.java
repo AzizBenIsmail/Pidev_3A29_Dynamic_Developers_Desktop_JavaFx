@@ -433,7 +433,7 @@ if (! sc.isNumeric(Prix.getText())){
         ServiceVoyage sv = new ServiceVoyage();
         ObservableList<voyage> list = sv.getvoyageList();
         try {
-            OutputStream file = new FileOutputStream(new File("‪C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Dynamic-Developers\\Voyage.pdf"));
+            OutputStream file = new FileOutputStream(new File("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Dynamic-Developers\\Voyage.pdf"));            
             Document document = new Document();
             PdfWriter.getInstance(document, file);
             document.open();
@@ -468,7 +468,7 @@ if (! sc.isNumeric(Prix.getText())){
             document.close();
             file.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
 Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("Cannot export data!");
@@ -477,16 +477,18 @@ Alert alert = new Alert(Alert.AlertType.ERROR);
 
 
     @FXML
-    private void Excel(ActionEvent event) throws IOException {
+    private void Excel(ActionEvent event) throws IOException, SQLException {
         Writer writer = null;
-        
+                ServiceVoyage sv = new ServiceVoyage();
+                ObservableList<voyage> list = sv.getvoyageList();
          try {
             //badel path fichier excel
             File file = new File("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Dynamic-Developers\\Voyage.csv");
             writer = new BufferedWriter(new FileWriter(file));
+            
             for (voyage ev : list) {
 
-                String text = ev.getDestination()+"," +ev.getNom_voyage()+ "," + ev.getDuree_voyage()+ ","+ev.getDate()+","+ev.getValabilite()+","+ev.getImage()+","+ev.getPrix()+ "\n";
+                String text = ev.getDestination()+" | " +ev.getNom_voyage()+ " | " + ev.getDuree_voyage()+ " | "+ev.getDate()+" | "+ev.getValabilite()+" | "+ev.getImage()+" | "+ev.getPrix()+ "\n";
                 System.out.println(text);
                 writer.write(text);
             }
@@ -494,7 +496,6 @@ Alert alert = new Alert(Alert.AlertType.ERROR);
             ex.printStackTrace();
         }
         finally {
-
             writer.flush();
              writer.close();
              Alert alert= new Alert(Alert.AlertType.INFORMATION);
