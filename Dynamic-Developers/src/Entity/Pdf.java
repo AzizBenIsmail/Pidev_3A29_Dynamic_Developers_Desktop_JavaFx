@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -32,8 +33,8 @@ public class Pdf {
         document.open();
 
         ServiceVoyage us = new ServiceVoyage();
-
-        document.add(new Paragraph("            le voyage :"));
+        document.add(new Paragraph("            Date  :"+LocalDateTime.now()));
+        document.add(new Paragraph("            le voyage :"+p.getNom_voyage()));
         document.add(new Paragraph("                      "));
         document.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------"));
 
