@@ -22,7 +22,7 @@ import javafx.scene.web.WebView;
  *
  * @author Yassine
  */
-public class testMapController implements Initializable {
+public class TestMapController implements Initializable {
 
     public static double lon;
         public static double lat;
@@ -34,7 +34,7 @@ public class testMapController implements Initializable {
     /**
      * Initializes the controller class.
      */
-  //  @Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         webengine = webview.getEngine();
 

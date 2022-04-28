@@ -32,8 +32,8 @@
         </columns>
       </TableView>
       <Button fx:id="SupprimerVoyage" layoutX="1118.0" layoutY="600.0" mnemonicParsing="false" onAction="#SupprimerVoyage" prefHeight="25.0" prefWidth="140.0" text="Supprimer" />
-      <Button fx:id="Actualiser" layoutX="445.0" layoutY="600.0" mnemonicParsing="false" onAction="#Actualiser" prefHeight="25.0" prefWidth="122.0" text="Actualiser" />
-      <Button fx:id="Add" layoutX="229.0" layoutY="647.0" mnemonicParsing="false" onAction="#Add" prefHeight="25.0" prefWidth="140.0" text="Ajouter" />
+      <Button fx:id="Actualiser" layoutX="528.0" layoutY="600.0" mnemonicParsing="false" onAction="#Actualiser" prefHeight="25.0" prefWidth="150.0" text="Actualiser" />
+      <Button fx:id="Add" layoutX="162.0" layoutY="647.0" mnemonicParsing="false" onAction="#Add" prefHeight="25.0" prefWidth="140.0" text="Ajouter" />
       <Label fx:id="DestinationText" layoutX="20.0" layoutY="116.0" prefHeight="30.0" prefWidth="176.0" text="Destination :">
          <font>
             <Font name="System Bold" size="20.0" />
@@ -77,14 +77,12 @@
       <ImageView fx:id="Image" fitHeight="202.0" fitWidth="418.0" layoutX="711.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="AddImage" layoutX="258.0" layoutY="536.0" mnemonicParsing="false" onAction="#AddImage" prefHeight="25.0" prefWidth="125.0" text="Image" />
       <TextField fx:id="URLImage" layoutX="167.0" layoutY="496.0" prefHeight="29.0" prefWidth="146.0" promptText="Image" />
-      <Button fx:id="ModVoy" layoutX="745.0" layoutY="600.0" mnemonicParsing="false" onAction="#ModVoy" prefHeight="25.0" prefWidth="146.0" text="Modifier" />
+      <Button fx:id="ModVoy" layoutX="950.0" layoutY="600.0" mnemonicParsing="false" onAction="#ModVoy" prefHeight="25.0" prefWidth="146.0" text="Modifier" />
       <ComboBox fx:id="combox" layoutX="169.0" layoutY="429.0" prefHeight="25.0" prefWidth="146.0" />
       <TextField fx:id="Recherche" layoutX="1023.0" layoutY="78.0" onKeyReleased="#Recherche" prefHeight="25.0" prefWidth="211.0" promptText="Recherche" />
-      <Button fx:id="PDF" layoutX="930.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#PDF" prefHeight="25.0" prefWidth="67.0" text="PDF" />
-      <Button layoutX="528.0" layoutY="49.0" mnemonicParsing="false" onAction="#Excel" prefHeight="25.0" prefWidth="67.0" text="Excel" />
-      <Button fx:id="reset" layoutX="77.0" layoutY="685.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="140.0" text="clear" />
+      <Button fx:id="reset" layoutX="161.0" layoutY="685.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="140.0" text="clear" />
       <Button fx:id="Menu" layoutX="23.0" layoutY="777.0" mnemonicParsing="false" onAction="#Menu" prefHeight="25.0" prefWidth="146.0" text="Retour Au Menu" />
-      <ComboBox fx:id="Trie" layoutX="691.0" layoutY="49.0" onAction="#Trie" prefWidth="150.0" promptText="Dispo/Non/Biento" />
+      <ComboBox fx:id="Trie" layoutX="800.0" layoutY="44.0" onAction="#Trie" prefHeight="25.0" prefWidth="150.0" promptText="Dispo/Non/Biento" />
       <ComboBox fx:id="StatV" layoutX="528.0" layoutY="685.0" onAction="#StatV" prefWidth="150.0" promptText="Stat " />
       <ComboBox fx:id="Metier" layoutX="1108.0" layoutY="685.0" onAction="#Metier" prefHeight="25.0" prefWidth="140.0" promptText="Notif/Media/Map" />
       <Button fx:id="Media" disable="true" layoutX="1161.0" layoutY="672.0" mnemonicParsing="false" onAction="#Media_Video" opacity="0.0" text="Media" />
@@ -101,5 +99,6 @@
             <Font name="Baskerville Old Face" size="58.0" />
          </font>
       </Label>
+      <ComboBox fx:id="ExporterListe" layoutX="493.0" layoutY="44.0" onAction="#ExporterListe" prefWidth="150.0" promptText="PDF/Excel/Imprimer" />
    </children>
 </AnchorPane>

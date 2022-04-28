@@ -1,0 +1,40 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 24, 2022, 7:59:43 PM
+    Author     : Yassine
+*/
+ 
+ .como-box{
+  
+-fx-border-width: 0.5px;
+-fx-border-color: #ACACAC;
+-fx-border-radius: 50px;
+-fx-background-radius: 50px;
+-fx-font-size : 15px;
+-fx-padding: 0px;
+-fx-font-weight:700;
+-fx-font-family: 'Open Sans', 'Helvetica Neue', 'Arail','sans-serif';
+}
+.combo-box:hover{
+   -fx-text-fill: white;}
+.combo-box-base:hover{
+   -fx-border-color: green;}
+
+
+
+.combo-box .list-view{
+    -fx-border-width: 0.5px;
+    -fx-border-color: #ACACAC;
+    -fx-background-color: white;
+    -fx-padding: 0px;
+    -fx-font-weight:700;
+    -fx-border-radius: 10px 10px 0px 0px;
+    -fx-background-radius: 10px 10px 0px 0px;}
+.combo-box .list-view .list-ce:filled{
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-font-wight: 700;}
