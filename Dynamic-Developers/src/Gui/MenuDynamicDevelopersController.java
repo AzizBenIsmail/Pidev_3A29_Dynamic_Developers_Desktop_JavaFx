@@ -110,7 +110,12 @@ public class MenuDynamicDevelopersController implements Initializable {
     }
 
     @FXML
-    private void ReserverRestaurant(ActionEvent event) {
+    private void ReserverRestaurant(ActionEvent event) throws IOException {
+              Parent root = FXMLLoader.load(getClass().getResource("RestaurantReservation.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
 
     @FXML
@@ -118,7 +123,12 @@ public class MenuDynamicDevelopersController implements Initializable {
     }
 
     @FXML
-    private void Restaurant(ActionEvent event) {
+    private void Restaurant(ActionEvent event) throws IOException {
+              Parent root = FXMLLoader.load(getClass().getResource("RestaurantC.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
     }
     

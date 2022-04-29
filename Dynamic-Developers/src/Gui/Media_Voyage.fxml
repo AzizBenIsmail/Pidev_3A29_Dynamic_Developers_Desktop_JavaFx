@@ -20,5 +20,10 @@
       <Button fx:id="pause" layoutX="949.0" layoutY="740.0" mnemonicParsing="false" onAction="#pause" prefHeight="25.0" prefWidth="106.0" text="Pause" />
       <Button fx:id="stop" layoutX="439.0" layoutY="740.0" mnemonicParsing="false" onAction="#stop" prefHeight="25.0" prefWidth="106.0" text="F5" />
       <Button fx:id="Go_Back" layoutX="1145.0" layoutY="740.0" mnemonicParsing="false" onAction="#Go_Back_Home" prefHeight="25.0" prefWidth="120.0" text="Go Back" />
+      <ImageView fitHeight="122.0" fitWidth="140.0" layoutX="1187.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

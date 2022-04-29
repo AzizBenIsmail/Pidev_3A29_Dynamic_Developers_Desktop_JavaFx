@@ -100,5 +100,10 @@
          </font>
       </Label>
       <ComboBox fx:id="ExporterListe" layoutX="493.0" layoutY="44.0" onAction="#ExporterListe" prefWidth="150.0" promptText="PDF/Excel/Imprimer" />
+      <ImageView fitHeight="129.0" fitWidth="125.0" layoutX="1161.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

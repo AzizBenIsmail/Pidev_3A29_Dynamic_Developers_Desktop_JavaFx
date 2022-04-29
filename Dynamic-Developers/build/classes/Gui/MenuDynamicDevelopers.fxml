@@ -43,5 +43,10 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
+      <ImageView fitHeight="280.0" fitWidth="313.0" layoutX="1073.0" layoutY="-19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

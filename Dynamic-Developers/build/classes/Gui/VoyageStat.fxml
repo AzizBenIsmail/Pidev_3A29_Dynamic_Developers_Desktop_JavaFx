@@ -13,5 +13,10 @@
          </image>
       </ImageView>
       <PieChart fx:id="voy_stat" layoutX="204.0" layoutY="69.0" prefHeight="556.0" prefWidth="871.0" />
+      <ImageView fitHeight="161.0" fitWidth="159.0" layoutX="924.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

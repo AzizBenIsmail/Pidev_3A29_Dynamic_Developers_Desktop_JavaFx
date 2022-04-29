@@ -59,5 +59,10 @@
       <ComboBox fx:id="VoyageCombox" layoutX="197.0" layoutY="168.0" prefHeight="25.0" prefWidth="189.0" promptText="Voyage" />
       <Button fx:id="Clear" layoutX="116.0" layoutY="517.0" mnemonicParsing="false" onAction="#Clear" prefHeight="25.0" prefWidth="133.0" text="Clear" />
       <Button fx:id="Menu11" layoutX="67.0" layoutY="757.0" mnemonicParsing="false" onAction="#Menu" prefHeight="25.0" prefWidth="146.0" text="Retour Au Menu" />
+      <ImageView fitHeight="118.0" fitWidth="153.0" layoutX="1182.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
