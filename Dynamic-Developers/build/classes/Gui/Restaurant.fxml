@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="765.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.RestaurantController">
+   <children>
+      <ImageView fx:id="ImageP" fitHeight="824.0" fitWidth="1339.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/bg.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="27.0" layoutY="153.0" prefHeight="17.0" prefWidth="139.0" text="Nom du restaurant :" textFill="#587bee">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="20.0" layoutY="230.0" text="Adresse du restaurant :" textFill="#587bee">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <Label layoutX="23.0" layoutY="358.0" text="Num_Téléphone :" textFill="#587bee">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <Label layoutX="22.0" layoutY="471.0" text="Description :" textFill="#587bee">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <TextField fx:id="nom_res" layoutX="192.0" layoutY="151.0" />
+      <TextField fx:id="numt_res" layoutX="190.0" layoutY="356.0" />
+      <TextField fx:id="descp_res" layoutX="187.0" layoutY="468.0" />
+      <Button fx:id="btn_aj_res" layoutX="141.0" layoutY="595.0" mnemonicParsing="false" onAction="#ajouter_res" prefHeight="25.0" prefWidth="139.0" text="Ajouter" textFill="#587bee" />
+      <Button fx:id="btn_supp_res" layoutX="694.0" layoutY="595.0" mnemonicParsing="false" onAction="#supprimer_res" prefHeight="25.0" prefWidth="139.0" text="Supprimer" textFill="#587bee" />
+      <Button fx:id="btn_mod_res" layoutX="404.0" layoutY="595.0" mnemonicParsing="false" onAction="#modifier_res" prefHeight="25.0" prefWidth="139.0" text="Modifier" textFill="#587bee" />
+      <Button fx:id="btn_vi_res" layoutX="1057.0" layoutY="595.0" mnemonicParsing="false" onAction="#vider_res" prefHeight="25.0" prefWidth="139.0" text="Vider" textFill="#587bee" />
+      <TableView fx:id="table_res" layoutX="375.0" layoutY="149.0" onMouseClicked="#getSelected" prefHeight="439.0" prefWidth="857.0">
+        <columns>
+          <TableColumn fx:id="nom_ress" prefWidth="200.0" text="Nom du restaurant" />
+          <TableColumn fx:id="adresse_ress" prefWidth="194.0" text="Adresse du restaurant" />
+            <TableColumn fx:id="numt_ress" prefWidth="195.0" text="Num_Téléphone" />
+            <TableColumn fx:id="descp_ress" prefWidth="261.0" text="Description" />
+        </columns>
+      </TableView>
+      <Label layoutX="35.0" layoutY="21.0" prefHeight="42.0" prefWidth="411.0" text="Gestion des restaurants :" textFill="#7ca4f5" underline="true">
+         <font>
+            <Font name="Bauhaus 93" size="36.0" />
+         </font>
+      </Label>
+      <Pane layoutX="743.0" layoutY="1.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="btnGoToMp" layoutX="134.0" layoutY="292.0" mnemonicParsing="false" onAction="#GoToMap" text="Go To Map" />
+      <Label fx:id="label" layoutX="193.0" layoutY="201.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" />
+      <Button fx:id="Menu" layoutX="33.0" layoutY="787.0" mnemonicParsing="false" onAction="#Menu" prefHeight="25.0" prefWidth="146.0" text="Retour Au Menu" />
+      <ImageView fitHeight="161.0" fitWidth="159.0" layoutX="1157.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/Logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

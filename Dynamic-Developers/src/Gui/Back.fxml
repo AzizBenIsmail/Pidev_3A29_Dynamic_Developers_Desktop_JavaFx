@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.BackController">
+   <children>
+      <ImageView fx:id="ImageP" fitHeight="824.0" fitWidth="1339.0" layoutX="-12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/bg.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="Voyage" layoutX="52.0" layoutY="334.0" mnemonicParsing="false" onAction="#Voyage" opacity="0.83" prefHeight="46.0" prefWidth="311.0" styleClass="Style.css" stylesheets="@Style.css" text="Gestion DesVoyage">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="ReserverVoyage" layoutX="22.0" layoutY="413.0" mnemonicParsing="false" onAction="#ReserverVoyage" opacity="0.83" prefHeight="46.0" prefWidth="370.0" text="Gestion Des Reservation Voyage">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="280.0" fitWidth="313.0" layoutX="1044.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Img/Logo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="Post" layoutX="559.0" layoutY="324.0" mnemonicParsing="false" onAction="#Post" opacity="0.83" prefHeight="46.0" prefWidth="202.0" styleClass="Style.css" stylesheets="@Style.css" text="Post">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="Reclamation" layoutX="463.0" layoutY="413.0" mnemonicParsing="false" onAction="#Reclamation" opacity="0.83" prefHeight="46.0" prefWidth="395.0" text="Gerer Les Reclamations">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.AddPostController">
+   <children>
+      <Text fill="#1a20b9" stroke="#865555" strokeType="OUTSIDE" strokeWidth="0.0" text="Creer Une Publication" textAlignment="CENTER" wrappingWidth="1280.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <font>
+            <Font size="64.0" />
+         </font>
+      </Text>
+      <AnchorPane fx:id="anchor" prefHeight="686.0" prefWidth="1260.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <AnchorPane prefHeight="72.0" prefWidth="1250.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <Circle fx:id="cir" fill="#1f93ff06" layoutX="47.0" layoutY="43.0" radius="38.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <ComboBox fx:id="visibilite" layoutX="90.0" layoutY="43.0" prefHeight="31.0" prefWidth="187.0" />
+                  <Text layoutX="90.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="  UserName" wrappingWidth="193.6708984375">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <Button fx:id="post" layoutX="14.0" layoutY="558.0" mnemonicParsing="false" onAction="#Redirect" prefHeight="61.0" prefWidth="1170.0" text="Post" />
+            <TextArea fx:id="description" layoutX="14.0" layoutY="101.0" prefHeight="200.0" prefWidth="1170.0" />
+            <TextField fx:id="hashtag" layoutX="39.0" layoutY="496.0" prefHeight="49.0" prefWidth="265.0" />
+            <FontAwesomeIconView fill="#2b86e1" glyphName="HASHTAG" layoutX="12.0" layoutY="528.0" size="25" wrappingWidth="22.0" />
+            <FontAwesomeIconView fx:id="photo" fill="#2de047" glyphName="FILE_IMAGE_ALT" layoutX="326.0" layoutY="527.0" onMouseClicked="#addphoto" size="25" wrappingWidth="22.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </FontAwesomeIconView>
+            <ImageView fx:id="imagep" fitHeight="165.0" fitWidth="236.0" layoutX="34.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true" />
+            <FontAwesomeIconView fx:id="photo1" fill="#de2f2f" glyphName="MAP_MARKER" layoutX="368.0" layoutY="527.0" onMouseClicked="#addphoto" size="25" wrappingWidth="22.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </FontAwesomeIconView>
+            <ComboBox fx:id="local" layoutX="390.0" layoutY="504.0" prefWidth="150.0" />
+            <WebView fx:id="webview" layoutX="368.0" layoutY="319.0" prefHeight="165.0" prefWidth="382.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
