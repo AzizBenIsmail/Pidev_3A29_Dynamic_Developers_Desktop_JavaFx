@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="510.0" prefWidth="372.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Gui.ModifierUserController">
+   <children>
+      <AnchorPane layoutY="10.0" prefHeight="500.0" prefWidth="400.0">
+         <children>
+            <Label layoutX="99.0" layoutY="110.0" prefHeight="54.0" prefWidth="231.0" text="Modfier User" textFill="#662d60">
+               <font>
+                  <Font name="Berlin Sans FB" size="39.0" />
+               </font>
+            </Label>
+            <FontAwesomeIcon fill="#662d60" glyphName="USER_PLUS" layoutX="150.0" layoutY="96.0" size="8em" text="" wrappingWidth="109.85713958740234" />
+            <TextField fx:id="cinM" layoutX="90.0" layoutY="167.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="28.0" prefWidth="220.0" promptText="CIN ..." styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Button fx:id="modifier_btn" layoutX="159.0" layoutY="420.0" mnemonicParsing="false" onAction="#ModifierU" prefHeight="24.0" prefWidth="83.0" styleClass="button-design" stylesheets="@design.css" text="Modifier" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <TextField fx:id="numeroM" layoutX="90.0" layoutY="278.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="28.0" prefWidth="220.0" promptText="Numero ..." styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="adresseM" layoutX="90.0" layoutY="241.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="28.0" prefWidth="220.0" promptText="Adresse ..." styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="email_signupM" layoutX="90.0" layoutY="315.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="idUser" disable="true" layoutX="90.0" layoutY="352.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="28.0" prefWidth="220.0" promptText="ID User ..." styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="usernameM" layoutX="90.0" layoutY="205.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="28.0" prefWidth="220.0" promptText="Username ..." styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

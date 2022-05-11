@@ -1,0 +1,47 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21 avr. 2022, 02:26:45
+    Author     : ASUS
+*/
+.login-bg{
+    
+    -fx-background-color:linear-gradient(to bottom right,#2f466b,#662d60);
+}
+.exit{
+    -fx-background-color:#c22c40;
+    -fx-background-radius:5px;
+    -fx-cursor:hand;
+}
+.textfield-design{
+    -fx-background-color:transparent;
+    -fx-background-radius:10px;
+    -fx-border-color:linear-gradient(to bottom right,#2f466b,#662d60);
+    -fx-border-radius:10px;
+    -fx-text-inner-color:#000;
+}
+.button-design{
+     -fx-background-color:linear-gradient(to bottom right,#2f466b,#662d60);
+     -fx-background-radius:20px;
+      -fx-cursor:hand;
+     
+}
+.button-design:hover{
+     -fx-background-color:linear-gradient(to bottom left,#517ab5,#ae44a5);
+     -fx-background-radius:20px;
+      -fx-cursor:hand;
+     
+}
+.hypertext-design{
+    -fx-text-fill:#5185c5;
+    -fx-underline:false;
+    -fx-border-color:transparent;
+}
+.hypertext-design:hover{
+    
+    -fx-underline:true;
+    
+}
