@@ -48,5 +48,6 @@
             <Image url="@../Img/Logo.png" />
          </image>
       </ImageView>
+      <Button fx:id="Fermer" layoutX="1279.0" layoutY="34.0" mnemonicParsing="false" onAction="#exit" text="X" textFill="#ff0101" textOverrun="CENTER_ELLIPSIS" />
    </children>
 </AnchorPane>

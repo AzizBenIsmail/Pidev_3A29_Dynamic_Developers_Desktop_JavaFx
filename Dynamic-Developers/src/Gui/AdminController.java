@@ -163,7 +163,7 @@ public class AdminController implements Initializable {
     private void ModifierUser(ActionEvent event) {
         user = tableviewUser.getSelectionModel().getSelectedItem();
                             FXMLLoader loader = new FXMLLoader ();
-                            loader.setLocation(getClass().getResource("ModifierUser.fxml"));
+                            loader.setLocation(getClass().getResource("/Gui/ModifierUser.fxml"));
                             try {
                                 loader.load();
                             } catch (Exception ex) {

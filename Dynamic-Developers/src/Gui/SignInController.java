@@ -7,6 +7,7 @@ package Gui;
 
 
 import Entity.User;
+import java.io.IOException;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import java.net.URL;
@@ -288,11 +289,30 @@ public class SignInController implements Initializable {
         }
     }
     
-    public void login(){
-         String query2="select * from user where email=?  and password=?";
-      cnx = MyConnection.getInstance().getCnx();
-      try{
-          PreparedStatement smt = cnx.prepareStatement(query2);
+    public void login() throws IOException{
+        if(email_signin.getText().equals("travel.me.pridev@gmail.com") && password_signin.getText().equals("Admin") )
+        {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                     alert.setTitle("Travel Me :: Success Message");
+                     alert.setHeaderText(null);
+                     alert.setContentText("Bienvenu Admin");
+                     alert.showAndWait();
+                     
+                  Parent root = FXMLLoader.load(getClass().getResource("/Gui/Back.fxml"));
+                     Scene scene;
+                     
+                    scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setScene(scene);
+      
+                    stage.show();
+        }else {
+            
+            String query2="select * from user where email=?  and password=?";
+            cnx = MyConnection.getInstance().getCnx();
+           try{
+              PreparedStatement smt = cnx.prepareStatement(query2);
        
                smt.setString(1,email_signin.getText());
                smt.setString(2,password_signin.getText());
@@ -307,10 +327,9 @@ public class SignInController implements Initializable {
                      alert.setHeaderText(null);
                      alert.setContentText("Vous etes connecté");
                      alert.showAndWait();
-                login_btn.getScene().getWindow().hide();
-                    Parent root = FXMLLoader.load(getClass().getResource("/login/Admin.fxml"));
+                    login_btn.getScene().getWindow().hide();
+                    Parent root = FXMLLoader.load(getClass().getResource("/Gui/MenuDynamicDevelopers.fxml"));
                      Scene scene;
-                     
                     scene = new Scene(root);
                     Stage stage = new Stage();
                     stage.initStyle(StageStyle.TRANSPARENT);
@@ -331,6 +350,9 @@ public class SignInController implements Initializable {
            System.out.println(ex.getMessage());
       }
 
+            
+        }
+         
     }
      @FXML
     public void  signUp(){
@@ -419,7 +441,6 @@ public class SignInController implements Initializable {
         properties.put("mail.smtp.starttls.enable","true");
         properties.put("mail.smtp.host","smtp.gmail.com");
         properties.put("mail.smtp.port","587");
-       
         String myAccountEmail = "travelme3a29@gmail.com";
         String passwordd = "Aymen2000abid@";
        

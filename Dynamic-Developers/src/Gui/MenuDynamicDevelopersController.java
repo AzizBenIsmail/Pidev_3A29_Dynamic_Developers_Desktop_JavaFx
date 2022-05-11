@@ -41,10 +41,16 @@ public class MenuDynamicDevelopersController implements Initializable {
     private Button Post;
     @FXML
     private Button Reclamation;
+    @FXML
+    private Button Fermer;
 
     /**
      * Initializes the controller class.
      */
+    @FXML
+    public void exit(){
+        System.exit(0);
+    }   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -147,6 +153,8 @@ public class MenuDynamicDevelopersController implements Initializable {
                 stage.initStyle(StageStyle.UTILITY);
                 stage.show();
     }
+
+    
     }
     
 

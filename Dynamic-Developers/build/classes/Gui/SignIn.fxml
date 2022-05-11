@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.SignInController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.SignInController">
    <children>
       <AnchorPane fx:id="login_form" prefHeight="500.0" prefWidth="394.0">
          <children>
@@ -23,9 +23,8 @@
             </AnchorPane>
             <AnchorPane layoutX="401.0" prefHeight="500.0" prefWidth="400.0">
                <children>
-                  <Button layoutX="318.0" layoutY="9.0" mnemonicParsing="false" onAction="#exit" prefHeight="24.0" prefWidth="52.0" styleClass="exit" stylesheets="@design.css" AnchorPane.leftAnchor="318.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="9.0">
+                  <Button layoutX="318.0" layoutY="9.0" mnemonicParsing="false" onAction="#exit" prefHeight="24.0" prefWidth="52.0" styleClass="exit" stylesheets="@design.css" text="X" AnchorPane.leftAnchor="318.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="9.0">
                      <graphic>
-                        <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
                      </graphic>
                   </Button>
                   <Label layoutX="158.0" layoutY="155.0" prefHeight="54.0" prefWidth="118.0" text="Sign IN" textFill="#662d60">
@@ -33,7 +32,6 @@
                         <Font name="Berlin Sans FB" size="40.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIcon fill="#662d60" glyphName="USERS" layoutX="167.0" layoutY="138.0" size="8em" text="" wrappingWidth="109.85713958740234" />
                   <TextField fx:id="email_signin" layoutX="112.0" layoutY="250.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@design.css">
                      <font>
                         <Font size="15.0" />
@@ -74,7 +72,6 @@
                   </Label>
                   <Button mnemonicParsing="false" onAction="#exit" prefHeight="24.0" prefWidth="52.0" styleClass="exit" stylesheets="@design.css" AnchorPane.leftAnchor="318.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="9.0">
                      <graphic>
-                        <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" />
                      </graphic>
                   </Button>
                </children>
@@ -86,7 +83,6 @@
                         <Font name="Berlin Sans FB" size="39.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIcon fill="#662d60" glyphName="USER_PLUS" layoutX="150.0" layoutY="96.0" size="8em" text="" wrappingWidth="109.85713958740234" />
                   <TextField fx:id="cin" layoutX="90.0" layoutY="167.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="28.0" prefWidth="220.0" promptText="CIN ..." styleClass="textfield-design" stylesheets="@design.css">
                      <font>
                         <Font size="15.0" />

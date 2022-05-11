@@ -41,10 +41,18 @@ public class BackController implements Initializable {
     private Button Restaurant;
     @FXML
     private Button ReserverRestaurant;
+    @FXML
+    private Button Fermer;
+    @FXML
+    private Button Gestion_User;
 
     /**
      * Initializes the controller class.
      */
+    @FXML
+    public void exit(){
+        System.exit(0);
+    }   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -140,5 +148,22 @@ public class BackController implements Initializable {
             System.err.println(ex.getMessage());
         }
     }
+
+    @FXML
+    private void Gestion_User(ActionEvent event) {
+        try {
+
+              Parent parent = FXMLLoader.load(getClass().getResource("/Gui/Admin.fxml"));
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+   
     
 }
