@@ -37,6 +37,10 @@ public class BackController implements Initializable {
     private Button Post;
     @FXML
     private Button Reclamation;
+    @FXML
+    private Button Restaurant;
+    @FXML
+    private Button ReserverRestaurant;
 
     /**
      * Initializes the controller class.
@@ -55,13 +59,12 @@ public class BackController implements Initializable {
               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
               stage.setScene(scene);
               stage.show();*/
-FXMLLoader loader = new FXMLLoader(getClass().getResource("Voyage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Voyage.fxml"));
             Parent root = loader.load();
             VoyageController pc = loader.getController();
             pc.setReserver(false);
             pc.Nom_Voyage_Resrver_text(false);
             pc.Nom_Voyage_Resrver(false);  
-
             Voyage.getScene().setRoot(root);
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
@@ -72,11 +75,13 @@ FXMLLoader loader = new FXMLLoader(getClass().getResource("Voyage.fxml"));
     private void ReserverVoyage(ActionEvent event) {
          try {
 
-         Parent root = FXMLLoader.load(getClass().getResource("/Gui/Reservevoyage.fxml"));
-              Scene scene = new Scene(root);
-              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-              stage.setScene(scene);
-              stage.show();
+            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/Reservevoyage.fxml"));
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                //stage.getIcons().add(new Image("/images/logo.png"));
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
@@ -102,6 +107,38 @@ FXMLLoader loader = new FXMLLoader(getClass().getResource("Voyage.fxml"));
                 stage.setScene(scene);
                 stage.initStyle(StageStyle.UTILITY);
                 stage.show();
+    }
+
+    @FXML
+    private void Restaurant(ActionEvent event) {
+         try {
+
+             Parent parent = FXMLLoader.load(getClass().getResource("/Gui/Restaurant.fxml"));
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                //stage.getIcons().add(new Image("/images/logo.png"));
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void ReserverRestaurant(ActionEvent event) {
+        try {
+
+              Parent parent = FXMLLoader.load(getClass().getResource("/Gui/RestaurantReservation.fxml"));
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                //stage.getIcons().add(new Image("/images/logo.png"));
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
     
 }
