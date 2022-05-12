@@ -83,7 +83,7 @@ public class BackController implements Initializable {
     private void ReserverVoyage(ActionEvent event) {
          try {
 
-            Parent parent = FXMLLoader.load(getClass().getResource("/Gui/Reservevoyage.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("Reservevoyage.fxml"));
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 //stage.getIcons().add(new Image("/images/logo.png"));
@@ -97,7 +97,7 @@ public class BackController implements Initializable {
 
     @FXML
     private void Post(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/Gui/FXMLPostback.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("FXMLPostback.fxml"));
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 //stage.getIcons().add(new Image("/images/logo.png"));
@@ -108,7 +108,7 @@ public class BackController implements Initializable {
 
     @FXML
     private void Reclamation(ActionEvent event) throws IOException {
-         Parent parent = FXMLLoader.load(getClass().getResource("/Gui/FXMLReclamationback.fxml"));
+         Parent parent = FXMLLoader.load(getClass().getResource("FXMLReclamationback.fxml"));
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 //stage.getIcons().add(new Image("/images/logo.png"));
@@ -121,7 +121,7 @@ public class BackController implements Initializable {
     private void Restaurant(ActionEvent event) {
          try {
 
-             Parent parent = FXMLLoader.load(getClass().getResource("/Gui/Restaurant.fxml"));
+             Parent parent = FXMLLoader.load(getClass().getResource("Restaurant.fxml"));
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 //stage.getIcons().add(new Image("/images/logo.png"));
@@ -137,7 +137,7 @@ public class BackController implements Initializable {
     private void ReserverRestaurant(ActionEvent event) {
         try {
 
-              Parent parent = FXMLLoader.load(getClass().getResource("/Gui/RestaurantReservation.fxml"));
+              Parent parent = FXMLLoader.load(getClass().getResource("RestaurantReservation.fxml"));
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 //stage.getIcons().add(new Image("/images/logo.png"));
@@ -153,7 +153,7 @@ public class BackController implements Initializable {
     private void Gestion_User(ActionEvent event) {
         try {
 
-              Parent parent = FXMLLoader.load(getClass().getResource("/Gui/Admin.fxml"));
+              Parent parent = FXMLLoader.load(getClass().getResource("Admin.fxml"));
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 stage.setScene(scene);

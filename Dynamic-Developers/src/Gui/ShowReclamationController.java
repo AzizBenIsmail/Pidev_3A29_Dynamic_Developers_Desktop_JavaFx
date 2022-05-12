@@ -9,13 +9,12 @@ import API.MailerAPI;
 import static API.MailerAPI.Mail;
 import Entity.Reclamation;
 import Service.ServiceReclamation;
-import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import de.jensd.fx.glyphs.materialicons.MaterialIcon;
 import de.jensd.fx.glyphs.materialicons.MaterialIconView;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
