@@ -21,7 +21,7 @@
             <Button fx:id="tfquoideneuf" layoutX="215.0" mnemonicParsing="false" onAction="#redirect" prefHeight="62.0" prefWidth="907.0" text="quoi de neuf " AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="214.0" AnchorPane.rightAnchor="157.0" AnchorPane.topAnchor="9.0" />
          </children>
       </AnchorPane>
-      <ScrollPane fitToWidth="true" layoutX="235.0" layoutY="273.0" minHeight="0.0" minWidth="0.0" prefViewportHeight="500.0" snapToPixel="false" vbarPolicy="ALWAYS" AnchorPane.leftAnchor="235.0">
+      <ScrollPane fitToWidth="true" layoutX="235.0" layoutY="273.0" minHeight="0.0" minWidth="0.0" prefHeight="519.0" prefViewportHeight="500.0" prefWidth="874.0" snapToPixel="false" vbarPolicy="ALWAYS" AnchorPane.leftAnchor="235.0">
          <content>
             <VBox fx:id="tfpostlist" />
          </content>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,5 +19,6 @@
             <VBox fx:id="tfpostlist" />
          </content>
       </ScrollPane>
+      <FontAwesomeIconView fill="#0022ff" glyphName="ARROW_LEFT" layoutX="33.0" layoutY="56.0" onMouseClicked="#retour" size="30" wrappingWidth="34.0" />
    </children>
 </AnchorPane>

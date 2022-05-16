@@ -49,9 +49,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -83,8 +86,12 @@ public class AddPostController implements Initializable {
     private AnchorPane anchor;
     @FXML
     private ComboBox<String> local;
+    @FXML
+    private WebView webview;
+    @FXML
+    private Text username;
     
-     @FXML
+    @FXML
     private void addphoto(MouseEvent event) throws FileNotFoundException, IOException {
         
         FileChooser fc = new FileChooser();
@@ -92,9 +99,10 @@ public class AddPostController implements Initializable {
         fc.getExtensionFilters().addAll(
                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif"));
         File f = fc.showOpenDialog(null);
-        String DBPath = "C:\\\\Users\\\\ASUS\\\\OneDrive\\\\Documents\\\\NetBeansProjects\\\\Dynamic-Developers\\\\src\\\\image\\\\"+f.getName();
+        String DBPath = "C:\\\\\\\\xampp\\\\\\\\htdocs\\\\\\\\Version-Integre\\\\\\\\public\\\\\\\\uploads\\\\\\\\"+f.getName();
         i=f.getName();
         p.setImageP(i);
+        System.out.println(p.getImageP());
         if (f != null){
         BufferedImage bufferedImage = ImageIO.read(f);
         WritableImage image = SwingFXUtils.toFXImage(bufferedImage,null);
@@ -115,7 +123,9 @@ public class AddPostController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        visibilite.getItems().addAll("public","anonymous");
+        ServicePost service=new ServicePost();
        visibilite.getSelectionModel().selectFirst();
+       username.setText(service.OneUser(SessionManager.getId()).getUserName());
        Image user = new Image("/image/profile-pic.png");
        cir.setFill(new ImagePattern(user)); 
        ObservableList<String> cities= FXCollections.observableArrayList();
@@ -139,7 +149,7 @@ public class AddPostController implements Initializable {
           p.setDescriptionP(description.getText());
           p.setHashtagP(hashtag.getText());
           p.setVisibilite(visibilite.getValue());
-         
+          p.setIdc(SessionManager.getId());
           DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
           LocalDateTime now = LocalDateTime.now();  
           String date= dtf.format(now);
@@ -160,6 +170,15 @@ public class AddPostController implements Initializable {
 		alert.setContentText("Verifier vos données ");
                 alert.showAndWait();
        }
+    }
+
+    @FXML
+    private void retour(MouseEvent event) throws IOException {
+          Parent root = FXMLLoader.load(getClass().getResource("ShowPost.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
 
    

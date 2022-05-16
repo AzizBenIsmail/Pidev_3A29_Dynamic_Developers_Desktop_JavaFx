@@ -17,6 +17,15 @@ public class Reclamation {
     private String DateR;
     private String etat;
 
+    public int getIdc() {
+        return idc;
+    }
+
+    public void setIdc(int idc) {
+        this.idc = idc;
+    }
+    private int idc;
+
     public String getEtat() {
         return etat;
     }
@@ -37,6 +46,10 @@ public class Reclamation {
         this.TypeR = TypeR;
         this.DescriptionR = DescriptionR;
         this.Objet = Objet;
+    }
+
+    public Reclamation(int idc) {
+        this.idc = idc;
     }
 
     public Reclamation(String TypeR, String DescriptionR, String Objet, String DateR) {

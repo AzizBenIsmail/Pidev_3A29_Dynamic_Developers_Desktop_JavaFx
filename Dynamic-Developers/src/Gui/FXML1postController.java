@@ -53,6 +53,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import utils.SessionManager;
 
 
 /**
@@ -80,7 +81,7 @@ public class FXML1postController implements Initializable {
              
             Label username= new Label("TRAVEL ME");
            if (e.getVisibilite().equals("public"))
-             username.setText("UserName");    
+             username.setText(service.OneUser(e.getIdc()).getUserName());    
            else if(e.getVisibilite().equals("anonymous"))         
              username.setText("TRAVEL ME USER");
            else
@@ -158,14 +159,17 @@ public class FXML1postController implements Initializable {
               
            });
            
-        
+           
+          
            imgu.getChildren().add(cir);
            imgu.getChildren().add(du);
            
-           imgu.getChildren().add(modif);
-           imgu.getChildren().add(supp);
+           if(service.UserPost(e.getId(),SessionManager.getId())){
+             imgu.getChildren().add(modif);
+             imgu.getChildren().add(supp);  
+           }
            
-          // VBox p = new VBox();
+            // VBox p = new VBox();
          
             //System.out.println("/image/"+e.getImageP());
            
@@ -211,13 +215,13 @@ public class FXML1postController implements Initializable {
            like.setGlyphSize(25);
            like.setCursor(Cursor.HAND);
            if(service.islikedbyuser(e.getId(),1).size()==0){
-                      service.ajouterlike(e.getId(), 1);
+                      //service.ajouterlike(e.getId(), 1);
                       like.setGlyphName("HEART");
                       like.setGlyphSize(25);
                       like.setCursor(Cursor.HAND);
                       
                    }else{
-                      service.Supprimerlike(e.getId(),1);
+                      //service.Supprimerlike(e.getId(),1);
                       like.setGlyphName("HEART_ALT");
                       like.setGlyphSize(25);
                       like.setCursor(Cursor.HAND);
@@ -239,8 +243,8 @@ public class FXML1postController implements Initializable {
                @Override
                public void handle(MouseEvent lk) {
                    List<PostLike> test =service.likes(e.getId());
-                   if(service.islikedbyuser(e.getId(),1).size()==0){
-                      service.ajouterlike(e.getId(), 1);
+                   if(service.islikedbyuser(e.getId(),SessionManager.getId()).size()==0){
+                      service.ajouterlike(e.getId(),SessionManager.getId());
                       like.setGlyphName("HEART");
                       like.setGlyphSize(25);
                       like.setCursor(Cursor.HAND);
@@ -307,7 +311,7 @@ public class FXML1postController implements Initializable {
             post.getChildren().add(desc);
             post.getChildren().add(hashtag);
            if (!(e.getImageP().equals("null"))){
-           Image imagep = new Image("/image/"+e.getImageP());
+           Image imagep = new Image("http://127.0.0.1:8000/uploads/"+e.getImageP());
            ImageView iv2 = new ImageView();
             iv2.setImage(imagep);
             iv2.setFitHeight(500);
@@ -318,7 +322,7 @@ public class FXML1postController implements Initializable {
               post.getChildren().add(iv2);}
            
             post.getChildren().add(lc);
-           // post.setTranslateY(20);
+            // post.setTranslateY(20);
             tfpostlist.getChildren().add(post);
             tfpostlist.setSpacing(45);
              /// Commentaire detaills et ajout
@@ -328,8 +332,8 @@ public class FXML1postController implements Initializable {
            VBox duc = new VBox();
            Label datec= new Label(diffdate(comment.getDatec()));
              
-            Label usernamec= new Label("UserName");
-           
+            Label usernamec= new Label(sc.OneUser(comment.getIdClient()).getUserName());
+            
            duc.getChildren().add(usernamec);
            duc.getChildren().add(datec);
            duc.setTranslateX(10);
@@ -403,9 +407,12 @@ public class FXML1postController implements Initializable {
         
            imguc.getChildren().add(circ);
            imguc.getChildren().add(duc);
-           
-           imguc.getChildren().add(modifc);
-           imguc.getChildren().add(suppc);
+           System.out.println(sc.UserPost(comment.getId(),SessionManager.getId()));
+          if(sc.UserPost(comment.getId(),SessionManager.getId())==true){
+          
+              imguc.getChildren().add(modifc);
+              imguc.getChildren().add(suppc);
+             }
            
           // VBox p = new VBox();
          
@@ -451,6 +458,7 @@ public class FXML1postController implements Initializable {
                 // LocalDateTime now = LocalDateTime.now();  
                  //String datenewc= dtf.format(now);
                  //newc.setDatec(datenewc);
+                 newc.setIdClient(SessionManager.getId());
                  newc.setIdpost(e.getId());
                 System.out.println(newc);
                 sc.ajouter(newc);
@@ -496,60 +504,7 @@ public class FXML1postController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /* ServicePost service=new ServicePost();  
-         VBox du = new VBox();
-         
-           Label date= new Label(diffdate(e.getDateP()));
-           Label username= new Label("TRAVEL ME");
-           if (e.getVisibilite().equals("public"))
-             username.setText("UserName");    
-           else          
-             username.setText("TRAVEL ME USER");
-           du.getChildren().add(username);
-           du.getChildren().add(date);
-           du.setTranslateX(15);
-           du.setTranslateY(15);
-     
-           HBox imgu = new HBox();
-          
-           Circle cir = new Circle();
-           cir.setRadius(35);
-           Image admin = new Image("/image/logo.png");
-           Image user = new Image("/image/profile-pic.png");
-           Image anonymous = new Image("/image/user-secret.png");
-           cir.setFill(new ImagePattern(admin));
-           if (e.getVisibilite().equals("public"))
-            cir.setFill(new ImagePattern(user));   
-           else          
-             cir.setFill(new ImagePattern(anonymous));
-       
-           cir.setTranslateX(5);
-           cir.setTranslateY(5);
-           
-           FontAwesomeIconView modif = new FontAwesomeIconView(FontAwesomeIcon.PENCIL);
-           modif.setFill(Color.GREEN);
-           modif.setGlyphSize(25);
-           modif.setCursor(Cursor.HAND);
-           modif.setTranslateY(10);
-           modif.setTranslateX(500);
-           FontAwesomeIconView supp = new FontAwesomeIconView(FontAwesomeIcon.TRASH_ALT);
-           supp.setFill(Color.RED);
-           supp.setGlyphSize(25);
-           supp.setCursor(Cursor.HAND);
-           supp.setTranslateX(520);
-           supp.setTranslateY(10);
-           
-           imgu.getChildren().add(cir);
-           imgu.getChildren().add(du);
-           
-           imgu.getChildren().add(modif);
-           imgu.getChildren().add(supp);
-           
-           VBox post= new VBox();
-            post.getChildren().add(imgu);
-            
-            tfpostlist.getChildren().add(date);
-            tfpostlist.setSpacing(45);*/
+        
     }
  private String diffdate (String d) {
         
@@ -615,5 +570,14 @@ public class FXML1postController implements Initializable {
 		
 		
         return date ;
+    }
+
+    @FXML
+    private void retour(MouseEvent event) throws IOException {
+          Parent root = FXMLLoader.load(getClass().getResource("ShowPost.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
 }

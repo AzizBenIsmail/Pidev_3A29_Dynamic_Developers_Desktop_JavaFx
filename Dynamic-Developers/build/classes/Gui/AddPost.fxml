@@ -26,7 +26,7 @@
                <children>
                   <Circle fx:id="cir" fill="#1f93ff06" layoutX="47.0" layoutY="43.0" radius="38.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                   <ComboBox fx:id="visibilite" layoutX="90.0" layoutY="43.0" prefHeight="31.0" prefWidth="187.0" />
-                  <Text layoutX="90.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="  UserName" wrappingWidth="193.6708984375">
+                  <Text fx:id="username" layoutX="90.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="  UserName" wrappingWidth="193.6708984375">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -52,5 +52,6 @@
             <WebView fx:id="webview" layoutX="368.0" layoutY="319.0" prefHeight="165.0" prefWidth="382.0" />
          </children>
       </AnchorPane>
+      <FontAwesomeIconView fill="#0022ff" glyphName="ARROW_LEFT" layoutX="33.0" layoutY="56.0" onMouseClicked="#retour" size="30" wrappingWidth="34.0" />
    </children>
 </AnchorPane>

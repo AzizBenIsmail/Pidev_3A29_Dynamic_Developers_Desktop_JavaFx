@@ -5,6 +5,7 @@
  */
 package Gui;
 
+import API.MailerAPI;
 import Entity.Reclamation;
 import Service.ServiceReclamation;
 import java.net.URL;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -66,16 +68,18 @@ public class FXMLReclamationbackController implements Initializable {
 
     @FXML
     private void treat(ActionEvent event) {
-        String msg ="Votre Reclamation est traite";
        
         
-
- 
         ServiceReclamation service=new ServiceReclamation();
         Reclamation r=tftableview.getSelectionModel().getSelectedItem();
         service.traiter(r);
-  
-      
+    
+          String UN ="travelme3a29@gmail.com";
+           String PW = "Aymen2000abid@";  
+           String mto = service.OneUser(r.getIdc()).getEmail();
+           String msub = "Nouvelle Reclamation";
+           String cTEXT ="Cher Client , Votre Reclamation a ete bien traiter ";
+          /// MailerAPI.Mail(UN, PW, mto, msub, cTEXT);
   
         refresh();
         

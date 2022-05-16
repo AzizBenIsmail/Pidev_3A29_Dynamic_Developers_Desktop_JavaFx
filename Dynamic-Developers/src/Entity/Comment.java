@@ -28,7 +28,7 @@ public class Comment {
     public void setIdClient(int idClient) {
         this.idClient = idClient;
     }
-    String Commentaire , Objet;
+    String Commentaire ;
 
     public int getIdpost() {
         return idpost;
@@ -41,46 +41,38 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(int idpost, int idClient, String datec, String Commentaire, String Objet) {
+    public Comment(int idpost, int idClient, String datec, String Commentaire) {
         this.idpost = idpost;
         this.idClient = idClient;
         this.datec = datec;
         this.Commentaire = Commentaire;
-        this.Objet = Objet;
-    }
-
-    public Comment(int id, String Commentaire, String Objet) {
-        this.id = id;
-        this.Commentaire = Commentaire;
-        this.Objet = Objet;
+       
     }
 
     public Comment(int id, String Commentaire) {
         this.id = id;
         this.Commentaire = Commentaire;
+       
     }
 
-    public Comment(int id, int idpost, int idClient, String Commentaire, String Objet) {
+  
+
+    public Comment(int id, int idpost, int idClient, String Commentaire) {
         this.id = id;
         this.idpost = idpost;
         this.idClient = idClient;
         this.Commentaire = Commentaire;
-        this.Objet = Objet;
+       
     }
     
     
-    public Comment(String Commentaire, String Objet) {
+    public Comment(String Commentaire) {
         this.Commentaire = Commentaire;
-        this.Objet = Objet;
+        
     }
      
     
-    public Comment(int id, int idpost, String Commentaire, String Objet) {
-        this.id = id;
-        this.idpost = idpost;
-        this.Commentaire = Commentaire;
-        this.Objet = Objet;
-    }
+ 
     
     public int getId() {
         return id;
@@ -98,13 +90,7 @@ public class Comment {
         this.Commentaire = Commentaire;
     }
 
-    public String getObjet() {
-        return Objet;
-    }
-
-    public void setObjet(String Objet) {
-        this.Objet = Objet;
-    }
+   
     
     
 }

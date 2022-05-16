@@ -174,8 +174,6 @@ public class VoyageController implements Initializable {
     private ComboBox<String> combox;
     @FXML
     private TextField Recherche;
-    @FXML
-    private Button PDF;
     ObservableList<voyage> list;
     @FXML
     private Button Media;
@@ -211,9 +209,9 @@ public class VoyageController implements Initializable {
     @FXML
     private Label Nom_Voyage_Resrver_text;
     @FXML
-    private Button imprimer;
-    @FXML
     private ComboBox<String> ExporterListe;
+    @FXML
+    private Button back;
 
     /**
      * Initializes the controller class.
@@ -460,7 +458,6 @@ public class VoyageController implements Initializable {
         TableVoyage.setItems(branlist);
 
     }
-@FXML
     private void PDF(MouseEvent event) {
                             voyage voy = TableVoyage.getSelectionModel().getSelectedItem();
 
@@ -474,7 +471,6 @@ public class VoyageController implements Initializable {
             }
     }
 
-    @FXML
     private void Excel(ActionEvent event) throws IOException, SQLException {
         Writer writer = null;
                 ServiceVoyage sv = new ServiceVoyage();
@@ -881,7 +877,6 @@ public static void printNode(final Node node) throws NoSuchMethodException, Inst
     }
 
 
-    @FXML
     private void ImprimerAction(ActionEvent event) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
                 printNode(TableVoyage);
     }
@@ -947,6 +942,15 @@ public static void printNode(final Node node) throws NoSuchMethodException, Inst
                                     ExporterListe.setValue("Exporter");
                             printNode(TableVoyage);
         }
+    }
+
+    @FXML
+    private void back(ActionEvent event) throws IOException {
+                      Parent root = FXMLLoader.load(getClass().getResource("Back.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
 
     

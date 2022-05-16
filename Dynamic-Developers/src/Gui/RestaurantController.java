@@ -177,7 +177,8 @@ public class RestaurantController implements Initializable {
          WebEngine webEngine = new WebEngine(
                 getClass().getResource("/edu/connexion3a29/utils/googleMap.html").toString());
          WebView webView = new WebView();
-         webView.getEngine().load("file:///C:/Users/HP/Desktop/ghofrane/dynamic_developpers/src/edu/connexion3a29/utils/googleMap.html");
+         webView.getEngine().load("file:///C://Users//ASUS//OneDrive//Documents//NetBeansProjects//Dynamic-Developers//src//edu//connexion3a29//utils/googleMap.html");
+         
         // create map type buttons
                
              stage = new Stage(StageStyle.UTILITY);

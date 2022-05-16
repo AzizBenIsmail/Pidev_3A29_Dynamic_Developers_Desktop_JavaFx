@@ -105,5 +105,6 @@
             <Image url="@../Img/Logo.png" />
          </image>
       </ImageView>
+      <Button fx:id="back" layoutX="23.0" layoutY="746.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="11.0" text="Retour Au Menu" />
    </children>
 </AnchorPane>

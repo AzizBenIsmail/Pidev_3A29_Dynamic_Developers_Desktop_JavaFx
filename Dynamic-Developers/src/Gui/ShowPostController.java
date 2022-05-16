@@ -8,7 +8,8 @@ package Gui;
 import Entity.Post;
 import Entity.PostLike;
 import Service.ServicePost;
-import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
+import com.gluonhq.charm.glisten.control.Avatar;
+import com.gluonhq.charm.glisten.control.Icon;
 //import com.oracle.javafx.scenebuilder.kit.glossary.JavaTokenizer.ParseException;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -64,7 +65,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import utils.SessionManager;
 /**
  * FXML Controller class
  *
@@ -104,7 +105,7 @@ public class ShowPostController implements Initializable {
         ServicePost service=new ServicePost();
         List<Post> list = new ArrayList<Post>();
         list=service.recuperer();
-        Collections.sort(list,Collections.reverseOrder());
+        //Collections.sort(list,Collections.reverseOrder());
         
         System.out.println(this.getHash());
        
@@ -115,13 +116,16 @@ public class ShowPostController implements Initializable {
              
             Label username= new Label("TRAVEL ME");
            if (e.getVisibilite().equals("public"))
-             username.setText("UserName");    
+             username.setText(service.OneUser(e.getIdc()).getUserName());    
            else if(e.getVisibilite().equals("anonymous"))         
              username.setText("TRAVEL ME USER");
            else
              username.setText("TRAVEL ME");  
+        
            
-           du.getChildren().add(username);
+           System.out.println(service.OneUser(e.getIdc()));
+           
+           du.getChildren().add(username); 
            du.getChildren().add(date);
            du.setTranslateX(15);
            du.setTranslateY(15);
@@ -197,8 +201,11 @@ public class ShowPostController implements Initializable {
            imgu.getChildren().add(cir);
            imgu.getChildren().add(du);
            
-           imgu.getChildren().add(modif);
-           imgu.getChildren().add(supp);
+           if(service.UserPost(e.getId(),SessionManager.getId())){
+             imgu.getChildren().add(modif);
+             imgu.getChildren().add(supp);  
+           }
+           
            
           // VBox p = new VBox();
          
@@ -219,17 +226,17 @@ public class ShowPostController implements Initializable {
               
              Parent root;
                try {
-                   FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowPost.fxml"));
+                   FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowPostHashtag.fxml"));
                    root = (Parent) loader.load();
-                   ShowPostController controller = loader.getController();
+                   ShowPostHashtagController controller = loader.getController();
                    //ShowPostController s = new ShowPostController();
                    
                    //s.setHash(hashtag.getText().substring(1));
                    
-                  //  controller.initData(hash);
+                  controller.initData(hashtag.getText().substring(1));
                   // this.setHash(hashtag.getText().substring(1));
-                 //  System.out.println(loader.getController().toString());
-                 System.out.println(this.getHash());
+                 //System.out.println(loader.getController().toString());
+                // System.out.println(hashtag.getText().substring(1));
                    Stage stage=(Stage) ((Node) h.getSource()).getScene().getWindow();
                    stage.setScene(new Scene(root));
                    stage.show();
@@ -245,14 +252,14 @@ public class ShowPostController implements Initializable {
            FontAwesomeIconView like = new FontAwesomeIconView(FontAwesomeIcon.HEART_ALT);
            like.setGlyphSize(25);
            like.setCursor(Cursor.HAND);
-           if(service.islikedbyuser(e.getId(),1).size()==0){
-                      service.ajouterlike(e.getId(), 1);
+           if(service.islikedbyuser(e.getId(),SessionManager.getId()).isEmpty()){
+                      //service.ajouterlike(e.getId(), SessionManager.getId());
                       like.setGlyphName("HEART");
                       like.setGlyphSize(25);
                       like.setCursor(Cursor.HAND);
                       
                    }else{
-                      service.Supprimerlike(e.getId(),1);
+                     // service.Supprimerlike(e.getId(),SessionManager.getId());
                       like.setGlyphName("HEART_ALT");
                       like.setGlyphSize(25);
                       like.setCursor(Cursor.HAND);
@@ -274,15 +281,15 @@ public class ShowPostController implements Initializable {
                @Override
                public void handle(MouseEvent lk) {
                    List<PostLike> test =service.likes(e.getId());
-                   if(service.islikedbyuser(e.getId(),1).size()==0){
-                      service.ajouterlike(e.getId(), 1);
+                   if(service.islikedbyuser(e.getId(),SessionManager.getId()).isEmpty()){
+                      service.ajouterlike(e.getId(), SessionManager.getId());
                       like.setGlyphName("HEART");
                       like.setGlyphSize(25);
                       like.setCursor(Cursor.HAND);
                       int li=service.likes(e.getId()).size();
                       nblike.setText(String.valueOf(li)); 
                    }else{
-                      service.Supprimerlike(e.getId(),1);
+                      service.Supprimerlike(e.getId(),SessionManager.getId());
                       like.setGlyphName("HEART_ALT");
                       like.setGlyphSize(25);
                       like.setCursor(Cursor.HAND);
@@ -342,7 +349,7 @@ public class ShowPostController implements Initializable {
             post.getChildren().add(desc);
             post.getChildren().add(hashtag);
            if (!(e.getImageP().equals("null"))){
-           Image imagep = new Image("/image/"+e.getImageP());
+           Image imagep = new Image("http://127.0.0.1:8000/uploads/"+e.getImageP());
            ImageView iv2 = new ImageView();
             iv2.setImage(imagep);
             iv2.setFitHeight(500);

@@ -5,10 +5,13 @@
  */
 package Gui;
 
+
 import Entity.Post;
+import Entity.PostLike;
 import Service.ServicePost;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import static Gui.ShowPostController.hash;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
@@ -22,6 +25,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,12 +38,15 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import utils.SessionManager;
+
 
 /**
  * FXML Controller class
@@ -69,38 +76,24 @@ public class ShowPostHashtagController implements Initializable {
     
     
     public void initData(String h){
-        
-               
-    }
-    
-    /**
-     * Initializes the controller class.
-     */
-    
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-  
-        ShowPostController pubco = new ShowPostController();
-         
-        Image imageu = new Image("/image/profile-pic.png");
-        cir1.setFill(new ImagePattern(imageu)); 
         ServicePost service=new ServicePost();
         List<Post> list = new ArrayList<Post>();
-        list=service.recupererhashtag(setH(h));
-        
+        list=service.recupererhashtag(h);
+       // Collections.sort(list,Collections.reverseOrder());
+        System.out.println(h);
+      
         for(Post e : list)
         {  
-            
-            
            VBox du = new VBox();
            Label date= new Label(diffdate(e.getDateP()));
              
             Label username= new Label("TRAVEL ME");
            if (e.getVisibilite().equals("public"))
-             username.setText("UserName");    
-           else          
+              username.setText(service.OneUser(e.getIdc()).getUserName());   
+           else if(e.getVisibilite().equals("anonymous"))         
              username.setText("TRAVEL ME USER");
+           else
+             username.setText("TRAVEL ME");  
            
            du.getChildren().add(username);
            du.getChildren().add(date);
@@ -114,11 +107,13 @@ public class ShowPostHashtagController implements Initializable {
            Image admin = new Image("/image/logo.png");
            Image user = new Image("/image/profile-pic.png");
            Image anonymous = new Image("/image/user-secret.png");
-           cir.setFill(new ImagePattern(admin));
+           
            if (e.getVisibilite().equals("public"))
             cir.setFill(new ImagePattern(user));   
-           else          
+           else if(e.getVisibilite().equals("anonymous"))          
              cir.setFill(new ImagePattern(anonymous));
+           else
+              cir.setFill(new ImagePattern(admin)); 
        
            cir.setTranslateX(5);
            cir.setTranslateY(5);
@@ -176,8 +171,10 @@ public class ShowPostHashtagController implements Initializable {
            imgu.getChildren().add(cir);
            imgu.getChildren().add(du);
            
-           imgu.getChildren().add(modif);
-           imgu.getChildren().add(supp);
+            if(service.UserPost(e.getId(),SessionManager.getId())){
+             imgu.getChildren().add(modif);
+             imgu.getChildren().add(supp);  
+           }
            
           // VBox p = new VBox();
          
@@ -189,21 +186,67 @@ public class ShowPostHashtagController implements Initializable {
            desc.setTranslateY(20);
            Hyperlink hashtag = new Hyperlink();
            hashtag.setText("#"+e.getHashtagP());
-          // Label hashtag= new Label("#"+h.getText());
+           //Label hashtag= new Label("#"+h.getText());
            hashtag.setTranslateX(10);
            hashtag.setTranslateY(20);
+           hash=hashtag.getText().substring(1);
+        
            
            HBox lc = new HBox();
            
            FontAwesomeIconView like = new FontAwesomeIconView(FontAwesomeIcon.HEART_ALT);
            like.setGlyphSize(25);
            like.setCursor(Cursor.HAND);
-          
+                 if(service.islikedbyuser(e.getId(),SessionManager.getId()).isEmpty()){
+                      //service.ajouterlike(e.getId(), 1);
+                      like.setGlyphName("HEART_ALT");
+                      like.setGlyphSize(25);
+                      like.setCursor(Cursor.HAND);
+                      
+                   }else{
+                      //service.Supprimerlike(e.getId(),1);
+                      like.setGlyphName("HEART");
+                      like.setGlyphSize(25);
+                      like.setCursor(Cursor.HAND);
+                     
+                   }
+           
            Label nblike= new Label("15");
            nblike.setPrefSize(40,25);
            nblike.setTranslateX(10);
            nblike.setTranslateY(-2);
+            int l=service.likes(e.getId()).size();
+           // e.setLikes(l);
+                     if (l==0){
+                        nblike.setText("0");
+                     }else{
+                       nblike.setText(String.valueOf(l)); 
+                      // nblike.setText(String.valueOf(e.getLikes()));
+                     }
            
+           like.setOnMouseClicked(new EventHandler<MouseEvent>() {
+               @Override
+               public void handle(MouseEvent lk) {
+                   List<PostLike> test =service.likes(e.getId());
+                   if(service.islikedbyuser(e.getId(),SessionManager.getId()).size()==0){
+                      service.ajouterlike(e.getId(), SessionManager.getId());
+                      like.setGlyphName("HEART");
+                      like.setGlyphSize(25);
+                      like.setCursor(Cursor.HAND);
+                      int li=service.likes(e.getId()).size();
+                      e.setLikes(li);
+                      nblike.setText(String.valueOf(li)); 
+                   }else{
+                      service.Supprimerlike(e.getId(),SessionManager.getId());
+                      like.setGlyphName("HEART_ALT");
+                      like.setGlyphSize(25);
+                      like.setCursor(Cursor.HAND);
+                      int li=service.likes(e.getId()).size();
+                      nblike.setText(String.valueOf(li)) ;
+                   }
+                    
+               }
+           });
            FontAwesomeIconView Comment = new FontAwesomeIconView(FontAwesomeIcon.COMMENTS_ALT);
            Comment.setGlyphSize(25);
            Comment.setCursor(Cursor.HAND);
@@ -213,6 +256,14 @@ public class ShowPostHashtagController implements Initializable {
            nbcom.setPrefSize(40,25);
            nbcom.setTranslateX(10);
            nbcom.setTranslateY(-2);
+           
+           int c=service.comments(e.getId());
+           
+                     if (c==0){
+                        nbcom.setText("0");
+                     }else{
+                       nbcom.setText(String.valueOf(c));  
+                     }
            lc.getChildren().add(like);
            lc.getChildren().add(nblike);
            lc.getChildren().add(Comment);
@@ -224,20 +275,17 @@ public class ShowPostHashtagController implements Initializable {
              Parent root;
                try {
                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML1post.fxml"));
-                   //root = loader.load();
-                   loader.load();
-                   FXML1postController controller = loader.getController();
+                   root = (Parent) loader.load();
+                  FXML1postController controller = loader.getController();
+             
+                    controller.initData(e);
                    
-                   controller.initData(e);
                    System.out.println(loader.getController().toString());
-                   
+                  
                    Stage stage=(Stage) ((Node) commentpage.getSource()).getScene().getWindow();
-                   stage.setScene(new Scene(loader.load()));
+                   stage.setScene(new Scene(root));
                    stage.show();
-                   /* Scene scene = new Scene(root);
-                   Stage stage = (Stage) ((Node) a.getSource()).getScene().getWindow();
-                   stage.setScene(scene);
-                   stage.show(); */
+                   
                } catch (IOException ex) {
                    Logger.getLogger(ShowPostController.class.getName()).log(Level.SEVERE, null, ex);
                }
@@ -267,11 +315,32 @@ public class ShowPostHashtagController implements Initializable {
            //tfpostlist.getChildren().add(p);
        
         }
-        // TODO
+               
+    }
+    
+    /**
+     * Initializes the controller class.
+     */
+    
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+  
+       
+         
+        Image imageu = new Image("/image/profile-pic.png");
+        cir1.setFill(new ImagePattern(imageu)); 
+               
+        
     }    
 
     @FXML
-    private void redirect(ActionEvent event) {
+    private void redirect(ActionEvent event) throws IOException {
+          Parent root = FXMLLoader.load(getClass().getResource("AddPost.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
     
      public String diffdate (String d) {
@@ -338,6 +407,16 @@ public class ShowPostHashtagController implements Initializable {
 		
 		
         return date ;
+    }
+
+    @FXML
+    private void retour(MouseEvent event) throws IOException {
+        
+          Parent root = FXMLLoader.load(getClass().getResource("ShowPost.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
      
    

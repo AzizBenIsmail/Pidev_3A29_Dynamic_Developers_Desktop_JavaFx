@@ -86,7 +86,7 @@ public class FXMLPostbackController implements Initializable {
         fc.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"));
         File f = fc.showOpenDialog(null);
-        String DBPath = "D:\\\\PI\\\\OumaymaJava\\\\src\\\\image\\\\"+f.getName();
+        String DBPath = "C:\\\\\\\\xampp\\\\\\\\htdocs\\\\\\\\Version-Integre\\\\\\\\public\\\\\\\\uploads\\\\\\\\"+f.getName();
         String i = f.getName();
         p.setImageP(i);
         if (f != null){

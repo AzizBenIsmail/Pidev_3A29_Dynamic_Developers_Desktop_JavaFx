@@ -82,7 +82,7 @@ public class UpdatePostController implements Initializable {
           
      imagep.setImage(image);}
      }
-     @FXML
+    @FXML
     private void addphoto(MouseEvent event) throws IOException {
          FileChooser fc = new FileChooser();
         fc.setTitle("Ajouter une Image");
@@ -140,6 +140,16 @@ public class UpdatePostController implements Initializable {
 		alert.setContentText("Verifier vos données ");
                 alert.showAndWait();
        }
+    }
+
+    @FXML
+    private void retour(MouseEvent event) throws IOException {
+        
+         Parent root = FXMLLoader.load(getClass().getResource("ShowPost.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
 
    

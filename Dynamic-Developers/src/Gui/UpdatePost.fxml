@@ -51,5 +51,6 @@
             <HBox fx:id="hbox" layoutX="399.0" layoutY="494.0" prefHeight="49.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
+      <FontAwesomeIconView fill="#0022ff" glyphName="ARROW_LEFT" layoutX="33.0" layoutY="56.0" onMouseClicked="#retour" size="30" wrappingWidth="34.0" />
    </children>
 </AnchorPane>

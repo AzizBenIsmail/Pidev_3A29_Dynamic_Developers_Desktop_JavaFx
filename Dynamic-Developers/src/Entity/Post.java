@@ -13,7 +13,15 @@ import Service.ServicePost;
  * @author Oumayma
  */
 public class Post implements Comparable<Post> {
-   private int id , likes;
+   private int id , likes,idc;
+
+    public int getIdc() {
+        return idc;
+    }
+
+    public void setIdc(int idc) {
+        this.idc = idc;
+    }
    private String HashtagP,DescriptionP,visibilite,ImageP;
    private String DateP , country; 
 

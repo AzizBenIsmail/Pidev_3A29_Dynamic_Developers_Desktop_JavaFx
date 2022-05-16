@@ -47,6 +47,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import utils.MyConnection;
+import utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -290,7 +291,7 @@ public class SignInController implements Initializable {
     }
     
     public void login() throws IOException{
-        if(email_signin.getText().equals("travel.me.pridev@gmail.com") && password_signin.getText().equals("Admin") )
+        if(email_signin.getText().equals("mohamedaziz.benismail@esprit.tn") && password_signin.getText().equals("adminadmin") )
         {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                      alert.setTitle("Travel Me :: Success Message");
@@ -321,6 +322,7 @@ public class SignInController implements Initializable {
                 if(rs.next()){
                      p=new User(rs.getInt("cin"),rs.getString("user_name"),rs.getInt("numero"),rs.getString("email"),rs.getString("adresse"),rs.getString("password"));
                      User.setCurrent_User(p);
+                     SessionManager.getInstace(rs.getInt("id"),rs.getInt("cin"),rs.getString("user_name"),rs.getInt("numero"),rs.getString("email"),rs.getString("adresse"),rs.getString("roles"));
                      System.out.println(User.Current_User.getEmail());
                      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                      alert.setTitle("Travel Me :: Success Message");
