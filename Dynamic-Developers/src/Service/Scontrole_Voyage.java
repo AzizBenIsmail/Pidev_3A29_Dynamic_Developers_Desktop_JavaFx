@@ -33,7 +33,7 @@ public boolean isNumeric(String text) {
              if (text == null || text.trim().equals("")) {
                  return false;
              }
-             for (int iCount = 0; iCount < text.length(); iCount++) {
+             for (int iCount = 0; iCount < text.length()-3; iCount++) {
                  if (!Character.isDigit(text.charAt(iCount))) {
                     return false;
                }

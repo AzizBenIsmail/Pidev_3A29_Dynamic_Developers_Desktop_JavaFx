@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Gui;
-
+import java.lang.*;
 import Entity.Pdf;
 import Entity.voyage;
 import static Entity.voyage.filename;
@@ -252,7 +252,7 @@ public class VoyageController implements Initializable {
             String c = voy.getValabilite();
             combox.setValue(c);
             Prix.setText(String.valueOf(voy.getPrix()));
-            String path = voy.getImage();
+            String path = "C:\\\\\\\\xampp\\\\\\\\htdocs\\\\\\\\Version-Integre\\\\\\\\public\\\\\\\\uploads\\\\\\\\"+voy.getImage();
             File file = new File(path);
             URLImage.setText(path);
             Image img = new Image(file.toURI().toString());
@@ -342,7 +342,9 @@ public class VoyageController implements Initializable {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.jpeg"));
         File file = fileChooser.showOpenDialog(null);
-        String DBPath = "C:\\\\xampp\\\\htdocs\\\\Version-Integre\\\\public\\\\uploads\\\\" + x + ".jpg";
+        //String DBPath = "C:\\\\xampp\\\\htdocs\\\\Version-Integre\\\\public\\\\uploads\\\\" + x + ".jpg";
+                String DBPath = "" + x + ".jpg";
+
         if (file != null) {
             FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
             FileOutputStream Fdestination = new FileOutputStream(DBPath);
@@ -350,9 +352,15 @@ public class VoyageController implements Initializable {
             BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
             System.out.println(file.getAbsoluteFile());
             String path = file.getAbsolutePath();
+            String res;
+            int len;
+            len=path.length();
+
+            res = path.substring(47,len);
+            System.out.println(res);
             Image img = new Image(file.toURI().toString());
             Image.setImage(img);
-            URLImage.setText(DBPath);
+            URLImage.setText(res);
             int b = 0;
             while (b != -1) {
                 b = bin.read();

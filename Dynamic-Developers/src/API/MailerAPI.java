@@ -63,7 +63,7 @@ public class MailerAPI {
             
             System.out.println(">> ? smtp(s) ---> ## " + t.getURLName() + " \n>> ?");
 
-            Transport.send(m);  
+//            Transport.send(m);  
 
 
         } catch (MessagingException e) {
