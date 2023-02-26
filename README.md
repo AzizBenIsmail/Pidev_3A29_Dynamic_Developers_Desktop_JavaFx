@@ -1,10 +1,10 @@
 # PIDEV-3A29-dynamic-developers
  ![GitHub repo size](https://img.shields.io/github/repo-size/AzizBenIsmail/PIDEV-3A29-dynamic-developers-Web-Symfony)
- ## Projet développement Web Java Mobil
+ ## Projet développement Web Java Desktop
  ## 🧰 Présentation du PIDEV
  Projet permettant de créer une application ayant 3 clients Java Web et mobile tout en assurant la communication entre ces derniers à travers une base de données commune
  ### Sprint 1:
- Sprint Web
+ Sprint Desktop
  ## Objectifs Sprint Sprint Java
  1. Développer une application WEB avec Symfony 4 `Front
 Office + Back Office` en respectant le modèle `MVC`.
